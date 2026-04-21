@@ -6,7 +6,7 @@ pub trait BookWriteRepoPort: Send + Sync {
     async fn create(
         &self,
         insert: &BookPrepared,
-    ) -> Result<Book, String>;
+    ) -> anyhow::Result<Book>;
 }
 
 #[async_trait]
@@ -14,12 +14,12 @@ pub trait BookCopyWriteRepoPort: Send + Sync {
     async fn create(
         &self,
         insert: &BookCopyPrepared,
-    ) -> Result<BookCopy, String>;
+    ) -> anyhow::Result<BookCopy>;
     async fn update_status(
         &self,
         book_copy_id: i64,
         status: &str
-    ) -> Result<BookCopy, String>;
+    ) -> anyhow::Result<BookCopy>;
 }
 
 #[async_trait]
@@ -27,7 +27,12 @@ pub trait MemberWriteRepoPort: Send + Sync {
     async fn create(
         &self,
         insert: &MemberPrepared,
-    ) -> Result<Member, String>;
+    ) -> anyhow::Result<Member>;
+    async fn update_status(
+        &self,
+        member_id: i16,
+        status: &str,
+    ) -> anyhow::Result<Member>;
 }
 
 #[async_trait]
@@ -35,14 +40,9 @@ pub trait LoanWriteRepoPort: Send + Sync {
     async fn create(
         &self,
         insert: &LoanPrepared,
-    ) -> Result<Loan, String>;
+    ) -> anyhow::Result<Loan>;
     async fn end(
         &self,
         loan_id: i64,
-    ) -> Result<Loan, String>;
+    ) -> anyhow::Result<Loan>;
 }
-
-// #[async_trait]
-// pub trait ContactInquirySpamRatingPort: Send + Sync {
-//     async fn get_spam_likelihood(&self, message: &str) -> Result<u8, String>;
-// }

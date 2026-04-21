@@ -21,25 +21,6 @@ impl CatalogCommands {
         }
     }
 
-    async fn change_book_copy_status(
-        &self,
-        book_copy: BookCopy,
-        new_status: &str,
-        added_context: &'static str,
-    ) -> anyhow::Result<BookCopy> {
-        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
-        let result = uow
-            .book_copy_write_repo()
-            .update_status(book_copy.id, new_status)
-            .await
-            .context(added_context)?;
-        uow.commit()
-            .await
-            .context("Failed to commit transaction")?;
-
-        Ok(result)
-    }
-
     pub async fn add_book(
         &self,
         payload: BookCreationPayload,
@@ -82,9 +63,16 @@ impl CatalogCommands {
     ) -> anyhow::Result<BookCopy> {
 
         anyhow::ensure!(book_copy.can_be_marked_lost(), BookCopyError::CannotMarkBookLost);
-        let result = self
-            .change_book_copy_status(book_copy, "lost", "Failed to mark book copy lost")
-            .await?;
+
+        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
+        let result = uow
+            .book_copy_write_repo()
+            .update_status(book_copy.id, "lost")
+            .await
+            .context("Failed to mark book copy lost")?;
+        uow.commit()
+            .await
+            .context("Failed to commit transaction")?;
 
         Ok(result)
     }
@@ -94,9 +82,16 @@ impl CatalogCommands {
     ) -> anyhow::Result<BookCopy> {
 
         anyhow::ensure!(book_copy.can_be_returned_from_lost(), BookCopyError::CannotBeReturnedFromLost);
-        let result = self
-            .change_book_copy_status(book_copy, "active", "Failed to mark book copy found")
-            .await?;
+
+        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
+        let result = uow
+            .book_copy_write_repo()
+            .update_status(book_copy.id, "active")
+            .await
+            .context("Failed to mark book copy found")?;
+        uow.commit()
+            .await
+            .context("Failed to commit transaction")?;
 
         Ok(result)
     }
@@ -107,13 +102,16 @@ impl CatalogCommands {
     ) -> anyhow::Result<BookCopy> {
 
         anyhow::ensure!(book_copy.can_be_sent_to_maintenance(), BookCopyError::CannotBeSentToMaintenance);
-        let result = self
-            .change_book_copy_status(
-                book_copy,
-                "maintenance",
-                "Failed to send book copy to maintenance",
-            )
-            .await?;
+
+        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
+        let result = uow
+            .book_copy_write_repo()
+            .update_status(book_copy.id, "maintenance")
+            .await
+            .context("Failed to send book copy to maintenance")?;
+        uow.commit()
+            .await
+            .context("Failed to commit transaction")?;
 
         Ok(result)
     }
@@ -123,13 +121,16 @@ impl CatalogCommands {
     ) -> anyhow::Result<BookCopy> {
 
         anyhow::ensure!(book_copy.can_be_returned_from_maintenance(), BookCopyError::CannotBeReturnedFromMaintenance);
-        let result = self
-            .change_book_copy_status(
-                book_copy,
-                "active",
-                "Failed to complete book copy maintenance",
-            )
-            .await?;
+
+        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
+        let result = uow
+            .book_copy_write_repo()
+            .update_status(book_copy.id, "active")
+            .await
+            .context("Failed to complete book copy maintenance")?;
+        uow.commit()
+            .await
+            .context("Failed to commit transaction")?;
 
         Ok(result)
     }

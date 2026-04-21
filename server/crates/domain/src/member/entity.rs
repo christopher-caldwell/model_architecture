@@ -23,6 +23,25 @@ pub struct MemberPrepared {
     pub status: &'static str
 }
 
+impl Member {
+    #[must_use]
+    pub fn can_be_suspended(&self) -> bool {
+        return self.status != "suspended"
+    }
+    #[must_use]
+    pub fn can_be_reactivated(&self) -> bool {
+        return self.status == "suspended"
+    }
+}
+
+#[derive(thiserror::Error, Debug)]
+pub enum MemberError {
+    #[error("Member is already suspended")]
+    CannotBeSuspended,
+    #[error("Member is not currently suspended")]
+    CannotBeReactivated,
+}
+
 impl MemberCreationPayload {
     // #[must_use]
     // pub fn is_spam(&self, likelihood: u8) -> bool {
