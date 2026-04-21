@@ -6,24 +6,19 @@ use domain::{
 };
 use std::sync::Arc;
 
-use crate::ports::{read_repos::LoanReadRepoPort, uow::WriteUnitOfWorkFactory};
+use crate::ports::uow::WriteUnitOfWorkFactory;
 
 #[derive(Clone)]
 pub struct LendingCommands {
     uow_factory: Arc<dyn WriteUnitOfWorkFactory>,
-    loan_read_repo: Arc<dyn LoanReadRepoPort>,
 }
 
 impl LendingCommands {
     #[must_use]
     pub fn new(
         uow_factory: Arc<dyn WriteUnitOfWorkFactory>,
-        loan_read_repo: Arc<dyn LoanReadRepoPort>,
     ) -> Self {
-        Self {
-            uow_factory,
-            loan_read_repo,
-        }
+        Self { uow_factory }
     }
 
     pub async fn check_out_book_copy(
@@ -39,8 +34,9 @@ impl LendingCommands {
             book_copy: book_copy.id,
         };
         let prepared = payload.prepare();
-        let active_loan_count = self
-            .loan_read_repo
+        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
+        let active_loan_count = uow
+            .loan_read_repo()
             .count_active_by_member_id(i64::from(member.id))
             .await
             .context("Failed to count active loans for member")?;
@@ -49,14 +45,13 @@ impl LendingCommands {
             MemberError::LoanLimitReached
         );
 
-        let active_loan = self
-            .loan_read_repo
+        let active_loan = uow
+            .loan_read_repo()
             .find_active_by_book_copy_id(book_copy.id)
             .await
             .context("Failed to find active loan for book copy")?;
         anyhow::ensure!(active_loan.is_none(), BookCopyError::CannotBeBorrowed);
 
-        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
         let result = uow
             .loan_write_repo()
             .create(&prepared)
@@ -73,15 +68,15 @@ impl LendingCommands {
         &self,
         book_copy: BookCopy,
     ) -> anyhow::Result<Loan> {
-        let loan = self
-            .loan_read_repo
+        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
+        let loan = uow
+            .loan_read_repo()
             .find_active_by_book_copy_id(book_copy.id)
             .await
             .context("Failed to find active loan for book copy")?
             .ok_or(LoanError::NoActiveLoanForBookCopy)?;
         anyhow::ensure!(loan.can_be_returned(), LoanError::CannotBeReturned);
 
-        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
         let result = uow
             .loan_write_repo()
             .end(loan.id)
@@ -100,15 +95,15 @@ impl LendingCommands {
     ) -> anyhow::Result<BookCopy> {
         anyhow::ensure!(book_copy.can_be_marked_lost(), BookCopyError::CannotMarkBookLost);
 
-        let loan = self
-            .loan_read_repo
+        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
+        let loan = uow
+            .loan_read_repo()
             .find_active_by_book_copy_id(book_copy.id)
             .await
             .context("Failed to find active loan for book copy")?
             .ok_or(LoanError::NoActiveLoanForBookCopy)?;
         anyhow::ensure!(loan.can_be_returned(), LoanError::CannotBeReturned);
 
-        let uow = self.uow_factory.build().await.context("Failed to build unit of work")?;
         uow.loan_write_repo()
             .end(loan.id)
             .await

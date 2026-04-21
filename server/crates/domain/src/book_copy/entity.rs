@@ -30,7 +30,7 @@ impl BookCopy {
     }
     #[must_use]
     pub fn can_be_sent_to_maintenance(&self) -> bool {
-        return self.status != "loaned" && self.status != "lost"
+        self.status == "active"
     }
     #[must_use]
     pub fn can_be_returned_from_maintenance(&self) -> bool {
@@ -50,7 +50,7 @@ impl BookCopy {
 pub enum BookCopyError {
     #[error("Book cannot currently be borrowed")]
     CannotBeBorrowed,
-    #[error("Book is loaned or lost and cannot be sent to maintenance")]
+    #[error("Book is not active and cannot be sent to maintenance")]
     CannotBeSentToMaintenance,
     #[error("Book is not currently in maintenance, and therefore cannot be returned")]
     CannotBeReturnedFromMaintenance,
