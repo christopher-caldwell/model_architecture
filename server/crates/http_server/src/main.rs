@@ -8,7 +8,7 @@ use tokio::net::TcpListener;
 use tracing::info;
 use tracing_subscriber::EnvFilter;
 
-use api::router::new_router;
+use crate::router::new_router;
 
 #[tokio::main]
 async fn main() -> Result<()> {

@@ -5,7 +5,6 @@ use std::env;
 pub struct ServerConfig {
     pub database_ro_url: String,
     pub database_rw_url: String,
-    pub anthropic_api_key: String,
     pub jwt_secret: String,
 }
 
@@ -26,7 +25,6 @@ pub fn load_server_config() -> Result<ServerConfig> {
     Ok(ServerConfig {
         database_ro_url: required_env("DATABASE_RO_URL")?,
         database_rw_url: required_env("DATABASE_RW_URL")?,
-        anthropic_api_key: required_env("ANTHROPIC_API_KEY")?,
         jwt_secret: required_env("JWT_SECRET")?,
     })
 }

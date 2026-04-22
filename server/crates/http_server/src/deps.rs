@@ -1,7 +1,7 @@
 use std::{collections::HashMap, sync::Arc};
 
+use crate::router::{AuthDeps, ContactInquiryDeps, ServerDeps};
 use anyhow::{Context, Result};
-use api::dependencies::{AuthDeps, ContactInquiryDeps, ServerDeps};
 use application::{ContactInquiryCommands, ContactInquiryQueries};
 use infrastructure::{
     llm::ContactInquirySpamRatingAdapter,

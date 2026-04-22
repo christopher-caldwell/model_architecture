@@ -1,10 +1,8 @@
 [workspace]
 members = [
-    "crates/domain",
     "crates/application",
+    "crates/domain",
+    "crates/http_server",
     "crates/persistence",
-    "crates/infrastructure",
-    "crates/api",
-    "crates/server",
 ]
 resolver = "2"
