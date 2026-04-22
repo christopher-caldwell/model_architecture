@@ -2,7 +2,6 @@ use axum::{
     extract::{Path, State},
     Json,
 };
-use domain::member::MemberId;
 
 use crate::router::{
     auth::AuthUser,
@@ -13,10 +12,10 @@ use crate::router::{
 
 #[utoipa::path(
     put,
-    path = "/{id}/suspension",
+    path = "/{ident}/suspension",
     tag = MEMBERS_TAG,
     params(
-        ("id" = i16, Path, description = "Identifier for the member")
+        ("ident" = String, Path, description = "Identifier for the member")
     ),
     responses(
         (status = 200, description = "Member suspended", body = MemberResponseBody),
@@ -31,13 +30,9 @@ use crate::router::{
 pub async fn suspend_member(
     AuthUser(_claims): AuthUser,
     State(deps): State<ServerDeps>,
-    Path(id): Path<i16>,
+    Path(ident): Path<String>,
 ) -> Result<Json<MemberResponseBody>, ApiError> {
-    let member_result = deps
-        .membership
-        .queries
-        .get_member_details(MemberId(id))
-        .await;
+    let member_result = deps.membership.queries.get_member_details(&ident).await;
 
     let member = match member_result {
         Ok(Some(member)) => member,
@@ -45,10 +40,7 @@ pub async fn suspend_member(
         Err(error) => return Err(service_error(error)),
     };
 
-    let suspend_member_result = deps.membership
-        .commands
-        .suspend_member(member)
-        .await;
+    let suspend_member_result = deps.membership.commands.suspend_member(member).await;
 
     let member_response = match suspend_member_result {
         Ok(updated) => Json(MemberResponseBody::from(updated)),

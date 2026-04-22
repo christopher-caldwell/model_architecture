@@ -2,7 +2,6 @@ use axum::{
     extract::{Path, State},
     Json,
 };
-use domain::book_copy::BookCopyId;
 
 use crate::router::{
     auth::AuthUser,
@@ -13,10 +12,10 @@ use crate::router::{
 
 #[utoipa::path(
     get,
-    path = "/{id}",
+    path = "/{barcode}",
     tag = BOOK_COPIES_TAG,
     params(
-        ("id" = i64, Path, description = "Database identifier for the book copy")
+        ("barcode" = String, Path, description = "Barcode identifier for the book copy")
     ),
     responses(
         (status = 200, description = "Book copy details", body = BookCopyResponseBody),
@@ -30,13 +29,9 @@ use crate::router::{
 pub async fn get_book_copy_by_id(
     AuthUser(_claims): AuthUser,
     State(deps): State<ServerDeps>,
-    Path(id): Path<i64>,
+    Path(barcode): Path<String>,
 ) -> Result<Json<BookCopyResponseBody>, ApiError> {
-    let book_copy_result = deps
-        .catalog
-        .queries
-        .get_book_copy_details(BookCopyId(id))
-        .await;
+    let book_copy_result = deps.catalog.queries.get_book_copy_details(&barcode).await;
 
     let book_copy_response = match book_copy_result {
         Ok(Some(book_copy)) => BookCopyResponseBody::from(book_copy),

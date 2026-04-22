@@ -59,4 +59,17 @@ impl BookCopyReadRepoPort for BookCopyReadRepoSql {
 
         row.map(BookCopy::try_from).transpose()
     }
+
+    async fn get_by_barcode(&self, barcode: &str) -> Result<Option<BookCopy>> {
+        let row = sqlx::query_file_as!(
+            BookCopyDbRow,
+            "sql/book_copy/queries/get_by_barcode.sql",
+            barcode
+        )
+        .fetch_optional(&self.pool)
+        .await
+        .context("Failed to fetch book copy by barcode")?;
+
+        row.map(BookCopy::try_from).transpose()
+    }
 }

@@ -50,18 +50,14 @@ impl TryFrom<LoanDbRow> for Loan {
     }
 }
 
-async fn get_by_member_with<'e, E>(executor: E, id: MemberId) -> Result<Vec<Loan>>
+async fn get_by_member_ident_with<'e, E>(executor: E, ident: &str) -> Result<Vec<Loan>>
 where
     E: Executor<'e, Database = Postgres>,
 {
-    let rows = sqlx::query_file_as!(
-        LoanDbRow,
-        "sql/loan/queries/get_by_member.sql",
-        i32::from(id.0)
-    )
-    .fetch_all(executor)
-    .await
-    .context("Failed to fetch loans by member id")?;
+    let rows = sqlx::query_file_as!(LoanDbRow, "sql/loan/queries/get_by_member_ident.sql", ident)
+        .fetch_all(executor)
+        .await
+        .context("Failed to fetch loans by member ident")?;
 
     rows.into_iter().map(Loan::try_from).collect()
 }
@@ -123,8 +119,8 @@ pub struct LoanReadRepoTx {
 
 #[async_trait]
 impl LoanReadRepoPort for LoanReadRepoSql {
-    async fn get_by_member(&self, id: MemberId) -> Result<Vec<Loan>> {
-        get_by_member_with(&self.pool, id).await
+    async fn get_by_member_ident(&self, ident: &str) -> Result<Vec<Loan>> {
+        get_by_member_ident_with(&self.pool, ident).await
     }
 
     async fn get_overdue(&self) -> Result<Vec<Loan>> {
@@ -142,10 +138,10 @@ impl LoanReadRepoPort for LoanReadRepoSql {
 
 #[async_trait]
 impl LoanReadRepoPort for LoanReadRepoTx {
-    async fn get_by_member(&self, id: MemberId) -> Result<Vec<Loan>> {
+    async fn get_by_member_ident(&self, ident: &str) -> Result<Vec<Loan>> {
         let mut guard = self.tx.lock().await;
         let tx = guard.as_mut().context("Transaction already consumed")?;
-        get_by_member_with(&mut **tx, id).await
+        get_by_member_ident_with(&mut **tx, ident).await
     }
 
     async fn get_overdue(&self) -> Result<Vec<Loan>> {

@@ -4,6 +4,10 @@ use chrono::{DateTime, Utc};
 #[repr(transparent)]
 pub struct MemberId(pub i16);
 
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+pub struct MemberIdent(pub String);
+
 #[derive(Debug, Clone, PartialEq, Eq)]
 pub enum MemberStatus {
     Active,

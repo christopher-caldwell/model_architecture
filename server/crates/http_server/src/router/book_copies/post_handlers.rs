@@ -2,7 +2,6 @@ use axum::{
     extract::{Path, State},
     Json,
 };
-use domain::book_copy::BookCopyId;
 
 use crate::router::{
     auth::AuthUser,
@@ -14,10 +13,10 @@ use crate::router::{
 
 #[utoipa::path(
     post,
-    path = "/{id}/returns",
+    path = "/{barcode}/returns",
     tag = BOOK_COPIES_TAG,
     params(
-        ("id" = i64, Path, description = "Identifier for the book copy")
+        ("barcode" = String, Path, description = "Barcode identifier for the book copy")
     ),
     responses(
         (status = 200, description = "Book copy returned", body = LoanResponseBody),
@@ -32,13 +31,9 @@ use crate::router::{
 pub async fn return_book_copy(
     AuthUser(_claims): AuthUser,
     State(deps): State<ServerDeps>,
-    Path(id): Path<i64>,
+    Path(barcode): Path<String>,
 ) -> Result<Json<LoanResponseBody>, ApiError> {
-    let book_copy_result = deps
-        .catalog
-        .queries
-        .get_book_copy_details(BookCopyId(id))
-        .await;
+    let book_copy_result = deps.catalog.queries.get_book_copy_details(&barcode).await;
 
     let book_copy = match book_copy_result {
         Ok(Some(book_copy)) => book_copy,
@@ -46,10 +41,7 @@ pub async fn return_book_copy(
         Err(error) => return Err(service_error(error)),
     };
 
-    let return_book_copy_result = deps.lending
-        .commands
-        .return_book_copy(book_copy)
-        .await;
+    let return_book_copy_result = deps.lending.commands.return_book_copy(book_copy).await;
 
     let loan_response = match return_book_copy_result {
         Ok(loan) => Json(LoanResponseBody::from(loan)),
@@ -61,10 +53,10 @@ pub async fn return_book_copy(
 
 #[utoipa::path(
     post,
-    path = "/{id}/loss-reports",
+    path = "/{barcode}/loss-reports",
     tag = BOOK_COPIES_TAG,
     params(
-        ("id" = i64, Path, description = "Identifier for the book copy")
+        ("barcode" = String, Path, description = "Barcode identifier for the book copy")
     ),
     responses(
         (status = 200, description = "Loaned book copy reported lost", body = BookCopyResponseBody),
@@ -79,13 +71,9 @@ pub async fn return_book_copy(
 pub async fn report_book_copy_lost_on_loan(
     AuthUser(_claims): AuthUser,
     State(deps): State<ServerDeps>,
-    Path(id): Path<i64>,
+    Path(barcode): Path<String>,
 ) -> Result<Json<BookCopyResponseBody>, ApiError> {
-    let book_copy_result = deps
-        .catalog
-        .queries
-        .get_book_copy_details(BookCopyId(id))
-        .await;
+    let book_copy_result = deps.catalog.queries.get_book_copy_details(&barcode).await;
 
     let book_copy = match book_copy_result {
         Ok(Some(book_copy)) => book_copy,
@@ -93,7 +81,8 @@ pub async fn report_book_copy_lost_on_loan(
         Err(error) => return Err(service_error(error)),
     };
 
-    let report_lost_loaned_book_copy_result = deps.lending
+    let report_lost_loaned_book_copy_result = deps
+        .lending
         .commands
         .report_lost_loaned_book_copy(book_copy)
         .await;

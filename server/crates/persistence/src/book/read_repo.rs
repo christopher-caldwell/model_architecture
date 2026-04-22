@@ -48,4 +48,13 @@ impl BookReadRepoPort for BookReadRepoSql {
 
         rows.into_iter().map(Book::try_from).collect()
     }
+
+    async fn get_by_isbn(&self, isbn: &str) -> Result<Option<Book>> {
+        let row = sqlx::query_file_as!(BookDbRow, "sql/book/queries/get_by_isbn.sql", isbn)
+            .fetch_optional(&self.pool)
+            .await
+            .context("Failed to fetch book by isbn")?;
+
+        row.map(Book::try_from).transpose()
+    }
 }

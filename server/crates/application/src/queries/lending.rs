@@ -1,8 +1,5 @@
 use anyhow::Context;
-use domain::{
-    loan::{port::LoanReadRepoPort, Loan},
-    member::MemberId,
-};
+use domain::loan::{port::LoanReadRepoPort, Loan};
 use std::sync::Arc;
 
 #[derive(Clone)]
@@ -16,9 +13,9 @@ impl LendingQueries {
         Self { loan_read_repo }
     }
 
-    pub async fn get_member_loans(&self, id: MemberId) -> anyhow::Result<Vec<Loan>> {
+    pub async fn get_member_loans(&self, ident: &str) -> anyhow::Result<Vec<Loan>> {
         self.loan_read_repo
-            .get_by_member(id)
+            .get_by_member_ident(ident)
             .await
             .context("Failed to get member loans")
     }

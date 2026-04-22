@@ -15,4 +15,5 @@ pub trait BookCopyWriteRepoPort: Send + Sync {
 #[async_trait]
 pub trait BookCopyReadRepoPort: Send + Sync {
     async fn get_by_id(&self, id: BookCopyId) -> anyhow::Result<Option<BookCopy>>;
+    async fn get_by_barcode(&self, barcode: &str) -> anyhow::Result<Option<BookCopy>>;
 }

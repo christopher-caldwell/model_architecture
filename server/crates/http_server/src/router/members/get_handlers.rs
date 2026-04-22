@@ -2,7 +2,6 @@ use axum::{
     extract::{Path, State},
     Json,
 };
-use domain::member::MemberId;
 
 use crate::router::{
     auth::AuthUser,
@@ -14,10 +13,10 @@ use crate::router::{
 
 #[utoipa::path(
     get,
-    path = "/{id}",
+    path = "/{ident}",
     tag = MEMBERS_TAG,
     params(
-        ("id" = i16, Path, description = "Identifier for the member")
+        ("ident" = String, Path, description = "Identifier for the member")
     ),
     responses(
         (status = 200, description = "Member details", body = MemberResponseBody),
@@ -31,13 +30,9 @@ use crate::router::{
 pub async fn get_member_by_id(
     AuthUser(_claims): AuthUser,
     State(deps): State<ServerDeps>,
-    Path(id): Path<i16>,
+    Path(ident): Path<String>,
 ) -> Result<Json<MemberResponseBody>, ApiError> {
-    let member_result = deps
-        .membership
-        .queries
-        .get_member_details(MemberId(id))
-        .await;
+    let member_result = deps.membership.queries.get_member_details(&ident).await;
 
     let member = match member_result {
         Ok(Some(member)) => member,
@@ -50,10 +45,10 @@ pub async fn get_member_by_id(
 
 #[utoipa::path(
     get,
-    path = "/{id}/loans",
+    path = "/{ident}/loans",
     tag = MEMBERS_TAG,
     params(
-        ("id" = i16, Path, description = "Identifier for the member")
+        ("ident" = String, Path, description = "Identifier for the member")
     ),
     responses(
         (status = 200, description = "Loans for a member", body = Vec<LoanResponseBody>),
@@ -66,12 +61,9 @@ pub async fn get_member_by_id(
 pub async fn get_member_loans(
     AuthUser(_claims): AuthUser,
     State(deps): State<ServerDeps>,
-    Path(id): Path<i16>,
+    Path(ident): Path<String>,
 ) -> Result<Json<Vec<LoanResponseBody>>, ApiError> {
-    let member_loans_result = deps.lending
-        .queries
-        .get_member_loans(MemberId(id))
-        .await;
+    let member_loans_result = deps.lending.queries.get_member_loans(&ident).await;
 
     let member_loans = match member_loans_result {
         Ok(loans) => loans,

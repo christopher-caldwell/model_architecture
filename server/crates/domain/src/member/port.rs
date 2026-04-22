@@ -11,4 +11,5 @@ pub trait MemberWriteRepoPort: Send + Sync {
 #[async_trait]
 pub trait MemberReadRepoPort: Send + Sync {
     async fn get_by_id(&self, id: MemberId) -> anyhow::Result<Option<Member>>;
+    async fn get_by_ident(&self, ident: &str) -> anyhow::Result<Option<Member>>;
 }

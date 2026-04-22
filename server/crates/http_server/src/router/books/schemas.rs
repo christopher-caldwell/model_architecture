@@ -5,11 +5,10 @@ use utoipa::ToSchema;
 
 pub const BOOKS_TAG: &str = "Books";
 pub const BOOKS_PATH: &str = "/books";
-pub const BOOK_COPIES_BY_BOOK_ID_PATH: &str = "/books/{book_id}/copies";
+pub const BOOK_COPIES_BY_BOOK_ID_PATH: &str = "/books/{isbn}/copies";
 
 #[derive(Serialize, ToSchema)]
 pub struct BookResponseBody {
-    pub id: i16,
     pub isbn: String,
     pub dt_created: DateTime<Utc>,
     pub dt_modified: DateTime<Utc>,
@@ -20,7 +19,6 @@ pub struct BookResponseBody {
 impl From<Book> for BookResponseBody {
     fn from(value: Book) -> Self {
         Self {
-            id: value.id.0,
             isbn: value.isbn,
             dt_created: value.dt_created,
             dt_modified: value.dt_modified,

@@ -1,5 +1,4 @@
 use axum::{extract::State, http::StatusCode, Json};
-use domain::{book_copy::BookCopyId, member::MemberId};
 
 use crate::router::{
     auth::AuthUser,
@@ -31,7 +30,7 @@ pub async fn create_loan(
     let member_result = deps
         .membership
         .queries
-        .get_member_details(MemberId(body.member_id))
+        .get_member_details(&body.member_ident)
         .await;
 
     let member = match member_result {
@@ -43,7 +42,7 @@ pub async fn create_loan(
     let book_copy_result = deps
         .catalog
         .queries
-        .get_book_copy_details(BookCopyId(body.book_copy_id))
+        .get_book_copy_details(&body.book_copy_barcode)
         .await;
 
     let book_copy = match book_copy_result {
@@ -52,7 +51,8 @@ pub async fn create_loan(
         Err(error) => return Err(service_error(error)),
     };
 
-    let check_out_book_copy_result = deps.lending
+    let check_out_book_copy_result = deps
+        .lending
         .commands
         .check_out_book_copy(member, book_copy)
         .await;

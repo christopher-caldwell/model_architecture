@@ -5,13 +5,12 @@ use utoipa::ToSchema;
 
 pub const MEMBERS_TAG: &str = "Members";
 pub const MEMBERS_PATH: &str = "/members";
-pub const MEMBER_BY_ID_PATH: &str = "/members/{id}";
-pub const MEMBER_SUSPENSION_PATH: &str = "/members/{id}/suspension";
-pub const MEMBER_LOANS_PATH: &str = "/members/{id}/loans";
+pub const MEMBER_BY_ID_PATH: &str = "/members/{ident}";
+pub const MEMBER_SUSPENSION_PATH: &str = "/members/{ident}/suspension";
+pub const MEMBER_LOANS_PATH: &str = "/members/{ident}/loans";
 
 #[derive(Serialize, ToSchema)]
 pub struct MemberResponseBody {
-    pub id: i16,
     pub ident: String,
     pub dt_created: DateTime<Utc>,
     pub dt_modified: DateTime<Utc>,
@@ -23,7 +22,6 @@ pub struct MemberResponseBody {
 impl From<Member> for MemberResponseBody {
     fn from(value: Member) -> Self {
         Self {
-            id: value.id.0,
             ident: value.ident,
             dt_created: value.dt_created,
             dt_modified: value.dt_modified,

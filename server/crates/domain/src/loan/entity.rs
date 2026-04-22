@@ -6,6 +6,10 @@ use crate::{book_copy::BookCopyId, member::MemberId};
 #[repr(transparent)]
 pub struct LoanId(pub i64);
 
+#[derive(Debug, Clone, PartialEq, Eq, Hash)]
+#[repr(transparent)]
+pub struct LoanIdent(pub String);
+
 pub struct Loan {
     pub id: LoanId,
     pub ident: String,

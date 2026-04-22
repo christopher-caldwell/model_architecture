@@ -23,10 +23,7 @@ pub async fn get_overdue_loans(
     AuthUser(_claims): AuthUser,
     State(deps): State<ServerDeps>,
 ) -> Result<Json<Vec<LoanResponseBody>>, ApiError> {
-    let overdue_loans_result = deps.lending
-        .queries
-        .get_overdue_loans()
-        .await;
+    let overdue_loans_result = deps.lending.queries.get_overdue_loans().await;
 
     let overdue_loans = match overdue_loans_result {
         Ok(loans) => loans,

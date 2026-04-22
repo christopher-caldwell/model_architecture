@@ -2,7 +2,6 @@ use axum::{
     extract::{Path, State},
     Json,
 };
-use domain::book_copy::BookCopyId;
 
 use crate::router::{
     auth::AuthUser,
@@ -13,10 +12,10 @@ use crate::router::{
 
 #[utoipa::path(
     delete,
-    path = "/{id}/loss",
+    path = "/{barcode}/loss",
     tag = BOOK_COPIES_TAG,
     params(
-        ("id" = i64, Path, description = "Identifier for the book copy")
+        ("barcode" = String, Path, description = "Barcode identifier for the book copy")
     ),
     responses(
         (status = 200, description = "Book copy restored from lost", body = BookCopyResponseBody),
@@ -31,13 +30,9 @@ use crate::router::{
 pub async fn mark_book_copy_found(
     AuthUser(_claims): AuthUser,
     State(deps): State<ServerDeps>,
-    Path(id): Path<i64>,
+    Path(barcode): Path<String>,
 ) -> Result<Json<BookCopyResponseBody>, ApiError> {
-    let book_copy_result = deps
-        .catalog
-        .queries
-        .get_book_copy_details(BookCopyId(id))
-        .await;
+    let book_copy_result = deps.catalog.queries.get_book_copy_details(&barcode).await;
 
     let book_copy = match book_copy_result {
         Ok(Some(book_copy)) => book_copy,
@@ -45,10 +40,7 @@ pub async fn mark_book_copy_found(
         Err(error) => return Err(service_error(error)),
     };
 
-    let mark_book_copy_found_result = deps.catalog
-        .commands
-        .mark_book_copy_found(book_copy)
-        .await;
+    let mark_book_copy_found_result = deps.catalog.commands.mark_book_copy_found(book_copy).await;
 
     let book_copy_response = match mark_book_copy_found_result {
         Ok(updated) => Json(BookCopyResponseBody::from(updated)),
@@ -60,10 +52,10 @@ pub async fn mark_book_copy_found(
 
 #[utoipa::path(
     delete,
-    path = "/{id}/maintenance",
+    path = "/{barcode}/maintenance",
     tag = BOOK_COPIES_TAG,
     params(
-        ("id" = i64, Path, description = "Identifier for the book copy")
+        ("barcode" = String, Path, description = "Barcode identifier for the book copy")
     ),
     responses(
         (status = 200, description = "Book copy returned from maintenance", body = BookCopyResponseBody),
@@ -78,13 +70,9 @@ pub async fn mark_book_copy_found(
 pub async fn complete_book_copy_maintenance(
     AuthUser(_claims): AuthUser,
     State(deps): State<ServerDeps>,
-    Path(id): Path<i64>,
+    Path(barcode): Path<String>,
 ) -> Result<Json<BookCopyResponseBody>, ApiError> {
-    let book_copy_result = deps
-        .catalog
-        .queries
-        .get_book_copy_details(BookCopyId(id))
-        .await;
+    let book_copy_result = deps.catalog.queries.get_book_copy_details(&barcode).await;
 
     let book_copy = match book_copy_result {
         Ok(Some(book_copy)) => book_copy,
@@ -92,7 +80,8 @@ pub async fn complete_book_copy_maintenance(
         Err(error) => return Err(service_error(error)),
     };
 
-    let complete_book_copy_maintenance_result = deps.catalog
+    let complete_book_copy_maintenance_result = deps
+        .catalog
         .commands
         .complete_book_copy_maintenance(book_copy)
         .await;

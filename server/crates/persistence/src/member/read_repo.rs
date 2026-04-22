@@ -56,4 +56,13 @@ impl MemberReadRepoPort for MemberReadRepoSql {
 
         row.map(Member::try_from).transpose()
     }
+
+    async fn get_by_ident(&self, ident: &str) -> Result<Option<Member>> {
+        let row = sqlx::query_file_as!(MemberDbRow, "sql/member/queries/get_by_ident.sql", ident)
+            .fetch_optional(&self.pool)
+            .await
+            .context("Failed to fetch member by ident")?;
+
+        row.map(Member::try_from).transpose()
+    }
 }
