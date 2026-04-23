@@ -7,7 +7,9 @@ use domain::book_copy::BookCopyCreationPayload;
 
 use crate::router::{
     auth::AuthUser,
-    catalog::book_copies::schemas::{BookCopyResponseBody, CreateBookCopyRequestBody, BOOK_COPIES_TAG},
+    catalog::book_copies::schemas::{
+        BookCopyResponseBody, CreateBookCopyRequestBody, BOOK_COPIES_TAG,
+    },
     dependencies::ServerDeps,
     errors::{not_found, service_error, ApiError},
     lending::schemas::LoanResponseBody,

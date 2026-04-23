@@ -1,15 +1,17 @@
 use crate::router::auth::auth_middleware;
+use crate::router::catalog::BOOKS_PATH;
 use crate::router::catalog::{
     add_book, add_book_copy, complete_book_copy_maintenance, get_book_catalog,
-    get_book_copy_details, mark_book_copy_found, mark_book_copy_lost,
-    report_lost_loaned_book_copy, return_book_copy,
-    send_book_copy_to_maintenance, BOOK_COPIES_PATH, BOOK_COPY_BY_ID_PATH, BOOK_COPY_LOSS_PATH,
-    BOOK_COPY_LOSS_REPORTS_PATH, BOOK_COPY_MAINTENANCE_PATH, BOOK_COPY_RETURNS_PATH,
+    get_book_copy_details, mark_book_copy_found, mark_book_copy_lost, report_lost_loaned_book_copy,
+    return_book_copy, send_book_copy_to_maintenance, BOOK_COPIES_PATH, BOOK_COPY_BY_ID_PATH,
+    BOOK_COPY_LOSS_PATH, BOOK_COPY_LOSS_REPORTS_PATH, BOOK_COPY_MAINTENANCE_PATH,
+    BOOK_COPY_RETURNS_PATH,
 };
-use crate::router::catalog::BOOKS_PATH;
 use crate::router::cors::get_cors;
 use crate::router::dependencies::ServerDeps;
-use crate::router::lending::{check_out_book_copy, get_overdue_loans, LOANS_PATH, OVERDUE_LOANS_PATH};
+use crate::router::lending::{
+    check_out_book_copy, get_overdue_loans, LOANS_PATH, OVERDUE_LOANS_PATH,
+};
 use crate::router::membership::{
     get_member_details, get_member_loans, reactivate_member, register_member, suspend_member,
     MEMBERS_PATH, MEMBER_BY_ID_PATH, MEMBER_LOANS_PATH, MEMBER_SUSPENSION_PATH,
