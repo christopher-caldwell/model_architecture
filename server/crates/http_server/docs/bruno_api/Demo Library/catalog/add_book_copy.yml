@@ -1,0 +1,144 @@
+info:
+    name: add_book_copy
+    type: http
+    seq: 1
+    tags:
+        - catalog
+
+http:
+    method: POST
+    url: "{{BASE_URL}}/book-copies"
+    body:
+        type: json
+        data: |-
+            {
+              "author_name": "",
+              "barcode": "",
+              "isbn": ""
+            }
+    auth: inherit
+
+settings:
+    encodeUrl: true
+    timeout: 0
+    followRedirects: true
+    maxRedirects: 5
+
+examples:
+    - name: 201 Response
+      description: Book copy created
+      request:
+          url: "{{BASE_URL}}/book-copies"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "barcode": "",
+                    "isbn": ""
+                  }
+      response:
+          status: 201
+          statusText: Created
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "barcode": "",
+                    "dt_created": "",
+                    "dt_modified": "",
+                    "status": ""
+                  }
+    - name: 401 Response
+      description: Unauthorized
+      request:
+          url: "{{BASE_URL}}/book-copies"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "barcode": "",
+                    "isbn": ""
+                  }
+      response:
+          status: 401
+          statusText: Unauthorized
+          body:
+              type: text
+              data: ""
+    - name: 403 Response
+      description: Forbidden
+      request:
+          url: "{{BASE_URL}}/book-copies"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "barcode": "",
+                    "isbn": ""
+                  }
+      response:
+          status: 403
+          statusText: Forbidden
+          body:
+              type: text
+              data: ""
+    - name: 404 Response
+      description: Book not found
+      request:
+          url: "{{BASE_URL}}/book-copies"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "barcode": "",
+                    "isbn": ""
+                  }
+      response:
+          status: 404
+          statusText: Not Found
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }
+    - name: 500 Response
+      description: Internal server error
+      request:
+          url: "{{BASE_URL}}/book-copies"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "barcode": "",
+                    "isbn": ""
+                  }
+      response:
+          status: 500
+          statusText: Internal Server Error
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }

@@ -1,0 +1,162 @@
+info:
+    name: check_out_book_copy
+    type: http
+    seq: 1
+    tags:
+        - lending
+
+http:
+    method: POST
+    url: "{{BASE_URL}}/loans"
+    body:
+        type: json
+        data: |-
+            {
+              "book_copy_barcode": "",
+              "member_ident": ""
+            }
+    auth: inherit
+
+settings:
+    encodeUrl: true
+    timeout: 0
+    followRedirects: true
+    maxRedirects: 5
+
+examples:
+    - name: 201 Response
+      description: Loan created
+      request:
+          url: "{{BASE_URL}}/loans"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "book_copy_barcode": "",
+                    "member_ident": ""
+                  }
+      response:
+          status: 201
+          statusText: Created
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "dt_created": "",
+                    "dt_due": "",
+                    "dt_modified": "",
+                    "dt_returned": "",
+                    "ident": ""
+                  }
+    - name: 401 Response
+      description: Unauthorized
+      request:
+          url: "{{BASE_URL}}/loans"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "book_copy_barcode": "",
+                    "member_ident": ""
+                  }
+      response:
+          status: 401
+          statusText: Unauthorized
+          body:
+              type: text
+              data: ""
+    - name: 403 Response
+      description: Forbidden
+      request:
+          url: "{{BASE_URL}}/loans"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "book_copy_barcode": "",
+                    "member_ident": ""
+                  }
+      response:
+          status: 403
+          statusText: Forbidden
+          body:
+              type: text
+              data: ""
+    - name: 404 Response
+      description: Member or book copy not found
+      request:
+          url: "{{BASE_URL}}/loans"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "book_copy_barcode": "",
+                    "member_ident": ""
+                  }
+      response:
+          status: 404
+          statusText: Not Found
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }
+    - name: 409 Response
+      description: Loan cannot be created
+      request:
+          url: "{{BASE_URL}}/loans"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "book_copy_barcode": "",
+                    "member_ident": ""
+                  }
+      response:
+          status: 409
+          statusText: Conflict
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }
+    - name: 500 Response
+      description: Internal server error
+      request:
+          url: "{{BASE_URL}}/loans"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "book_copy_barcode": "",
+                    "member_ident": ""
+                  }
+      response:
+          status: 500
+          statusText: Internal Server Error
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }

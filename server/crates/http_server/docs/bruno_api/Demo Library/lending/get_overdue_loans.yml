@@ -1,0 +1,81 @@
+info:
+    name: get_overdue_loans
+    type: http
+    seq: 2
+    tags:
+        - lending
+
+http:
+    method: GET
+    url: "{{BASE_URL}}/loans/overdue"
+    auth: inherit
+
+settings:
+    encodeUrl: true
+    timeout: 0
+    followRedirects: true
+    maxRedirects: 5
+
+examples:
+    - name: 200 Response
+      description: Overdue loans
+      request:
+          url: "{{BASE_URL}}/loans/overdue"
+          method: GET
+      response:
+          status: 200
+          statusText: OK
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  [
+                    {
+                      "dt_created": "",
+                      "dt_due": "",
+                      "dt_modified": "",
+                      "dt_returned": "",
+                      "ident": ""
+                    }
+                  ]
+    - name: 401 Response
+      description: Unauthorized
+      request:
+          url: "{{BASE_URL}}/loans/overdue"
+          method: GET
+      response:
+          status: 401
+          statusText: Unauthorized
+          body:
+              type: text
+              data: ""
+    - name: 403 Response
+      description: Forbidden
+      request:
+          url: "{{BASE_URL}}/loans/overdue"
+          method: GET
+      response:
+          status: 403
+          statusText: Forbidden
+          body:
+              type: text
+              data: ""
+    - name: 500 Response
+      description: Internal server error
+      request:
+          url: "{{BASE_URL}}/loans/overdue"
+          method: GET
+      response:
+          status: 500
+          statusText: Internal Server Error
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }

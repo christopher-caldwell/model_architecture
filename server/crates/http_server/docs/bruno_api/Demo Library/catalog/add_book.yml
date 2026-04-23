@@ -1,0 +1,119 @@
+info:
+    name: add_book
+    type: http
+    seq: 10
+    tags:
+        - catalog
+
+http:
+    method: POST
+    url: "{{BASE_URL}}/books"
+    body:
+        type: json
+        data: |-
+            {
+              "author_name": "",
+              "isbn": "",
+              "title": ""
+            }
+    auth: inherit
+
+settings:
+    encodeUrl: true
+    timeout: 0
+    followRedirects: true
+    maxRedirects: 5
+
+examples:
+    - name: 201 Response
+      description: Book created
+      request:
+          url: "{{BASE_URL}}/books"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "isbn": "",
+                    "title": ""
+                  }
+      response:
+          status: 201
+          statusText: Created
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "dt_created": "",
+                    "dt_modified": "",
+                    "isbn": "",
+                    "title": ""
+                  }
+    - name: 401 Response
+      description: Unauthorized
+      request:
+          url: "{{BASE_URL}}/books"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "isbn": "",
+                    "title": ""
+                  }
+      response:
+          status: 401
+          statusText: Unauthorized
+          body:
+              type: text
+              data: ""
+    - name: 403 Response
+      description: Forbidden
+      request:
+          url: "{{BASE_URL}}/books"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "isbn": "",
+                    "title": ""
+                  }
+      response:
+          status: 403
+          statusText: Forbidden
+          body:
+              type: text
+              data: ""
+    - name: 500 Response
+      description: Internal server error
+      request:
+          url: "{{BASE_URL}}/books"
+          method: POST
+          body:
+              type: json
+              data: |-
+                  {
+                    "author_name": "",
+                    "isbn": "",
+                    "title": ""
+                  }
+      response:
+          status: 500
+          statusText: Internal Server Error
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }

@@ -1,0 +1,52 @@
+info:
+    name: Performs a health check.
+    type: http
+    seq: 1
+    tags:
+        - get_handlers
+
+http:
+    method: GET
+    url: "{{BASE_URL}}/health"
+    auth: inherit
+
+settings:
+    encodeUrl: true
+    timeout: 0
+    followRedirects: true
+    maxRedirects: 5
+
+examples:
+    - name: 200 Response
+      description: Server ready to accept requests
+      request:
+          url: "{{BASE_URL}}/health"
+          method: GET
+      response:
+          status: 200
+          statusText: OK
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "message": ""
+                  }
+    - name: 500 Response
+      description: Internal server error
+      request:
+          url: "{{BASE_URL}}/health"
+          method: GET
+      response:
+          status: 500
+          statusText: Internal Server Error
+          body:
+              type: text
+              data: ""
+
+docs: |-
+    # Errors
+
+    This function is currently infallible but returns a `Result` for consistency with other handlers.

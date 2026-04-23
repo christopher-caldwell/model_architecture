@@ -2,13 +2,12 @@ use axum::{extract::State, http::StatusCode, Json};
 
 use crate::router::{
     dependencies::ServerDeps,
-    health::schemas::{HealthCheckResponseBody, HEALTH_CHECK_TAG},
+    health::schemas::HealthCheckResponseBody,
 };
 
 #[utoipa::path(
     get,
     path = "",
-    tag = HEALTH_CHECK_TAG,
     responses(
         (status = 200, description = "Server ready to accept requests", body = HealthCheckResponseBody),
         (status = 500, description = "Internal server error")
