@@ -1,17 +1,19 @@
 use crate::router::auth::auth_middleware;
-use crate::router::catalog::BOOKS_PATH;
-use crate::router::catalog::{
-    add_book, add_book_copy, complete_book_copy_maintenance, get_book_catalog,
-    get_book_copy_details, mark_book_copy_found, mark_book_copy_lost, report_lost_loaned_book_copy,
-    return_book_copy, send_book_copy_to_maintenance, BOOK_COPIES_PATH, BOOK_COPY_BY_ID_PATH,
-    BOOK_COPY_LOSS_PATH, BOOK_COPY_LOSS_REPORTS_PATH, BOOK_COPY_MAINTENANCE_PATH,
-    BOOK_COPY_RETURNS_PATH,
+use crate::router::book_copies::{
+    complete_book_copy_maintenance, get_book_copy_details, mark_book_copy_found,
+    mark_book_copy_lost, report_lost_loaned_book_copy, return_book_copy,
+    send_book_copy_to_maintenance, BOOK_COPY_BY_ID_PATH, BOOK_COPY_LOST_PATH,
+    BOOK_COPY_MAINTENANCE_PATH, BOOK_COPY_REPORT_LOSS_PATH, BOOK_COPY_RETURN_PATH,
 };
+use crate::router::books::{
+    add_book, add_book_copy, get_book_catalog, BOOKS_PATH,
+};
+use crate::router::books::schemas::BOOK_COPIES_BY_BOOK_ID_PATH;
 use crate::router::cors::get_cors;
-use crate::router::lending::{
+use crate::router::loan::{
     check_out_book_copy, get_overdue_loans, LOANS_PATH, OVERDUE_LOANS_PATH,
 };
-use crate::router::membership::{
+use crate::router::members::{
     get_member_details, get_member_loans, reactivate_member, register_member, suspend_member,
     MEMBERS_PATH, MEMBER_BY_ID_PATH, MEMBER_LOANS_PATH, MEMBER_SUSPENSION_PATH,
 };
@@ -27,10 +29,10 @@ use utoipa_swagger_ui::SwaggerUi;
 #[derive(OpenApi)]
 #[openapi(
     nest(
-        (path = crate::router::catalog::books::BOOKS_PATH, api = crate::router::catalog::books::BooksApi),
-        (path = crate::router::catalog::book_copies::BOOK_COPIES_PATH, api = crate::router::catalog::book_copies::BookCopiesApi),
-        (path = crate::router::membership::MEMBERS_PATH, api = crate::router::membership::MembershipApi),
-        (path = crate::router::lending::LOANS_PATH, api = crate::router::lending::LendingApi),
+        (path = crate::router::books::BOOKS_PATH, api = crate::router::books::BooksApi),
+        (path = crate::router::book_copies::BOOK_COPIES_PATH, api = crate::router::book_copies::BookCopiesApi),
+        (path = crate::router::members::MEMBERS_PATH, api = crate::router::members::MembershipApi),
+        (path = crate::router::loan::LOANS_PATH, api = crate::router::loan::LendingApi),
         (path = crate::router::health::HEALTH_CHECK_PATH, api = crate::router::health::HealthCheckApi)
     ),
     info(
@@ -55,19 +57,19 @@ pub fn new_router(deps: ServerDeps) -> Router {
 
     let protected_router = Router::new()
         .route(BOOKS_PATH, get(get_book_catalog).post(add_book))
-        .route(BOOK_COPIES_PATH, post(add_book_copy))
+        .route(BOOK_COPIES_BY_BOOK_ID_PATH, post(add_book_copy))
         .route(BOOK_COPY_BY_ID_PATH, get(get_book_copy_details))
         .route(
-            BOOK_COPY_LOSS_PATH,
+            BOOK_COPY_LOST_PATH,
             put(mark_book_copy_lost).delete(mark_book_copy_found),
         )
         .route(
             BOOK_COPY_MAINTENANCE_PATH,
             put(send_book_copy_to_maintenance).delete(complete_book_copy_maintenance),
         )
-        .route(BOOK_COPY_RETURNS_PATH, post(return_book_copy))
+        .route(BOOK_COPY_RETURN_PATH, post(return_book_copy))
         .route(
-            BOOK_COPY_LOSS_REPORTS_PATH,
+            BOOK_COPY_REPORT_LOSS_PATH,
             post(report_lost_loaned_book_copy),
         )
         .route(MEMBERS_PATH, post(register_member))

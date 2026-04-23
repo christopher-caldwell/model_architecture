@@ -1,0 +1,127 @@
+info:
+    name: get_member_details
+    type: http
+    seq: 2
+    tags:
+        - membership
+
+http:
+    method: GET
+    url: "{{BASE_URL}}/members/:ident"
+    params:
+        - name: ident
+          value: ""
+          type: path
+          description: Identifier for the member
+    auth: inherit
+
+settings:
+    encodeUrl: true
+    timeout: 0
+    followRedirects: true
+    maxRedirects: 5
+
+examples:
+    - name: 200 Response
+      description: Member details
+      request:
+          url: "{{BASE_URL}}/members/:ident"
+          method: GET
+          params:
+              - name: ident
+                value: ""
+                type: path
+                description: Identifier for the member
+      response:
+          status: 200
+          statusText: OK
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "dt_created": "",
+                    "dt_modified": "",
+                    "full_name": "",
+                    "ident": "",
+                    "max_active_loans": 0,
+                    "status": ""
+                  }
+    - name: 401 Response
+      description: Unauthorized
+      request:
+          url: "{{BASE_URL}}/members/:ident"
+          method: GET
+          params:
+              - name: ident
+                value: ""
+                type: path
+                description: Identifier for the member
+      response:
+          status: 401
+          statusText: Unauthorized
+          body:
+              type: text
+              data: ""
+    - name: 403 Response
+      description: Forbidden
+      request:
+          url: "{{BASE_URL}}/members/:ident"
+          method: GET
+          params:
+              - name: ident
+                value: ""
+                type: path
+                description: Identifier for the member
+      response:
+          status: 403
+          statusText: Forbidden
+          body:
+              type: text
+              data: ""
+    - name: 404 Response
+      description: Member not found
+      request:
+          url: "{{BASE_URL}}/members/:ident"
+          method: GET
+          params:
+              - name: ident
+                value: ""
+                type: path
+                description: Identifier for the member
+      response:
+          status: 404
+          statusText: Not Found
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }
+    - name: 500 Response
+      description: Internal server error
+      request:
+          url: "{{BASE_URL}}/members/:ident"
+          method: GET
+          params:
+              - name: ident
+                value: ""
+                type: path
+                description: Identifier for the member
+      response:
+          status: 500
+          statusText: Internal Server Error
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }

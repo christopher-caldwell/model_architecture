@@ -1,0 +1,148 @@
+info:
+    name: return_book_copy
+    type: http
+    seq: 8
+    tags:
+        - catalog
+
+http:
+    method: POST
+    url: "{{BASE_URL}}/book-copies/:barcode/return"
+    params:
+        - name: barcode
+          value: ""
+          type: path
+          description: Barcode identifier for the book copy
+    auth: inherit
+
+settings:
+    encodeUrl: true
+    timeout: 0
+    followRedirects: true
+    maxRedirects: 5
+
+examples:
+    - name: 200 Response
+      description: Book copy returned
+      request:
+          url: "{{BASE_URL}}/book-copies/:barcode/return"
+          method: POST
+          params:
+              - name: barcode
+                value: ""
+                type: path
+                description: Barcode identifier for the book copy
+      response:
+          status: 200
+          statusText: OK
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "dt_created": "",
+                    "dt_due": "",
+                    "dt_modified": "",
+                    "dt_returned": "",
+                    "ident": ""
+                  }
+    - name: 401 Response
+      description: Unauthorized
+      request:
+          url: "{{BASE_URL}}/book-copies/:barcode/return"
+          method: POST
+          params:
+              - name: barcode
+                value: ""
+                type: path
+                description: Barcode identifier for the book copy
+      response:
+          status: 401
+          statusText: Unauthorized
+          body:
+              type: text
+              data: ""
+    - name: 403 Response
+      description: Forbidden
+      request:
+          url: "{{BASE_URL}}/book-copies/:barcode/return"
+          method: POST
+          params:
+              - name: barcode
+                value: ""
+                type: path
+                description: Barcode identifier for the book copy
+      response:
+          status: 403
+          statusText: Forbidden
+          body:
+              type: text
+              data: ""
+    - name: 404 Response
+      description: Book copy not found
+      request:
+          url: "{{BASE_URL}}/book-copies/:barcode/return"
+          method: POST
+          params:
+              - name: barcode
+                value: ""
+                type: path
+                description: Barcode identifier for the book copy
+      response:
+          status: 404
+          statusText: Not Found
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }
+    - name: 409 Response
+      description: Book copy cannot be returned
+      request:
+          url: "{{BASE_URL}}/book-copies/:barcode/return"
+          method: POST
+          params:
+              - name: barcode
+                value: ""
+                type: path
+                description: Barcode identifier for the book copy
+      response:
+          status: 409
+          statusText: Conflict
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }
+    - name: 500 Response
+      description: Internal server error
+      request:
+          url: "{{BASE_URL}}/book-copies/:barcode/return"
+          method: POST
+          params:
+              - name: barcode
+                value: ""
+                type: path
+                description: Barcode identifier for the book copy
+      response:
+          status: 500
+          statusText: Internal Server Error
+          headers:
+              - name: Content-Type
+                value: application/json
+          body:
+              type: json
+              data: |-
+                  {
+                    "error": ""
+                  }
