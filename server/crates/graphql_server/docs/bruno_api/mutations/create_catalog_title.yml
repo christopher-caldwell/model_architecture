@@ -1,5 +1,5 @@
 info:
-  name: Create Catalog Title
+  name: Create Book
   type: graphql
   seq: 4
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      mutation CreateCatalogTitle($input: CreateCatalogTitleInput!) {
-        createCatalogTitle(input: $input) {
+      mutation CreateBook($input: CreateCatalogTitleInput!) {
+        createBook(input: $input) {
           isbn
           createdAt
           updatedAt

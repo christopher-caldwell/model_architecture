@@ -1,5 +1,5 @@
 info:
-  name: Queue Copy For Maintenance
+  name: Send Book Copy To Maintenance
   type: graphql
   seq: 8
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      mutation QueueCopyForMaintenance($barcode: String!) {
-        queueCopyForMaintenance(barcode: $barcode) {
+      mutation SendBookCopyToMaintenance($barcode: String!) {
+        sendBookCopyToMaintenance(barcode: $barcode) {
           barcode
           createdAt
           updatedAt

@@ -8,7 +8,7 @@ pub struct CatalogQuery;
 
 #[Object]
 impl CatalogQuery {
-    async fn catalog_titles(&self, ctx: &Context<'_>) -> Result<Vec<CatalogTitle>> {
+    async fn books(&self, ctx: &Context<'_>) -> Result<Vec<CatalogTitle>> {
         let deps = deps(ctx);
         let books = deps
             .catalog
@@ -20,7 +20,7 @@ impl CatalogQuery {
         Ok(books.into_iter().map(CatalogTitle::from).collect())
     }
 
-    async fn catalog_title(&self, ctx: &Context<'_>, isbn: String) -> Result<Option<CatalogTitle>> {
+    async fn book_by_isbn(&self, ctx: &Context<'_>, isbn: String) -> Result<Option<CatalogTitle>> {
         let deps = deps(ctx);
         let book = deps
             .catalog
@@ -32,7 +32,7 @@ impl CatalogQuery {
         Ok(book.map(CatalogTitle::from))
     }
 
-    async fn inventory_copy(
+    async fn book_copy(
         &self,
         ctx: &Context<'_>,
         barcode: String,

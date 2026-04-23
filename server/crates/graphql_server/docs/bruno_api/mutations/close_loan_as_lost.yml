@@ -1,5 +1,5 @@
 info:
-  name: Close Loan As Lost
+  name: Report Lost Loaned Book Copy
   type: graphql
   seq: 18
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      mutation CloseLoanAsLost($barcode: String!) {
-        closeLoanAsLost(barcode: $barcode) {
+      mutation ReportLostLoanedBookCopy($barcode: String!) {
+        reportLostLoanedBookCopy(barcode: $barcode) {
           barcode
           createdAt
           updatedAt

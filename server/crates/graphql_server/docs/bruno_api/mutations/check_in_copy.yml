@@ -1,5 +1,5 @@
 info:
-  name: Check In Copy
+  name: Return Book Copy
   type: graphql
   seq: 17
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      mutation CheckInCopy($barcode: String!) {
-        checkInCopy(barcode: $barcode) {
+      mutation ReturnBookCopy($barcode: String!) {
+        returnBookCopy(barcode: $barcode) {
           loanNumber
           createdAt
           updatedAt

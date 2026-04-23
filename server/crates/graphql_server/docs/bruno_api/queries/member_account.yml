@@ -1,5 +1,5 @@
 info:
-  name: Member Account
+  name: Member
   type: graphql
   seq: 10
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      query MemberAccount($memberNumber: String!) {
-        memberAccount(memberNumber: $memberNumber) {
+      query Member($memberNumber: String!) {
+        member(memberNumber: $memberNumber) {
           memberNumber
           createdAt
           updatedAt

@@ -1,5 +1,5 @@
 info:
-  name: Finish Copy Maintenance
+  name: Complete Book Copy Maintenance
   type: graphql
   seq: 9
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      mutation FinishCopyMaintenance($barcode: String!) {
-        finishCopyMaintenance(barcode: $barcode) {
+      mutation CompleteBookCopyMaintenance($barcode: String!) {
+        completeBookCopyMaintenance(barcode: $barcode) {
           barcode
           createdAt
           updatedAt

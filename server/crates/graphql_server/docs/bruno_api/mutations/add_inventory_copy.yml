@@ -1,5 +1,5 @@
 info:
-  name: Add Inventory Copy
+  name: Add Book Copy
   type: graphql
   seq: 5
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      mutation AddInventoryCopy($input: AddInventoryCopyInput!) {
-        addInventoryCopy(input: $input) {
+      mutation AddBookCopy($input: AddInventoryCopyInput!) {
+        addBookCopy(input: $input) {
           barcode
           createdAt
           updatedAt

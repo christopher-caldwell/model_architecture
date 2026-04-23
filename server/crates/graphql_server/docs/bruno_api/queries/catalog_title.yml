@@ -1,5 +1,5 @@
 info:
-  name: Catalog Title
+  name: Book By Isbn
   type: graphql
   seq: 2
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      query CatalogTitle($isbn: String!) {
-        catalogTitle(isbn: $isbn) {
+      query BookByIsbn($isbn: String!) {
+        bookByIsbn(isbn: $isbn) {
           isbn
           createdAt
           updatedAt

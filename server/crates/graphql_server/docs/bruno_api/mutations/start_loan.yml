@@ -1,5 +1,5 @@
 info:
-  name: Start Loan
+  name: Check Out Book Copy
   type: graphql
   seq: 16
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      mutation StartLoan($input: StartLoanInput!) {
-        startLoan(input: $input) {
+      mutation CheckOutBookCopy($input: StartLoanInput!) {
+        checkOutBookCopy(input: $input) {
           loanNumber
           createdAt
           updatedAt

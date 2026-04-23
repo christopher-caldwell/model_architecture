@@ -9,7 +9,7 @@ pub struct MembershipQuery;
 
 #[Object]
 impl MembershipQuery {
-    async fn member_account(
+    async fn member(
         &self,
         ctx: &Context<'_>,
         member_number: String,

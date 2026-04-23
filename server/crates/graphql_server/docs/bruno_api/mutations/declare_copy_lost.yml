@@ -1,5 +1,5 @@
 info:
-  name: Declare Copy Lost
+  name: Mark Book Copy Lost
   type: graphql
   seq: 6
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      mutation DeclareCopyLost($barcode: String!) {
-        declareCopyLost(barcode: $barcode) {
+      mutation MarkBookCopyLost($barcode: String!) {
+        markBookCopyLost(barcode: $barcode) {
           barcode
           createdAt
           updatedAt

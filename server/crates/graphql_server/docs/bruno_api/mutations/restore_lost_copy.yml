@@ -1,5 +1,5 @@
 info:
-  name: Restore Lost Copy
+  name: Mark Book Copy Found
   type: graphql
   seq: 7
 
@@ -8,8 +8,8 @@ graphql:
   url: "{{BASE_URL}}/graphql"
   body:
     query: |-
-      mutation RestoreLostCopy($barcode: String!) {
-        restoreLostCopy(barcode: $barcode) {
+      mutation MarkBookCopyFound($barcode: String!) {
+        markBookCopyFound(barcode: $barcode) {
           barcode
           createdAt
           updatedAt

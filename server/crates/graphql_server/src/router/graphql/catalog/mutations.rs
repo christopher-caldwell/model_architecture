@@ -11,7 +11,7 @@ pub struct CatalogMutation;
 
 #[Object]
 impl CatalogMutation {
-    async fn create_catalog_title(
+    async fn create_book(
         &self,
         ctx: &Context<'_>,
         input: CreateCatalogTitleInput,
@@ -27,7 +27,7 @@ impl CatalogMutation {
         Ok(CatalogTitle::from(book))
     }
 
-    async fn add_inventory_copy(
+    async fn add_book_copy(
         &self,
         ctx: &Context<'_>,
         input: AddInventoryCopyInput,
@@ -55,7 +55,7 @@ impl CatalogMutation {
         Ok(InventoryCopy::from(copy))
     }
 
-    async fn declare_copy_lost(&self, ctx: &Context<'_>, barcode: String) -> Result<InventoryCopy> {
+    async fn mark_book_copy_lost(&self, ctx: &Context<'_>, barcode: String) -> Result<InventoryCopy> {
         let deps = deps(ctx);
         let copy = find_copy(deps, barcode).await?;
         let updated = deps
@@ -68,7 +68,7 @@ impl CatalogMutation {
         Ok(InventoryCopy::from(updated))
     }
 
-    async fn restore_lost_copy(&self, ctx: &Context<'_>, barcode: String) -> Result<InventoryCopy> {
+    async fn mark_book_copy_found(&self, ctx: &Context<'_>, barcode: String) -> Result<InventoryCopy> {
         let deps = deps(ctx);
         let copy = find_copy(deps, barcode).await?;
         let updated = deps
@@ -81,7 +81,7 @@ impl CatalogMutation {
         Ok(InventoryCopy::from(updated))
     }
 
-    async fn queue_copy_for_maintenance(
+    async fn send_book_copy_to_maintenance(
         &self,
         ctx: &Context<'_>,
         barcode: String,
@@ -98,7 +98,7 @@ impl CatalogMutation {
         Ok(InventoryCopy::from(updated))
     }
 
-    async fn finish_copy_maintenance(
+    async fn complete_book_copy_maintenance(
         &self,
         ctx: &Context<'_>,
         barcode: String,

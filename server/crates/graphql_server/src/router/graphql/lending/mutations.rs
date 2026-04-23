@@ -9,7 +9,7 @@ pub struct LendingMutation;
 
 #[Object]
 impl LendingMutation {
-    async fn start_loan(&self, ctx: &Context<'_>, input: StartLoanInput) -> Result<LoanRecord> {
+    async fn check_out_book_copy(&self, ctx: &Context<'_>, input: StartLoanInput) -> Result<LoanRecord> {
         let deps = deps(ctx);
         let member = find_member(deps, input.member_number).await?;
         let copy = find_copy(deps, input.barcode).await?;
@@ -23,7 +23,7 @@ impl LendingMutation {
         Ok(LoanRecord::from(loan))
     }
 
-    async fn check_in_copy(&self, ctx: &Context<'_>, barcode: String) -> Result<LoanRecord> {
+    async fn return_book_copy(&self, ctx: &Context<'_>, barcode: String) -> Result<LoanRecord> {
         let deps = deps(ctx);
         let copy = find_copy(deps, barcode).await?;
         let loan = deps
@@ -36,7 +36,7 @@ impl LendingMutation {
         Ok(LoanRecord::from(loan))
     }
 
-    async fn close_loan_as_lost(
+    async fn report_lost_loaned_book_copy(
         &self,
         ctx: &Context<'_>,
         barcode: String,

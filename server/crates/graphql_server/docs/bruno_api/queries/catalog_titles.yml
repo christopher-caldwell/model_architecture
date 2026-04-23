@@ -1,5 +1,5 @@
 info:
-  name: Catalog Titles
+  name: Books
   type: graphql
   seq: 1
 
@@ -9,7 +9,7 @@ graphql:
   body:
     query: |-
       query {
-        catalogTitles {
+        books {
           isbn
           createdAt
           updatedAt
