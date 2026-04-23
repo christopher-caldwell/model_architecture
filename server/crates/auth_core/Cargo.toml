@@ -1,0 +1,9 @@
+[package]
+name = "auth_core"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+jsonwebtoken = { version = "10.3.0", features = ["rust_crypto"] }
+serde = { version = "1", features = ["derive"] }
+thiserror = "2"

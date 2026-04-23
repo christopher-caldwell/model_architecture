@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 application = { path = "../application" }
+auth_core = { path = "../auth_core" }
 persistence = { path = "../persistence" }
 sqlx = { version = "0.8", features = ["runtime-tokio-rustls", "postgres", "chrono"] }
 anyhow = "1"

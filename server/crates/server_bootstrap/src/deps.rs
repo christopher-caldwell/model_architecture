@@ -2,6 +2,7 @@ use std::sync::Arc;
 
 use anyhow::{Context, Result};
 use application::ports::gen_ident::IdentGeneratorPort;
+use auth_core::{AuthVerifierPort, JwtAuthAdapter};
 use persistence::{
     book::BookReadRepoSql, book_copy::BookCopyReadRepoSql, loan::LoanReadRepoSql,
     member::MemberReadRepoSql, uow::SqlWriteUnitOfWorkFactory,
@@ -23,7 +24,7 @@ pub struct ServerDeps {
 
 #[derive(Clone)]
 pub struct AuthDeps {
-    pub jwt_secret: String,
+    pub verifier: Arc<dyn AuthVerifierPort + Send + Sync>,
 }
 
 #[derive(Clone)]
@@ -92,7 +93,7 @@ pub async fn create_server_deps(config: &ServerConfig) -> Result<ServerDeps> {
 
     Ok(ServerDeps {
         auth: AuthDeps {
-            jwt_secret: config.jwt_secret.clone(),
+            verifier: Arc::new(JwtAuthAdapter::new(config.jwt_secret.clone())),
         },
         catalog: CatalogDeps {
             commands: catalog_commands,

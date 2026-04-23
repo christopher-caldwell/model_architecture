@@ -5,6 +5,7 @@ edition = "2021"
 
 [dependencies]
 domain = { path = "../domain" }
+auth_core = { path = "../auth_core" }
 server_bootstrap = { path = "../server_bootstrap" }
 tokio = { version = "1", features = ["macros", "rt-multi-thread"] }
 axum = "0.8"
@@ -16,6 +17,5 @@ tracing = "0.1"
 anyhow = "1"
 serde = { version = "1", features = ["derive"] }
 chrono = { version = "0.4", features = ["serde"] }
-jsonwebtoken = { version = "10.3.0", features = ["rust_crypto"] }
 tower-http = { version = "0.6", features = ["cors"] }
 http = "1"

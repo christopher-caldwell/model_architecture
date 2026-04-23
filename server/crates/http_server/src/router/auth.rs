@@ -5,16 +5,17 @@ use axum::{
     middleware::Next,
     response::Response,
 };
-use jsonwebtoken::{decode, Algorithm, DecodingKey, Validation};
-use serde::{Deserialize, Serialize};
 
+use auth_core::Claims;
 use server_bootstrap::ServerDeps;
 
-#[derive(Debug, Clone, Serialize, Deserialize)]
-pub struct Claims {
-    pub sub: String,
-    pub exp: usize,
-    // add whatever fields your JWT contains
+fn map_auth_error(error: auth_core::AuthError) -> StatusCode {
+    tracing::warn!("JWT error: {error:?}");
+    StatusCode::FORBIDDEN
+}
+
+fn authenticate_token(deps: &ServerDeps, token: &str) -> Result<Claims, StatusCode> {
+    deps.auth.verifier.verify_token(token).map_err(map_auth_error)
 }
 
 pub async fn auth_middleware(
@@ -32,20 +33,10 @@ pub async fn auth_middleware(
         .strip_prefix("Bearer ")
         .ok_or(StatusCode::UNAUTHORIZED)?;
 
-    let mut validation = Validation::new(Algorithm::HS256);
-    validation.set_audience(&["ops.craftcode.solutions"]);
-    let token_data = decode::<Claims>(
-        token,
-        &DecodingKey::from_secret(deps.auth.jwt_secret.as_bytes()),
-        &validation,
-    )
-    .map_err(|e| {
-        tracing::warn!("JWT error: {e:?}");
-        StatusCode::FORBIDDEN
-    })?;
+    let claims = authenticate_token(&deps, token)?;
 
     // Stash claims in request extensions
-    req.extensions_mut().insert(token_data.claims);
+    req.extensions_mut().insert(claims);
 
     Ok(next.run(req).await)
 }
