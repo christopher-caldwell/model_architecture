@@ -10,7 +10,7 @@ use tokio::sync::Mutex;
 use crate::book::read_repo::BookDbRow;
 
 #[derive(sqlx::FromRow)]
-pub struct BookPreparedResult {
+pub struct BookCreateResult {
     pub book_id: i32,
 }
 
@@ -23,8 +23,8 @@ impl BookWriteRepoPort for BookWriteRepoTx {
     async fn create(&self, insert: &BookPrepared) -> Result<Book> {
         let mut guard = self.tx.lock().await;
         let tx = guard.as_mut().context("Transaction already consumed")?;
-        let prepared_result = sqlx::query_file_as!(
-            BookPreparedResult,
+        let created_book = sqlx::query_file_as!(
+            BookCreateResult,
             "sql/book/commands/create.sql",
             insert.isbn,
             insert.title,
@@ -36,12 +36,7 @@ impl BookWriteRepoPort for BookWriteRepoTx {
 
         let now = Utc::now();
         let created_book = Book {
-            id: BookId(
-                prepared_result
-                    .book_id
-                    .try_into()
-                    .context("book_id exceeds domain range")?,
-            ),
+            id: BookId(created_book.book_id),
             isbn: insert.isbn.clone(),
             dt_created: now,
             dt_modified: now,

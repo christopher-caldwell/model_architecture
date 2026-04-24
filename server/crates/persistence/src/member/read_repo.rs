@@ -1,10 +1,10 @@
 use anyhow::{Context, Result};
 use async_trait::async_trait;
 use chrono::{DateTime, Utc};
-use domain::member::{port::MemberReadRepoPort, Member, MemberId, MemberIdent};
+use domain::member::{port::MemberReadRepoPort, Member, MemberId, MemberIdent, MemberStatus};
 use sqlx::PgPool;
 
-use crate::member::parse_member_status;
+use std::str::FromStr;
 
 #[derive(sqlx::FromRow)]
 pub struct MemberDbRow {
@@ -22,16 +22,11 @@ impl TryFrom<MemberDbRow> for Member {
 
     fn try_from(value: MemberDbRow) -> Result<Self> {
         Ok(Self {
-            id: MemberId(
-                value
-                    .member_id
-                    .try_into()
-                    .context("member_id exceeds domain range")?,
-            ),
+            id: MemberId(value.member_id),
             ident: MemberIdent(value.member_ident),
             dt_created: value.dt_created,
             dt_modified: value.dt_modified,
-            status: parse_member_status(&value.status)?,
+            status: MemberStatus::from_str(&value.status).context("Invalid member status in DB")?,
             full_name: value.full_name,
             max_active_loans: value.max_active_loans,
         })
@@ -44,11 +39,11 @@ pub struct MemberReadRepoSql {
 
 #[async_trait]
 impl MemberReadRepoPort for MemberReadRepoSql {
-    async fn get_by_id(&self, id: MemberId) -> Result<Option<Member>> {
+    async fn get_by_id(&self, member_id: MemberId) -> Result<Option<Member>> {
         let row = sqlx::query_file_as!(
             MemberDbRow,
             "sql/member/queries/get_by_id.sql",
-            i32::from(id.0)
+            member_id.0
         )
         .fetch_optional(&self.pool)
         .await

@@ -10,7 +10,6 @@ use sqlx::{Postgres, Transaction};
 use tokio::sync::Mutex;
 
 use crate::member::read_repo::MemberDbRow;
-use crate::member::member_status_ident;
 
 #[derive(sqlx::FromRow)]
 pub struct MemberPreparedResult {
@@ -30,22 +29,17 @@ impl MemberWriteRepoPort for MemberWriteRepoTx {
             MemberPreparedResult,
             "sql/member/commands/create.sql",
             String::from(insert.ident.clone()),
-            member_status_ident(&insert.status),
+            insert.status.to_string(),
             insert.full_name,
             insert.max_active_loans,
         )
         .fetch_one(&mut **tx)
         .await
         .context("Failed to create member")?;
-        
+
         let now = Utc::now();
         let created_member = Member {
-            id: MemberId(
-                prepared_result
-                    .member_id
-                    .try_into()
-                    .context("member_id exceeds domain range")?,
-            ),
+            id: MemberId(prepared_result.member_id),
             ident: insert.ident.clone(),
             dt_created: now,
             dt_modified: now,
@@ -77,8 +71,8 @@ impl MemberWriteRepoPort for MemberWriteRepoTx {
         let tx = guard.as_mut().context("Transaction already consumed")?;
         sqlx::query_file!(
             "sql/member/commands/update_status.sql",
-            i32::from(id.0),
-            member_status_ident(&status),
+            id.0,
+            status.to_string(),
         )
         .execute(&mut **tx)
         .await

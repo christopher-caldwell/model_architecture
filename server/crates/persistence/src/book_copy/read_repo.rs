@@ -3,11 +3,11 @@ use async_trait::async_trait;
 use chrono::{DateTime, Utc};
 use domain::{
     book::BookId,
-    book_copy::{port::BookCopyReadRepoPort, BookCopy, BookCopyId},
+    book_copy::{port::BookCopyReadRepoPort, BookCopy, BookCopyId, BookCopyStatus},
 };
 use sqlx::PgPool;
 
-use crate::book_copy::parse_book_copy_status;
+use std::str::FromStr;
 
 #[derive(sqlx::FromRow)]
 pub struct BookCopyDbRow {
@@ -29,14 +29,10 @@ impl TryFrom<BookCopyDbRow> for BookCopy {
             barcode: value.barcode,
             dt_created: value.dt_created,
             dt_modified: value.dt_modified,
-            book_id: BookId(
-                value
-                    .book_id
-                    .try_into()
-                    .context("book_id exceeds domain range")?,
-            ),
+            book_id: BookId(value.book_id),
             author_name: value.author_name,
-            status: parse_book_copy_status(&value.status)?,
+            status: BookCopyStatus::from_str(&value.status)
+                .context("Invalid book copy status in DB")?,
         })
     }
 }
@@ -47,12 +43,11 @@ pub struct BookCopyReadRepoSql {
 
 #[async_trait]
 impl BookCopyReadRepoPort for BookCopyReadRepoSql {
-    async fn get_by_id(&self, id: BookCopyId) -> Result<Option<BookCopy>> {
-        let book_copy_id = i32::try_from(id.0).context("book_copy_id exceeds SQL integer range")?;
+    async fn get_by_id(&self, book_copy_id: BookCopyId) -> Result<Option<BookCopy>> {
         let row = sqlx::query_file_as!(
             BookCopyDbRow,
             "sql/book_copy/queries/get_by_id.sql",
-            book_copy_id
+            book_copy_id.0
         )
         .fetch_optional(&self.pool)
         .await

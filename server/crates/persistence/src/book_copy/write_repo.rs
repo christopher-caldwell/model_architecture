@@ -10,10 +10,9 @@ use sqlx::{Postgres, Transaction};
 use tokio::sync::Mutex;
 
 use crate::book_copy::read_repo::BookCopyDbRow;
-use crate::book_copy::book_copy_status_ident;
 
 #[derive(sqlx::FromRow)]
-pub struct BookCopyPreparedResult {
+pub struct BookCopyCreateResult {
     pub book_copy_id: i32,
 }
 
@@ -26,11 +25,11 @@ impl BookCopyWriteRepoPort for BookCopyWriteRepoTx {
     async fn create(&self, insert: &BookCopyPrepared) -> Result<BookCopy> {
         let mut guard = self.tx.lock().await;
         let tx = guard.as_mut().context("Transaction already consumed")?;
-        let prepared_result = sqlx::query_file_as!(
-            BookCopyPreparedResult,
+        let created_book_copy = sqlx::query_file_as!(
+            BookCopyCreateResult,
             "sql/book_copy/commands/create.sql",
-            i32::from(insert.book_id.0),
-            book_copy_status_ident(&insert.status),
+            insert.book_id.0,
+            insert.status.to_string(),
             insert.barcode,
         )
         .fetch_one(&mut **tx)
@@ -38,15 +37,16 @@ impl BookCopyWriteRepoPort for BookCopyWriteRepoTx {
         .context("Failed to create book copy")?;
 
         let now = Utc::now();
-        Ok(BookCopy {
-            id: BookCopyId(prepared_result.book_copy_id),
+        let result = BookCopy {
+            id: BookCopyId(created_book_copy.book_copy_id),
             barcode: insert.barcode.clone(),
             dt_created: now,
             dt_modified: now,
             book_id: insert.book_id,
             author_name: String::new(),
             status: insert.status.clone(),
-        })
+        };
+        Ok(result)
     }
 
     async fn get_by_barcode_for_update(&self, barcode: &str) -> Result<Option<BookCopy>> {
@@ -64,14 +64,13 @@ impl BookCopyWriteRepoPort for BookCopyWriteRepoTx {
         row.map(BookCopy::try_from).transpose()
     }
 
-    async fn update_status(&self, id: BookCopyId, status: BookCopyStatus) -> Result<()> {
+    async fn update_status(&self, book_copy_id: BookCopyId, status: BookCopyStatus) -> Result<()> {
         let mut guard = self.tx.lock().await;
         let tx = guard.as_mut().context("Transaction already consumed")?;
-        let book_copy_id = i32::try_from(id.0).context("book_copy_id exceeds SQL integer range")?;
         sqlx::query_file!(
             "sql/book_copy/commands/update_status.sql",
-            book_copy_id,
-            book_copy_status_ident(&status),
+            book_copy_id.0,
+            status.to_string(),
         )
         .execute(&mut **tx)
         .await

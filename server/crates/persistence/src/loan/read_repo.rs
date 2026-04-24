@@ -38,12 +38,7 @@ impl TryFrom<LoanDbRow> for Loan {
             dt_created: value.dt_created,
             dt_modified: value.dt_modified,
             book_copy_id: BookCopyId(value.book_copy_id),
-            member_id: MemberId(
-                value
-                    .member_id
-                    .try_into()
-                    .context("member_id exceeds domain range")?,
-            ),
+            member_id: MemberId(value.member_id),
             dt_due: value.dt_due,
             dt_returned: value.dt_returned,
         })
@@ -81,16 +76,15 @@ where
 
 async fn find_active_by_book_copy_id_with<'e, E>(
     executor: E,
-    id: BookCopyId,
+    book_copy_id: BookCopyId,
 ) -> Result<Option<Loan>>
 where
     E: Executor<'e, Database = Postgres>,
 {
-    let book_copy_id = i32::try_from(id.0).context("book_copy_id exceeds SQL integer range")?;
     let row = sqlx::query_file_as!(
         LoanDbRow,
         "sql/loan/queries/find_active_by_book_copy_id.sql",
-        book_copy_id
+        book_copy_id.0
     )
     .fetch_optional(executor)
     .await
@@ -99,14 +93,14 @@ where
     row.map(Loan::try_from).transpose()
 }
 
-async fn count_active_by_member_id_with<'e, E>(executor: E, id: MemberId) -> Result<i64>
+async fn count_active_by_member_id_with<'e, E>(executor: E, member_id: MemberId) -> Result<i64>
 where
     E: Executor<'e, Database = Postgres>,
 {
     let row = sqlx::query_file_as!(
         CountDbRow,
         "sql/loan/queries/count_active_by_member_id.sql",
-        i32::from(id.0)
+        member_id.0
     )
     .fetch_one(executor)
     .await
