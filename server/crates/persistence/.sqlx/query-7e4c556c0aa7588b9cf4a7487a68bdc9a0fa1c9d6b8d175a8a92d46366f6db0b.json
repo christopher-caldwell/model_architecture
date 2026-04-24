@@ -1,0 +1,52 @@
+{
+  "db_name": "PostgreSQL",
+  "query": "SELECT\n      b.book_id\n    , b.isbn\n    , b.dt_created\n    , b.dt_modified\n    , b.title\n    , b.author_name\nFROM\n    library.book b\nWHERE\n    b.isbn = $1\n;\n",
+  "describe": {
+    "columns": [
+      {
+        "ordinal": 0,
+        "name": "book_id",
+        "type_info": "Int4"
+      },
+      {
+        "ordinal": 1,
+        "name": "isbn",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 2,
+        "name": "dt_created",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 3,
+        "name": "dt_modified",
+        "type_info": "Timestamptz"
+      },
+      {
+        "ordinal": 4,
+        "name": "title",
+        "type_info": "Text"
+      },
+      {
+        "ordinal": 5,
+        "name": "author_name",
+        "type_info": "Text"
+      }
+    ],
+    "parameters": {
+      "Left": [
+        "Text"
+      ]
+    },
+    "nullable": [
+      false,
+      false,
+      false,
+      false,
+      false,
+      false
+    ]
+  },
+  "hash": "7e4c556c0aa7588b9cf4a7487a68bdc9a0fa1c9d6b8d175a8a92d46366f6db0b"
+}

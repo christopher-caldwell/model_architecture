@@ -1,6 +1,6 @@
 {
   "db_name": "PostgreSQL",
-  "query": "WITH updated AS (\n    UPDATE library.member m\n    SET\n        status_id = (\n            SELECT st.struct_type_id\n            FROM library.struct_type st\n            WHERE st.group_name = 'member_status'\n              AND st.att_pub_ident = $2\n        )\n    WHERE\n        m.member_id = $1\n    RETURNING\n          m.member_id\n        , m.member_ident\n        , m.dt_created\n        , m.dt_modified\n        , m.full_name\n        , m.max_active_loans\n        , m.status_id\n)\nSELECT\n      updated.member_id\n    , updated.member_ident\n    , updated.dt_created\n    , updated.dt_modified\n    , st.att_pub_ident \"status\"\n    , updated.full_name\n    , updated.max_active_loans\nFROM\n    updated\nJOIN\n    library.struct_type st\nON\n    updated.status_id = st.struct_type_id\n;\n",
+  "query": "SELECT\n      m.member_id\n    , m.member_ident\n    , m.dt_created\n    , m.dt_modified\n    , st.att_pub_ident \"status\"\n    , m.full_name\n    , m.max_active_loans\nFROM\n    library.member m\nJOIN\n    library.struct_type st\nON\n    m.status_id = st.struct_type_id\nWHERE\n    m.member_ident = $1\nAND\n    st.group_name = 'member_status'\nAND\n    st.att_pub_ident IN ('active', 'suspended')\nFOR UPDATE OF m\n;\n",
   "describe": {
     "columns": [
       {
@@ -41,7 +41,6 @@
     ],
     "parameters": {
       "Left": [
-        "Int4",
         "Text"
       ]
     },
@@ -55,5 +54,5 @@
       false
     ]
   },
-  "hash": "bd8cd6b7e50b4a1a51c06d2f97729fd8e6be8cb6f48d5ddf0d8ab4e510139661"
+  "hash": "d62594d6125e3c76115092091547097c2743999de5c337b30f820627ba14b3de"
 }
