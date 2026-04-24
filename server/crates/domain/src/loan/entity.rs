@@ -36,36 +36,3 @@ pub struct LoanPrepared {
     pub member_id: MemberId,
     pub book_copy_id: BookCopyId,
 }
-
-impl Loan {
-    #[must_use]
-    fn can_be_returned(&self) -> bool {
-        self.dt_returned.is_none()
-    }
-
-    /// Guard: ensures loan has not already been returned.
-    pub fn ensure_can_be_returned(&self) -> Result<(), LoanError> {
-        if !self.can_be_returned() {
-            return Err(LoanError::CannotBeReturned);
-        }
-        Ok(())
-    }
-}
-
-#[derive(thiserror::Error, Debug)]
-pub enum LoanError {
-    #[error("Book copy does not have an active loan")]
-    NoActiveLoanForBookCopy,
-    #[error("Loan has already been returned")]
-    CannotBeReturned,
-}
-
-impl LoanCreationPayload {
-    #[must_use]
-    pub fn prepare(self) -> LoanPrepared {
-        LoanPrepared {
-            member_id: self.member_id,
-            book_copy_id: self.book_copy_id,
-        }
-    }
-}

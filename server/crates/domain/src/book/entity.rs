@@ -19,25 +19,8 @@ pub struct BookCreationPayload {
     pub author_name: String,
 }
 
-#[derive(thiserror::Error, Debug)]
-pub enum BookError {
-    #[error("Book not found")]
-    NotFound,
-}
-
 pub struct BookPrepared {
     pub isbn: String,
     pub title: String,
     pub author_name: String,
-}
-
-impl BookCreationPayload {
-    #[must_use]
-    pub fn prepare(self) -> BookPrepared {
-        BookPrepared {
-            isbn: self.isbn,
-            title: self.title,
-            author_name: self.author_name,
-        }
-    }
 }
