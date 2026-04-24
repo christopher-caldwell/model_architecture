@@ -34,7 +34,6 @@ impl From<BookCopy> for BookCopyResponseBody {
 
 #[derive(Deserialize, ToSchema)]
 pub struct CreateBookCopyRequestBody {
-    pub isbn: String,
     pub barcode: String,
     pub author_name: String,
 }
