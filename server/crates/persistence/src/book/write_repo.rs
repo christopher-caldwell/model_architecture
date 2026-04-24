@@ -7,35 +7,7 @@ use domain::book::{port::BookWriteRepoPort, Book, BookId, BookPrepared};
 use sqlx::{Postgres, Transaction};
 use tokio::sync::Mutex;
 
-#[derive(sqlx::FromRow)]
-pub struct BookDbRow {
-    pub book_id: i32,
-    pub isbn: String,
-    pub dt_created: chrono::DateTime<Utc>,
-    pub dt_modified: chrono::DateTime<Utc>,
-    pub title: String,
-    pub author_name: String,
-}
-
-impl TryFrom<BookDbRow> for Book {
-    type Error = anyhow::Error;
-
-    fn try_from(value: BookDbRow) -> Result<Self> {
-        Ok(Self {
-            id: BookId(
-                value
-                    .book_id
-                    .try_into()
-                    .context("book_id exceeds domain range")?,
-            ),
-            isbn: value.isbn,
-            dt_created: value.dt_created,
-            dt_modified: value.dt_modified,
-            title: value.title,
-            author_name: value.author_name,
-        })
-    }
-}
+use crate::book::read_repo::BookDbRow;
 
 #[derive(sqlx::FromRow)]
 pub struct BookPreparedResult {
@@ -62,7 +34,8 @@ impl BookWriteRepoPort for BookWriteRepoTx {
         .await
         .context("Failed to create book")?;
 
-        Ok(Book {
+        let now = Utc::now();
+        let created_book = Book {
             id: BookId(
                 prepared_result
                     .book_id
@@ -70,11 +43,12 @@ impl BookWriteRepoPort for BookWriteRepoTx {
                     .context("book_id exceeds domain range")?,
             ),
             isbn: insert.isbn.clone(),
-            dt_created: Utc::now(),
-            dt_modified: Utc::now(),
+            dt_created: now,
+            dt_modified: now,
             title: insert.title.clone(),
             author_name: insert.author_name.clone(),
-        })
+        };
+        Ok(created_book)
     }
 
     async fn get_by_isbn(&self, isbn: &str) -> Result<Option<Book>> {
