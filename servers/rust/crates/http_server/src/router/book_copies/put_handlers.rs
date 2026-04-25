@@ -32,7 +32,12 @@ pub async fn mark_book_copy_lost(
     State(deps): State<ServerDeps>,
     Path(barcode): Path<String>,
 ) -> Result<Json<BookCopyResponseBody>, ApiError> {
-    let updated = deps.catalog.commands.mark_book_copy_lost(barcode).await.map_err(command_error)?;
+    let updated = deps
+        .catalog
+        .commands
+        .mark_book_copy_lost(barcode)
+        .await
+        .map_err(command_error)?;
     Ok(Json(BookCopyResponseBody::from(updated)))
 }
 

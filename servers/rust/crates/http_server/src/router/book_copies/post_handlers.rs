@@ -33,7 +33,12 @@ pub async fn return_book_copy(
     State(deps): State<ServerDeps>,
     Path(barcode): Path<String>,
 ) -> Result<Json<LoanResponseBody>, ApiError> {
-    let loan = deps.lending.commands.return_book_copy(barcode).await.map_err(command_error)?;
+    let loan = deps
+        .lending
+        .commands
+        .return_book_copy(barcode)
+        .await
+        .map_err(command_error)?;
     Ok(Json(LoanResponseBody::from(loan)))
 }
 

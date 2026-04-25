@@ -74,5 +74,7 @@ pub async fn get_member_loans(
         .get_member_loans(&MemberIdent(ident))
         .await
         .map_err(service_error)?;
-    Ok(Json(loans.into_iter().map(LoanResponseBody::from).collect()))
+    Ok(Json(
+        loans.into_iter().map(LoanResponseBody::from).collect(),
+    ))
 }

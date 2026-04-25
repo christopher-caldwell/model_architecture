@@ -31,8 +31,8 @@ mod tests {
     use super::*;
     use chrono::Utc;
 
-    use crate::{book_copy::BookCopyId, member::MemberId};
     use super::super::entity::{LoanId, LoanIdent};
+    use crate::{book_copy::BookCopyId, member::MemberId};
 
     fn active_loan() -> Loan {
         Loan {

@@ -67,8 +67,8 @@ mod tests {
     use super::*;
     use chrono::Utc;
 
-    use crate::book::BookId;
     use super::super::entity::BookCopyId;
+    use crate::book::BookId;
 
     fn copy_with_status(status: BookCopyStatus) -> BookCopy {
         BookCopy {
@@ -112,7 +112,10 @@ mod tests {
     #[test]
     fn active_copy_can_be_sent_to_maintenance() {
         let copy = copy_with_status(BookCopyStatus::Active);
-        assert_eq!(copy.send_to_maintenance().unwrap(), BookCopyStatus::Maintenance);
+        assert_eq!(
+            copy.send_to_maintenance().unwrap(),
+            BookCopyStatus::Maintenance
+        );
     }
 
     #[test]

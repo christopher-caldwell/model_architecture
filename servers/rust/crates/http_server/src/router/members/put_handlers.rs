@@ -35,6 +35,11 @@ pub async fn suspend_member(
     let input = MemberIdentInput {
         member_ident: ident,
     };
-    let updated = deps.membership.commands.suspend_member(input).await.map_err(command_error)?;
+    let updated = deps
+        .membership
+        .commands
+        .suspend_member(input)
+        .await
+        .map_err(command_error)?;
     Ok(Json(MemberResponseBody::from(updated)))
 }

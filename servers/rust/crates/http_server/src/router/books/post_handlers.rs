@@ -30,7 +30,12 @@ pub async fn add_book(
     State(deps): State<ServerDeps>,
     Json(body): Json<CreateBookRequestBody>,
 ) -> Result<(StatusCode, Json<BookResponseBody>), ApiError> {
-    let book = deps.catalog.commands.add_book(body.into()).await.map_err(command_error)?;
+    let book = deps
+        .catalog
+        .commands
+        .add_book(body.into())
+        .await
+        .map_err(command_error)?;
     Ok((StatusCode::CREATED, Json(BookResponseBody::from(book))))
 }
 
@@ -61,6 +66,14 @@ pub async fn add_book_copy(
         isbn,
         barcode: body.barcode,
     };
-    let book_copy = deps.catalog.commands.add_book_copy(input).await.map_err(command_error)?;
-    Ok((StatusCode::CREATED, Json(BookCopyResponseBody::from(book_copy))))
+    let book_copy = deps
+        .catalog
+        .commands
+        .add_book_copy(input)
+        .await
+        .map_err(command_error)?;
+    Ok((
+        StatusCode::CREATED,
+        Json(BookCopyResponseBody::from(book_copy)),
+    ))
 }
