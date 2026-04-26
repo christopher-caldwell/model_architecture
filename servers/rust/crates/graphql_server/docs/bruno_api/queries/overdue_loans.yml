@@ -11,8 +11,8 @@ graphql:
       query OverdueLoans {
         overdueLoans {
           loanNumber
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           dueAt
           returnedAt
         }

@@ -11,8 +11,8 @@ graphql:
       mutation ReactivateMember($memberNumber: String!) {
         reactivateMember(memberNumber: $memberNumber) {
           memberNumber
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           status
           fullName
           maxActiveLoans

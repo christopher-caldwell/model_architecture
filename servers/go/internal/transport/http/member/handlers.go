@@ -40,7 +40,7 @@ func GetMemberDetails(q *queries.MembershipQueries) http.HandlerFunc {
 			return
 		}
 		if m == nil {
-			httputil.WriteError(w, http.StatusNotFound, "member not found")
+			httputil.WriteError(w, http.StatusNotFound, "Member not found")
 			return
 		}
 		httputil.WriteJSON(w, http.StatusOK, memberToResponse(*m))

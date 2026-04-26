@@ -11,8 +11,8 @@ graphql:
       query BookCopy($barcode: String!) {
         bookCopy(barcode: $barcode) {
           barcode
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           authorName
           status
         }

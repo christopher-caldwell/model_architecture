@@ -11,8 +11,8 @@ graphql:
       mutation MarkBookCopyFound($barcode: String!) {
         markBookCopyFound(barcode: $barcode) {
           barcode
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           authorName
           status
         }

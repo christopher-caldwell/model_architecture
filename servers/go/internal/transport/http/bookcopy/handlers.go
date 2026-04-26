@@ -5,8 +5,8 @@ import (
 
 	"github.com/christophercaldwell/model-architecture/go/internal/application/commands"
 	"github.com/christophercaldwell/model-architecture/go/internal/application/queries"
-	loandto "github.com/christophercaldwell/model-architecture/go/internal/transport/http/loan"
 	"github.com/christophercaldwell/model-architecture/go/internal/transport/http/httputil"
+	loandto "github.com/christophercaldwell/model-architecture/go/internal/transport/http/loan"
 	"github.com/go-chi/chi/v5"
 )
 
@@ -19,7 +19,7 @@ func GetDetails(q *queries.CatalogQueries) http.HandlerFunc {
 			return
 		}
 		if bc == nil {
-			httputil.WriteError(w, http.StatusNotFound, "book copy not found")
+			httputil.WriteError(w, http.StatusNotFound, "Book copy not found")
 			return
 		}
 		httputil.WriteJSON(w, http.StatusOK, BookCopyToResponse(*bc))

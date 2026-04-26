@@ -11,8 +11,8 @@ graphql:
       mutation RegisterMember($input: RegisterMemberInput!) {
         registerMember(input: $input) {
           memberNumber
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           status
           fullName
           maxActiveLoans

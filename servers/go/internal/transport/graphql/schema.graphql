@@ -1,4 +1,4 @@
-scalar Time
+scalar DateTime
 
 type Query {
   books: [CatalogTitle!]!
@@ -26,16 +26,16 @@ type Mutation {
 
 type CatalogTitle {
   isbn: String!
-  dtCreated: Time!
-  dtModified: Time!
+  dtCreated: DateTime!
+  dtModified: DateTime!
   title: String!
   authorName: String!
 }
 
 type InventoryCopy {
   barcode: String!
-  dtCreated: Time!
-  dtModified: Time!
+  dtCreated: DateTime!
+  dtModified: DateTime!
   status: InventoryCopyStatus!
 }
 
@@ -47,8 +47,8 @@ enum InventoryCopyStatus {
 
 type LibraryMember {
   memberNumber: String!
-  dtCreated: Time!
-  dtModified: Time!
+  dtCreated: DateTime!
+  dtModified: DateTime!
   status: LibraryMemberStatus!
   fullName: String!
   maxActiveLoans: Int!
@@ -61,10 +61,10 @@ enum LibraryMemberStatus {
 
 type LoanRecord {
   loanNumber: String!
-  dtCreated: Time!
-  dtModified: Time!
-  dueAt: Time
-  returnedAt: Time
+  dtCreated: DateTime!
+  dtModified: DateTime!
+  dueAt: DateTime
+  returnedAt: DateTime
 }
 
 input CreateCatalogTitleInput {

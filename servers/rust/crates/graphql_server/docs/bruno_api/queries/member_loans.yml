@@ -11,8 +11,8 @@ graphql:
       query MemberLoans($memberNumber: String!) {
         memberLoans(memberNumber: $memberNumber) {
           loanNumber
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           dueAt
           returnedAt
         }

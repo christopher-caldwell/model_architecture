@@ -11,8 +11,8 @@ graphql:
       mutation CompleteBookCopyMaintenance($barcode: String!) {
         completeBookCopyMaintenance(barcode: $barcode) {
           barcode
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           authorName
           status
         }

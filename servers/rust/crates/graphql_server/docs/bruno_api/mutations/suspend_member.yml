@@ -11,8 +11,8 @@ graphql:
       mutation SuspendMember($memberNumber: String!) {
         suspendMember(memberNumber: $memberNumber) {
           memberNumber
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           status
           fullName
           maxActiveLoans

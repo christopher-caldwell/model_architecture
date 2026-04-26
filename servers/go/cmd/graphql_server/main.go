@@ -8,8 +8,8 @@ import (
 	"os"
 
 	"github.com/99designs/gqlgen/graphql/playground"
-	"github.com/christophercaldwell/model-architecture/go/internal/bootstrap"
 	"github.com/christophercaldwell/model-architecture/go/internal/auth"
+	"github.com/christophercaldwell/model-architecture/go/internal/bootstrap"
 	gqltransport "github.com/christophercaldwell/model-architecture/go/internal/transport/graphql"
 	"github.com/go-chi/chi/v5"
 	"github.com/go-chi/chi/v5/middleware"
@@ -36,10 +36,9 @@ func main() {
 	r := chi.NewRouter()
 	r.Use(middleware.Logger)
 	r.Use(middleware.Recoverer)
-	r.Use(auth.Middleware(deps.Auth.Verifier))
 
-	r.Get("/", playground.Handler("GraphQL Playground", "/query"))
-	r.Post("/query", srv.ServeHTTP)
+	r.Get("/graphql", playground.Handler("GraphQL Playground", "/graphql"))
+	r.With(auth.Middleware(deps.Auth.Verifier)).Post("/graphql", srv.ServeHTTP)
 
 	addr := fmt.Sprintf(":%d", cfg.ServerPort)
 	slog.Info("starting GraphQL server", "addr", addr)

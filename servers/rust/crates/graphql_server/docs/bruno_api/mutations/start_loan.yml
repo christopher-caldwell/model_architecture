@@ -11,8 +11,8 @@ graphql:
       mutation CheckOutBookCopy($input: StartLoanInput!) {
         checkOutBookCopy(input: $input) {
           loanNumber
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           dueAt
           returnedAt
         }

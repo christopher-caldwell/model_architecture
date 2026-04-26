@@ -11,8 +11,8 @@ graphql:
       mutation CreateBook($input: CreateCatalogTitleInput!) {
         createBook(input: $input) {
           isbn
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           title
           authorName
         }

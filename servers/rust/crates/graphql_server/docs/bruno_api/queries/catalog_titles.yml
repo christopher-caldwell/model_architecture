@@ -11,8 +11,8 @@ graphql:
       query {
         books {
           isbn
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           authorName
           title
         }

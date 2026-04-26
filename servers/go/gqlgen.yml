@@ -18,6 +18,6 @@ resolver:
 autobind: []
 
 models:
-  Time:
+  DateTime:
     model:
       - github.com/99designs/gqlgen/graphql.Time

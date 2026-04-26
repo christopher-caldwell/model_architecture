@@ -11,8 +11,8 @@ graphql:
       query BookByIsbn($isbn: String!) {
         bookByIsbn(isbn: $isbn) {
           isbn
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           title
           authorName
         }

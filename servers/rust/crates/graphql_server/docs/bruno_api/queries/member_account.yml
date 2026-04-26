@@ -11,8 +11,8 @@ graphql:
       query Member($memberNumber: String!) {
         member(memberNumber: $memberNumber) {
           memberNumber
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           status
           fullName
           maxActiveLoans

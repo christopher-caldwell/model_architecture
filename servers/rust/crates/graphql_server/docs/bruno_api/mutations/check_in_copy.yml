@@ -11,8 +11,8 @@ graphql:
       mutation ReturnBookCopy($barcode: String!) {
         returnBookCopy(barcode: $barcode) {
           loanNumber
-          createdAt
-          updatedAt
+          dtCreated
+          dtModified
           dueAt
           returnedAt
         }

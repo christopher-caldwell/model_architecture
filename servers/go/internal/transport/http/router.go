@@ -3,8 +3,6 @@ package httptransport
 import (
 	"net/http"
 
-	"github.com/go-chi/chi/v5"
-	"github.com/go-chi/chi/v5/middleware"
 	"github.com/christophercaldwell/model-architecture/go/internal/auth"
 	"github.com/christophercaldwell/model-architecture/go/internal/bootstrap"
 	bookhandler "github.com/christophercaldwell/model-architecture/go/internal/transport/http/book"
@@ -12,6 +10,8 @@ import (
 	healthhd "github.com/christophercaldwell/model-architecture/go/internal/transport/http/health"
 	loanhd "github.com/christophercaldwell/model-architecture/go/internal/transport/http/loan"
 	memberhd "github.com/christophercaldwell/model-architecture/go/internal/transport/http/member"
+	"github.com/go-chi/chi/v5"
+	"github.com/go-chi/chi/v5/middleware"
 )
 
 func NewRouter(deps *bootstrap.ServerDeps) http.Handler {
@@ -20,6 +20,9 @@ func NewRouter(deps *bootstrap.ServerDeps) http.Handler {
 	r.Use(corsMiddleware)
 
 	r.Get("/health", healthhd.GetHealthCheck)
+	r.Get("/swagger-ui", getSwaggerUI)
+	r.Get("/swagger-ui/*", getSwaggerUI)
+	r.Get("/api-docs/openapi.json", getOpenAPIDoc)
 
 	r.Group(func(r chi.Router) {
 		r.Use(auth.Middleware(deps.Auth.Verifier))

@@ -28,16 +28,16 @@ func WriteError(w http.ResponseWriter, status int, msg string) {
 
 func WriteServiceError(w http.ResponseWriter, err error) {
 	slog.Error("unhandled request error", "error", err)
-	WriteError(w, http.StatusInternalServerError, "something went wrong")
+	WriteError(w, http.StatusInternalServerError, "Something went wrong")
 }
 
 func WriteCommandError(w http.ResponseWriter, err error) {
 	switch {
 	case errors.Is(err, book.ErrNotFound):
-		WriteError(w, http.StatusNotFound, "book not found")
+		WriteError(w, http.StatusNotFound, "Book not found")
 
 	case errors.Is(err, bookcopy.ErrNotFound):
-		WriteError(w, http.StatusNotFound, "book copy not found")
+		WriteError(w, http.StatusNotFound, "Book copy not found")
 	case errors.Is(err, bookcopy.ErrCannotBeBorrowed),
 		errors.Is(err, bookcopy.ErrCannotBeSentToMaintenance),
 		errors.Is(err, bookcopy.ErrCannotBeReturnedFromMaintenance),
@@ -46,7 +46,7 @@ func WriteCommandError(w http.ResponseWriter, err error) {
 		WriteError(w, http.StatusConflict, err.Error())
 
 	case errors.Is(err, member.ErrNotFound):
-		WriteError(w, http.StatusNotFound, "member not found")
+		WriteError(w, http.StatusNotFound, "Member not found")
 	case errors.Is(err, member.ErrCannotBeSuspended),
 		errors.Is(err, member.ErrCannotBeReactivated),
 		errors.Is(err, member.ErrCannotBorrowWhileSuspended),
@@ -59,6 +59,6 @@ func WriteCommandError(w http.ResponseWriter, err error) {
 
 	default:
 		slog.Error("unhandled command error", "error", err)
-		WriteError(w, http.StatusInternalServerError, "something went wrong")
+		WriteError(w, http.StatusInternalServerError, "Something went wrong")
 	}
 }

@@ -533,7 +533,7 @@ func newExecutionContext(
 }
 
 var sources = []*ast.Source{
-	{Name: "../schema.graphql", Input: `scalar Time
+	{Name: "../schema.graphql", Input: `scalar DateTime
 
 type Query {
   books: [CatalogTitle!]!
@@ -561,16 +561,16 @@ type Mutation {
 
 type CatalogTitle {
   isbn: String!
-  dtCreated: Time!
-  dtModified: Time!
+  dtCreated: DateTime!
+  dtModified: DateTime!
   title: String!
   authorName: String!
 }
 
 type InventoryCopy {
   barcode: String!
-  dtCreated: Time!
-  dtModified: Time!
+  dtCreated: DateTime!
+  dtModified: DateTime!
   status: InventoryCopyStatus!
 }
 
@@ -582,8 +582,8 @@ enum InventoryCopyStatus {
 
 type LibraryMember {
   memberNumber: String!
-  dtCreated: Time!
-  dtModified: Time!
+  dtCreated: DateTime!
+  dtModified: DateTime!
   status: LibraryMemberStatus!
   fullName: String!
   maxActiveLoans: Int!
@@ -596,10 +596,10 @@ enum LibraryMemberStatus {
 
 type LoanRecord {
   loanNumber: String!
-  dtCreated: Time!
-  dtModified: Time!
-  dueAt: Time
-  returnedAt: Time
+  dtCreated: DateTime!
+  dtModified: DateTime!
+  dueAt: DateTime
+  returnedAt: DateTime
 }
 
 input CreateCatalogTitleInput {
@@ -1148,14 +1148,14 @@ func (ec *executionContext) _CatalogTitle_dtCreated(ctx context.Context, field g
 		},
 		nil,
 		func(ctx context.Context, selections ast.SelectionSet, v time.Time) graphql.Marshaler {
-			return ec.marshalNTime2timeᚐTime(ctx, selections, v)
+			return ec.marshalNDateTime2timeᚐTime(ctx, selections, v)
 		},
 		true,
 		true,
 	)
 }
 func (ec *executionContext) fieldContext_CatalogTitle_dtCreated(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	return graphql.NewScalarFieldContext("CatalogTitle", field, false, false, errors.New("field of type Time does not have child fields"))
+	return graphql.NewScalarFieldContext("CatalogTitle", field, false, false, errors.New("field of type DateTime does not have child fields"))
 }
 
 func (ec *executionContext) _CatalogTitle_dtModified(ctx context.Context, field graphql.CollectedField, obj *model.CatalogTitle) (ret graphql.Marshaler) {
@@ -1171,14 +1171,14 @@ func (ec *executionContext) _CatalogTitle_dtModified(ctx context.Context, field 
 		},
 		nil,
 		func(ctx context.Context, selections ast.SelectionSet, v time.Time) graphql.Marshaler {
-			return ec.marshalNTime2timeᚐTime(ctx, selections, v)
+			return ec.marshalNDateTime2timeᚐTime(ctx, selections, v)
 		},
 		true,
 		true,
 	)
 }
 func (ec *executionContext) fieldContext_CatalogTitle_dtModified(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	return graphql.NewScalarFieldContext("CatalogTitle", field, false, false, errors.New("field of type Time does not have child fields"))
+	return graphql.NewScalarFieldContext("CatalogTitle", field, false, false, errors.New("field of type DateTime does not have child fields"))
 }
 
 func (ec *executionContext) _CatalogTitle_title(ctx context.Context, field graphql.CollectedField, obj *model.CatalogTitle) (ret graphql.Marshaler) {
@@ -1263,14 +1263,14 @@ func (ec *executionContext) _InventoryCopy_dtCreated(ctx context.Context, field 
 		},
 		nil,
 		func(ctx context.Context, selections ast.SelectionSet, v time.Time) graphql.Marshaler {
-			return ec.marshalNTime2timeᚐTime(ctx, selections, v)
+			return ec.marshalNDateTime2timeᚐTime(ctx, selections, v)
 		},
 		true,
 		true,
 	)
 }
 func (ec *executionContext) fieldContext_InventoryCopy_dtCreated(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	return graphql.NewScalarFieldContext("InventoryCopy", field, false, false, errors.New("field of type Time does not have child fields"))
+	return graphql.NewScalarFieldContext("InventoryCopy", field, false, false, errors.New("field of type DateTime does not have child fields"))
 }
 
 func (ec *executionContext) _InventoryCopy_dtModified(ctx context.Context, field graphql.CollectedField, obj *model.InventoryCopy) (ret graphql.Marshaler) {
@@ -1286,14 +1286,14 @@ func (ec *executionContext) _InventoryCopy_dtModified(ctx context.Context, field
 		},
 		nil,
 		func(ctx context.Context, selections ast.SelectionSet, v time.Time) graphql.Marshaler {
-			return ec.marshalNTime2timeᚐTime(ctx, selections, v)
+			return ec.marshalNDateTime2timeᚐTime(ctx, selections, v)
 		},
 		true,
 		true,
 	)
 }
 func (ec *executionContext) fieldContext_InventoryCopy_dtModified(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	return graphql.NewScalarFieldContext("InventoryCopy", field, false, false, errors.New("field of type Time does not have child fields"))
+	return graphql.NewScalarFieldContext("InventoryCopy", field, false, false, errors.New("field of type DateTime does not have child fields"))
 }
 
 func (ec *executionContext) _InventoryCopy_status(ctx context.Context, field graphql.CollectedField, obj *model.InventoryCopy) (ret graphql.Marshaler) {
@@ -1355,14 +1355,14 @@ func (ec *executionContext) _LibraryMember_dtCreated(ctx context.Context, field 
 		},
 		nil,
 		func(ctx context.Context, selections ast.SelectionSet, v time.Time) graphql.Marshaler {
-			return ec.marshalNTime2timeᚐTime(ctx, selections, v)
+			return ec.marshalNDateTime2timeᚐTime(ctx, selections, v)
 		},
 		true,
 		true,
 	)
 }
 func (ec *executionContext) fieldContext_LibraryMember_dtCreated(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	return graphql.NewScalarFieldContext("LibraryMember", field, false, false, errors.New("field of type Time does not have child fields"))
+	return graphql.NewScalarFieldContext("LibraryMember", field, false, false, errors.New("field of type DateTime does not have child fields"))
 }
 
 func (ec *executionContext) _LibraryMember_dtModified(ctx context.Context, field graphql.CollectedField, obj *model.LibraryMember) (ret graphql.Marshaler) {
@@ -1378,14 +1378,14 @@ func (ec *executionContext) _LibraryMember_dtModified(ctx context.Context, field
 		},
 		nil,
 		func(ctx context.Context, selections ast.SelectionSet, v time.Time) graphql.Marshaler {
-			return ec.marshalNTime2timeᚐTime(ctx, selections, v)
+			return ec.marshalNDateTime2timeᚐTime(ctx, selections, v)
 		},
 		true,
 		true,
 	)
 }
 func (ec *executionContext) fieldContext_LibraryMember_dtModified(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	return graphql.NewScalarFieldContext("LibraryMember", field, false, false, errors.New("field of type Time does not have child fields"))
+	return graphql.NewScalarFieldContext("LibraryMember", field, false, false, errors.New("field of type DateTime does not have child fields"))
 }
 
 func (ec *executionContext) _LibraryMember_status(ctx context.Context, field graphql.CollectedField, obj *model.LibraryMember) (ret graphql.Marshaler) {
@@ -1493,14 +1493,14 @@ func (ec *executionContext) _LoanRecord_dtCreated(ctx context.Context, field gra
 		},
 		nil,
 		func(ctx context.Context, selections ast.SelectionSet, v time.Time) graphql.Marshaler {
-			return ec.marshalNTime2timeᚐTime(ctx, selections, v)
+			return ec.marshalNDateTime2timeᚐTime(ctx, selections, v)
 		},
 		true,
 		true,
 	)
 }
 func (ec *executionContext) fieldContext_LoanRecord_dtCreated(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	return graphql.NewScalarFieldContext("LoanRecord", field, false, false, errors.New("field of type Time does not have child fields"))
+	return graphql.NewScalarFieldContext("LoanRecord", field, false, false, errors.New("field of type DateTime does not have child fields"))
 }
 
 func (ec *executionContext) _LoanRecord_dtModified(ctx context.Context, field graphql.CollectedField, obj *model.LoanRecord) (ret graphql.Marshaler) {
@@ -1516,14 +1516,14 @@ func (ec *executionContext) _LoanRecord_dtModified(ctx context.Context, field gr
 		},
 		nil,
 		func(ctx context.Context, selections ast.SelectionSet, v time.Time) graphql.Marshaler {
-			return ec.marshalNTime2timeᚐTime(ctx, selections, v)
+			return ec.marshalNDateTime2timeᚐTime(ctx, selections, v)
 		},
 		true,
 		true,
 	)
 }
 func (ec *executionContext) fieldContext_LoanRecord_dtModified(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	return graphql.NewScalarFieldContext("LoanRecord", field, false, false, errors.New("field of type Time does not have child fields"))
+	return graphql.NewScalarFieldContext("LoanRecord", field, false, false, errors.New("field of type DateTime does not have child fields"))
 }
 
 func (ec *executionContext) _LoanRecord_dueAt(ctx context.Context, field graphql.CollectedField, obj *model.LoanRecord) (ret graphql.Marshaler) {
@@ -1539,14 +1539,14 @@ func (ec *executionContext) _LoanRecord_dueAt(ctx context.Context, field graphql
 		},
 		nil,
 		func(ctx context.Context, selections ast.SelectionSet, v *time.Time) graphql.Marshaler {
-			return ec.marshalOTime2ᚖtimeᚐTime(ctx, selections, v)
+			return ec.marshalODateTime2ᚖtimeᚐTime(ctx, selections, v)
 		},
 		true,
 		false,
 	)
 }
 func (ec *executionContext) fieldContext_LoanRecord_dueAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	return graphql.NewScalarFieldContext("LoanRecord", field, false, false, errors.New("field of type Time does not have child fields"))
+	return graphql.NewScalarFieldContext("LoanRecord", field, false, false, errors.New("field of type DateTime does not have child fields"))
 }
 
 func (ec *executionContext) _LoanRecord_returnedAt(ctx context.Context, field graphql.CollectedField, obj *model.LoanRecord) (ret graphql.Marshaler) {
@@ -1562,14 +1562,14 @@ func (ec *executionContext) _LoanRecord_returnedAt(ctx context.Context, field gr
 		},
 		nil,
 		func(ctx context.Context, selections ast.SelectionSet, v *time.Time) graphql.Marshaler {
-			return ec.marshalOTime2ᚖtimeᚐTime(ctx, selections, v)
+			return ec.marshalODateTime2ᚖtimeᚐTime(ctx, selections, v)
 		},
 		true,
 		false,
 	)
 }
 func (ec *executionContext) fieldContext_LoanRecord_returnedAt(_ context.Context, field graphql.CollectedField) (fc *graphql.FieldContext, err error) {
-	return graphql.NewScalarFieldContext("LoanRecord", field, false, false, errors.New("field of type Time does not have child fields"))
+	return graphql.NewScalarFieldContext("LoanRecord", field, false, false, errors.New("field of type DateTime does not have child fields"))
 }
 
 func (ec *executionContext) _Mutation_createBook(ctx context.Context, field graphql.CollectedField) (ret graphql.Marshaler) {
@@ -4558,6 +4558,22 @@ func (ec *executionContext) unmarshalNCreateCatalogTitleInput2githubᚗcomᚋchr
 	return res, graphql.ErrorOnPath(ctx, err)
 }
 
+func (ec *executionContext) unmarshalNDateTime2timeᚐTime(ctx context.Context, v any) (time.Time, error) {
+	res, err := graphql.UnmarshalTime(v)
+	return res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalNDateTime2timeᚐTime(ctx context.Context, sel ast.SelectionSet, v time.Time) graphql.Marshaler {
+	_ = sel
+	res := graphql.MarshalTime(v)
+	if res == graphql.Null {
+		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
+			graphql.AddErrorf(ctx, "the requested element is null which the schema does not allow")
+		}
+	}
+	return res
+}
+
 func (ec *executionContext) unmarshalNInt2int(ctx context.Context, v any) (int, error) {
 	res, err := graphql.UnmarshalInt(v)
 	return res, graphql.ErrorOnPath(ctx, err)
@@ -4670,22 +4686,6 @@ func (ec *executionContext) unmarshalNString2string(ctx context.Context, v any) 
 func (ec *executionContext) marshalNString2string(ctx context.Context, sel ast.SelectionSet, v string) graphql.Marshaler {
 	_ = sel
 	res := graphql.MarshalString(v)
-	if res == graphql.Null {
-		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
-			graphql.AddErrorf(ctx, "the requested element is null which the schema does not allow")
-		}
-	}
-	return res
-}
-
-func (ec *executionContext) unmarshalNTime2timeᚐTime(ctx context.Context, v any) (time.Time, error) {
-	res, err := graphql.UnmarshalTime(v)
-	return res, graphql.ErrorOnPath(ctx, err)
-}
-
-func (ec *executionContext) marshalNTime2timeᚐTime(ctx context.Context, sel ast.SelectionSet, v time.Time) graphql.Marshaler {
-	_ = sel
-	res := graphql.MarshalTime(v)
 	if res == graphql.Null {
 		if !graphql.HasFieldError(ctx, graphql.GetFieldContext(ctx)) {
 			graphql.AddErrorf(ctx, "the requested element is null which the schema does not allow")
@@ -4872,6 +4872,24 @@ func (ec *executionContext) marshalOCatalogTitle2ᚖgithubᚗcomᚋchristopherca
 	return ec._CatalogTitle(ctx, sel, v)
 }
 
+func (ec *executionContext) unmarshalODateTime2ᚖtimeᚐTime(ctx context.Context, v any) (*time.Time, error) {
+	if v == nil {
+		return nil, nil
+	}
+	res, err := graphql.UnmarshalTime(v)
+	return &res, graphql.ErrorOnPath(ctx, err)
+}
+
+func (ec *executionContext) marshalODateTime2ᚖtimeᚐTime(ctx context.Context, sel ast.SelectionSet, v *time.Time) graphql.Marshaler {
+	if v == nil {
+		return graphql.Null
+	}
+	_ = sel
+	_ = ctx
+	res := graphql.MarshalTime(*v)
+	return res
+}
+
 func (ec *executionContext) marshalOInventoryCopy2ᚖgithubᚗcomᚋchristophercaldwellᚋmodelᚑarchitectureᚋgoᚋinternalᚋtransportᚋgraphqlᚋmodelᚐInventoryCopy(ctx context.Context, sel ast.SelectionSet, v *model.InventoryCopy) graphql.Marshaler {
 	if v == nil {
 		return graphql.Null
@@ -4901,24 +4919,6 @@ func (ec *executionContext) marshalOString2ᚖstring(ctx context.Context, sel as
 	_ = sel
 	_ = ctx
 	res := graphql.MarshalString(*v)
-	return res
-}
-
-func (ec *executionContext) unmarshalOTime2ᚖtimeᚐTime(ctx context.Context, v any) (*time.Time, error) {
-	if v == nil {
-		return nil, nil
-	}
-	res, err := graphql.UnmarshalTime(v)
-	return &res, graphql.ErrorOnPath(ctx, err)
-}
-
-func (ec *executionContext) marshalOTime2ᚖtimeᚐTime(ctx context.Context, sel ast.SelectionSet, v *time.Time) graphql.Marshaler {
-	if v == nil {
-		return graphql.Null
-	}
-	_ = sel
-	_ = ctx
-	res := graphql.MarshalTime(*v)
 	return res
 }
 
