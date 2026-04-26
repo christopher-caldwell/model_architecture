@@ -1,0 +1,89 @@
+scalar Time
+
+type Query {
+  books: [CatalogTitle!]!
+  bookByIsbn(isbn: String!): CatalogTitle
+  bookCopy(barcode: String!): InventoryCopy
+  member(memberNumber: String!): LibraryMember
+  memberLoans(memberNumber: String!): [LoanRecord!]!
+  overdueLoans: [LoanRecord!]!
+}
+
+type Mutation {
+  createBook(input: CreateCatalogTitleInput!): CatalogTitle!
+  addBookCopy(input: AddInventoryCopyInput!): InventoryCopy!
+  markBookCopyLost(barcode: String!): InventoryCopy!
+  markBookCopyFound(barcode: String!): InventoryCopy!
+  sendBookCopyToMaintenance(barcode: String!): InventoryCopy!
+  completeBookCopyMaintenance(barcode: String!): InventoryCopy!
+  registerMember(input: RegisterMemberInput!): LibraryMember!
+  suspendMember(memberNumber: String!): LibraryMember!
+  reactivateMember(memberNumber: String!): LibraryMember!
+  checkOutBookCopy(input: StartLoanInput!): LoanRecord!
+  returnBookCopy(barcode: String!): LoanRecord!
+  reportLostLoanedBookCopy(barcode: String!): InventoryCopy!
+}
+
+type CatalogTitle {
+  isbn: String!
+  dtCreated: Time!
+  dtModified: Time!
+  title: String!
+  authorName: String!
+}
+
+type InventoryCopy {
+  barcode: String!
+  dtCreated: Time!
+  dtModified: Time!
+  status: InventoryCopyStatus!
+}
+
+enum InventoryCopyStatus {
+  ACTIVE
+  MAINTENANCE
+  LOST
+}
+
+type LibraryMember {
+  memberNumber: String!
+  dtCreated: Time!
+  dtModified: Time!
+  status: LibraryMemberStatus!
+  fullName: String!
+  maxActiveLoans: Int!
+}
+
+enum LibraryMemberStatus {
+  ACTIVE
+  SUSPENDED
+}
+
+type LoanRecord {
+  loanNumber: String!
+  dtCreated: Time!
+  dtModified: Time!
+  dueAt: Time
+  returnedAt: Time
+}
+
+input CreateCatalogTitleInput {
+  isbn: String!
+  title: String!
+  authorName: String!
+}
+
+input AddInventoryCopyInput {
+  isbn: String!
+  barcode: String!
+}
+
+input RegisterMemberInput {
+  fullName: String!
+  maxActiveLoans: Int!
+}
+
+input StartLoanInput {
+  memberNumber: String!
+  barcode: String!
+}

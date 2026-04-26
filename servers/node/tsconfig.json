@@ -1,0 +1,12 @@
+{
+  "files": [],
+  "references": [
+    { "path": "./packages/domain" },
+    { "path": "./packages/application" },
+    { "path": "./packages/auth-core" },
+    { "path": "./packages/persistence" },
+    { "path": "./packages/server-bootstrap" },
+    { "path": "./packages/http-server" },
+    { "path": "./packages/graphql-server" }
+  ]
+}
