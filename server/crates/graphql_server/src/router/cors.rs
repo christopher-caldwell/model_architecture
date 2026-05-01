@@ -12,7 +12,7 @@ pub fn get_cors() -> CorsLayer {
     } else {
         let allowed_origins = Vec::from([
             "https://craftcode.solutions".parse().unwrap(),
-            "https://ops.craftcode.solutions".parse().unwrap(),
+            "https://demo.library.com".parse().unwrap(),
             "https://connect.craftcode.solutions".parse().unwrap(),
         ]);
         CorsLayer::new()

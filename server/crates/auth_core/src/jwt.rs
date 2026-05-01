@@ -2,7 +2,7 @@ use jsonwebtoken::{decode, Algorithm, DecodingKey, Validation};
 
 use crate::{AuthError, AuthVerifierPort, Claims};
 
-pub const JWT_AUDIENCE: &str = "ops.craftcode.solutions";
+pub const JWT_AUDIENCE: &str = "demo.library.com";
 
 #[derive(Clone)]
 pub struct JwtAuthAdapter {
