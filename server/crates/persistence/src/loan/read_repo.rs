@@ -1,5 +1,3 @@
-use std::sync::Arc;
-
 use anyhow::{Context, Result};
 use async_trait::async_trait;
 use chrono::{DateTime, Utc};
@@ -8,8 +6,7 @@ use domain::{
     loan::{port::LoanReadRepoPort, Loan, LoanId, LoanIdent},
     member::{MemberId, MemberIdent},
 };
-use sqlx::{Executor, PgPool, Postgres, Transaction};
-use tokio::sync::Mutex;
+use sqlx::{Executor, PgPool, Postgres};
 
 #[derive(sqlx::FromRow)]
 pub struct LoanDbRow {
@@ -113,14 +110,6 @@ pub struct LoanReadRepoSql {
     pub pool: PgPool,
 }
 
-// Demonstrates the transactional read pattern: same port, transaction-scoped executor.
-// Not wired up in bootstrap currently, but kept as a reference for when consistent reads
-// within a write transaction are needed (e.g. read-your-writes within a command).
-#[allow(dead_code)]
-pub struct LoanReadRepoTx {
-    pub tx: Arc<Mutex<Option<Transaction<'static, Postgres>>>>,
-}
-
 #[async_trait]
 impl LoanReadRepoPort for LoanReadRepoSql {
     async fn get_by_member_ident(&self, ident: &MemberIdent) -> Result<Vec<Loan>> {
@@ -137,32 +126,5 @@ impl LoanReadRepoPort for LoanReadRepoSql {
 
     async fn count_active_by_member_id(&self, id: MemberId) -> Result<i64> {
         count_active_by_member_id_with(&self.pool, id).await
-    }
-}
-
-#[async_trait]
-impl LoanReadRepoPort for LoanReadRepoTx {
-    async fn get_by_member_ident(&self, ident: &MemberIdent) -> Result<Vec<Loan>> {
-        let mut guard = self.tx.lock().await;
-        let tx = guard.as_mut().context("Transaction already consumed")?;
-        get_by_member_ident_with(&mut **tx, ident).await
-    }
-
-    async fn get_overdue(&self) -> Result<Vec<Loan>> {
-        let mut guard = self.tx.lock().await;
-        let tx = guard.as_mut().context("Transaction already consumed")?;
-        get_overdue_with(&mut **tx).await
-    }
-
-    async fn find_active_by_book_copy_id(&self, id: BookCopyId) -> Result<Option<Loan>> {
-        let mut guard = self.tx.lock().await;
-        let tx = guard.as_mut().context("Transaction already consumed")?;
-        find_active_by_book_copy_id_with(&mut **tx, id).await
-    }
-
-    async fn count_active_by_member_id(&self, id: MemberId) -> Result<i64> {
-        let mut guard = self.tx.lock().await;
-        let tx = guard.as_mut().context("Transaction already consumed")?;
-        count_active_by_member_id_with(&mut **tx, id).await
     }
 }
