@@ -33,12 +33,12 @@ impl Member {
     }
 
     #[must_use]
-    fn can_check_out_more_books(&self, active_loan_count: i16) -> bool {
-        active_loan_count < self.max_active_loans
+    fn can_check_out_more_books(&self, active_loan_count: i64) -> bool {
+        active_loan_count < i64::from(self.max_active_loans)
     }
 
     /// Guard: ensures member has not reached their loan limit.
-    pub fn ensure_within_loan_limit(&self, active_loan_count: i16) -> Result<(), MemberError> {
+    pub fn ensure_within_loan_limit(&self, active_loan_count: i64) -> Result<(), MemberError> {
         if !self.can_check_out_more_books(active_loan_count) {
             return Err(MemberError::LoanLimitReached);
         }

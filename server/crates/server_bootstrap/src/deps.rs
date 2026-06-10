@@ -29,20 +29,20 @@ pub struct AuthDeps {
 
 #[derive(Clone)]
 pub struct CatalogDeps {
-    pub commands: Arc<CatalogCommands>,
-    pub queries: Arc<CatalogQueries>,
+    pub commands: CatalogCommands,
+    pub queries: CatalogQueries,
 }
 
 #[derive(Clone)]
 pub struct LendingDeps {
-    pub commands: Arc<LendingCommands>,
-    pub queries: Arc<LendingQueries>,
+    pub commands: LendingCommands,
+    pub queries: LendingQueries,
 }
 
 #[derive(Clone)]
 pub struct MembershipDeps {
-    pub commands: Arc<MembershipCommands>,
-    pub queries: Arc<MembershipQueries>,
+    pub commands: MembershipCommands,
+    pub queries: MembershipQueries,
 }
 
 struct MemberIdentGenerator;
@@ -83,13 +83,13 @@ pub async fn create_server_deps(config: &ServerConfig) -> Result<ServerDeps> {
     let member_read_repo = Arc::new(MemberReadRepoSql { pool: ro_pool });
     let ident_generator = Arc::new(MemberIdentGenerator);
 
-    let catalog_commands = Arc::new(CatalogCommands::new(write_uow_factory.clone()));
-    let lending_commands = Arc::new(LendingCommands::new(write_uow_factory.clone()));
-    let membership_commands = Arc::new(MembershipCommands::new(write_uow_factory, ident_generator));
+    let catalog_commands = CatalogCommands::new(write_uow_factory.clone());
+    let lending_commands = LendingCommands::new(write_uow_factory.clone());
+    let membership_commands = MembershipCommands::new(write_uow_factory, ident_generator);
 
-    let catalog_queries = Arc::new(CatalogQueries::new(book_read_repo, book_copy_read_repo));
-    let lending_queries = Arc::new(LendingQueries::new(loan_read_repo));
-    let membership_queries = Arc::new(MembershipQueries::new(member_read_repo));
+    let catalog_queries = CatalogQueries::new(book_read_repo, book_copy_read_repo);
+    let lending_queries = LendingQueries::new(loan_read_repo);
+    let membership_queries = MembershipQueries::new(member_read_repo);
 
     Ok(ServerDeps {
         auth: AuthDeps {

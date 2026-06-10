@@ -9,6 +9,10 @@ transport -> server_bootstrap -> application -> domain
                        persistence -> domain
 ```
 
+## Understand Anything
+Before searching the repo manually, check the Understand Anything knowledge graph first. Use it to orient on files, modules, layers, and relationships, then fall back to `rg` or direct file reads when the graph does not answer the question.
+
+
 ## Always-Relevant Rules
 
 - Business workflow belongs in `application` commands and queries, not in HTTP handlers or GraphQL resolvers.

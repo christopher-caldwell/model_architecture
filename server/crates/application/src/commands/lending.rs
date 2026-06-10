@@ -4,7 +4,7 @@ use domain::{
     book_copy::{BookCopy, BookCopyError},
     loan::{Loan, LoanCreationPayload, LoanError},
     member::{Member, MemberError},
-    uow::{UnitOfWorkPort, WriteUnitOfWorkFactory},
+    uow::{WriteUnitOfWork, WriteUnitOfWorkFactory},
 };
 use std::sync::Arc;
 
@@ -21,11 +21,11 @@ impl LendingCommands {
 
     async fn get_member_by_ident(
         &self,
-        uow: &dyn UnitOfWorkPort,
+        uow: &mut WriteUnitOfWork,
         member_ident: &str,
     ) -> Result<Member, super::CommandError> {
         let ident = domain::member::MemberIdent(member_ident.to_owned());
-        uow.membership_write_repo()
+        uow.member()
             .get_by_ident_for_update(&ident)
             .await
             .context("Failed to load member for write")?
@@ -34,10 +34,10 @@ impl LendingCommands {
 
     async fn get_book_copy_by_barcode(
         &self,
-        uow: &dyn UnitOfWorkPort,
+        uow: &mut WriteUnitOfWork,
         barcode: &str,
     ) -> Result<BookCopy, super::CommandError> {
-        uow.book_copy_write_repo()
+        uow.book_copy()
             .get_by_barcode_for_update(barcode)
             .await
             .context("Failed to load book copy for write")?
@@ -46,11 +46,11 @@ impl LendingCommands {
 
     async fn load_active_loan_for_copy(
         &self,
-        uow: &dyn UnitOfWorkPort,
+        uow: &mut WriteUnitOfWork,
         book_copy_id: domain::book_copy::BookCopyId,
     ) -> Result<Option<Loan>, super::CommandError> {
         Ok(uow
-            .loan_write_repo()
+            .loan()
             .find_active_by_book_copy_id_for_update(book_copy_id)
             .await
             .context("Failed to find active loan for book copy")?)
@@ -60,27 +60,31 @@ impl LendingCommands {
         &self,
         input: super::CheckOutBookCopyInput,
     ) -> Result<Loan, super::CommandError> {
-        let uow = self
+        let mut uow = self
             .uow_factory
             .build()
             .await
             .context("Failed to build unit of work")?;
-        let member = self.get_member_by_ident(&*uow, &input.member_ident).await?;
+        let member = self
+            .get_member_by_ident(&mut uow, &input.member_ident)
+            .await?;
         let book_copy = self
-            .get_book_copy_by_barcode(&*uow, &input.book_copy_barcode)
+            .get_book_copy_by_barcode(&mut uow, &input.book_copy_barcode)
             .await?;
 
         member.ensure_can_borrow()?;
         book_copy.ensure_can_be_borrowed()?;
 
         let active_loan_count = uow
-            .loan_write_repo()
+            .loan()
             .count_active_by_member_id(member.id)
             .await
             .context("Failed to count active loans for member")?;
-        member.ensure_within_loan_limit(active_loan_count as i16)?;
+        member.ensure_within_loan_limit(active_loan_count)?;
 
-        let active_loan = self.load_active_loan_for_copy(&*uow, book_copy.id).await?;
+        let active_loan = self
+            .load_active_loan_for_copy(&mut uow, book_copy.id)
+            .await?;
         if active_loan.is_some() {
             return Err(BookCopyError::CannotBeBorrowed.into());
         }
@@ -91,7 +95,7 @@ impl LendingCommands {
         }
         .prepare();
         let result = uow
-            .loan_write_repo()
+            .loan()
             .create(&prepared)
             .await
             .context("Failed to check out book copy")?;
@@ -100,18 +104,18 @@ impl LendingCommands {
     }
 
     pub async fn return_book_copy(&self, barcode: String) -> Result<Loan, super::CommandError> {
-        let uow = self
+        let mut uow = self
             .uow_factory
             .build()
             .await
             .context("Failed to build unit of work")?;
-        let book_copy = self.get_book_copy_by_barcode(&*uow, &barcode).await?;
+        let book_copy = self.get_book_copy_by_barcode(&mut uow, &barcode).await?;
         let loan = self
-            .load_active_loan_for_copy(&*uow, book_copy.id)
+            .load_active_loan_for_copy(&mut uow, book_copy.id)
             .await?
             .ok_or(LoanError::NoActiveLoanForBookCopy)?;
         loan.ensure_can_be_returned()?;
-        uow.loan_write_repo()
+        uow.loan()
             .end(loan.id)
             .await
             .context("Failed to return book copy")?;
@@ -129,23 +133,23 @@ impl LendingCommands {
         &self,
         barcode: String,
     ) -> Result<BookCopy, super::CommandError> {
-        let uow = self
+        let mut uow = self
             .uow_factory
             .build()
             .await
             .context("Failed to build unit of work")?;
-        let book_copy = self.get_book_copy_by_barcode(&*uow, &barcode).await?;
+        let book_copy = self.get_book_copy_by_barcode(&mut uow, &barcode).await?;
         let lost_status = book_copy.mark_lost()?;
         let loan = self
-            .load_active_loan_for_copy(&*uow, book_copy.id)
+            .load_active_loan_for_copy(&mut uow, book_copy.id)
             .await?
             .ok_or(LoanError::NoActiveLoanForBookCopy)?;
         loan.ensure_can_be_returned()?;
-        uow.loan_write_repo()
+        uow.loan()
             .end(loan.id)
             .await
             .context("Failed to close lost loan")?;
-        uow.book_copy_write_repo()
+        uow.book_copy()
             .update_status(book_copy.id, lost_status.clone())
             .await
             .context("Failed to mark book copy as lost")?;

@@ -19,12 +19,7 @@ impl TryFrom<BookDbRow> for Book {
 
     fn try_from(value: BookDbRow) -> Result<Self> {
         Ok(Self {
-            id: BookId(
-                value
-                    .book_id
-                    .try_into()
-                    .context("book_id exceeds domain range")?,
-            ),
+            id: BookId(value.book_id),
             isbn: value.isbn,
             dt_created: value.dt_created,
             dt_modified: value.dt_modified,
