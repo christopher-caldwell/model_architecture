@@ -1,8 +1,8 @@
 use anyhow::Error;
+use application::commands::CommandError;
 use axum::{http::StatusCode, Json};
 use domain::{book::BookError, book_copy::BookCopyError, loan::LoanError, member::MemberError};
 use serde::Serialize;
-use server_bootstrap::CommandError;
 use utoipa::ToSchema;
 
 #[derive(Serialize, ToSchema)]

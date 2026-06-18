@@ -1,10 +1,11 @@
+use application::commands::AddBookCopyInput;
 use axum::{
     extract::{Path, State},
     http::StatusCode,
     Json,
 };
-use server_bootstrap::{AddBookCopyInput, ServerDeps};
 
+use crate::deps::ServerDeps;
 use crate::router::{
     auth::AuthUser,
     book_copies::schemas::{BookCopyResponseBody, CreateBookCopyRequestBody},

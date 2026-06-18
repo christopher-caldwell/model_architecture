@@ -1,8 +1,9 @@
+use crate::deps::ServerDeps;
+use application::commands::MemberIdentInput;
 use axum::{
     extract::{Path, State},
     Json,
 };
-use server_bootstrap::{MemberIdentInput, ServerDeps};
 
 use crate::router::{
     auth::AuthUser,

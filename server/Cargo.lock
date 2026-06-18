@@ -1008,6 +1008,7 @@ name = "graphql_server"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "application",
  "async-graphql",
  "async-graphql-axum",
  "auth_core",
@@ -1016,8 +1017,10 @@ dependencies = [
  "domain",
  "dotenvy",
  "http",
+ "nanoid",
+ "persistence",
  "serde",
- "server_bootstrap",
+ "sqlx",
  "tokio",
  "tower-http",
  "tracing",
@@ -1160,15 +1163,18 @@ name = "http_server"
 version = "0.1.0"
 dependencies = [
  "anyhow",
+ "application",
  "auth_core",
  "axum",
  "chrono",
  "domain",
  "dotenvy",
  "http",
+ "nanoid",
+ "persistence",
  "serde",
  "serde_json",
- "server_bootstrap",
+ "sqlx",
  "tokio",
  "tower-http",
  "tracing",
@@ -2302,18 +2308,6 @@ dependencies = [
  "itoa",
  "ryu",
  "serde",
-]
-
-[[package]]
-name = "server_bootstrap"
-version = "0.1.0"
-dependencies = [
- "anyhow",
- "application",
- "auth_core",
- "nanoid",
- "persistence",
- "sqlx",
 ]
 
 [[package]]

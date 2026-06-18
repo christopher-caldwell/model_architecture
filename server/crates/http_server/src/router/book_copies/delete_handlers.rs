@@ -1,8 +1,8 @@
+use crate::deps::ServerDeps;
 use axum::{
     extract::{Path, State},
     Json,
 };
-use server_bootstrap::ServerDeps;
 
 use crate::router::{
     auth::AuthUser,

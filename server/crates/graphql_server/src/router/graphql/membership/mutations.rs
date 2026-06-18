@@ -2,7 +2,7 @@ use async_graphql::{Context, Object, Result};
 
 use crate::router::graphql::membership::{LibraryMember, RegisterMemberInput};
 use crate::router::graphql::{deps, gql_command_error};
-use server_bootstrap::MemberIdentInput;
+use application::commands::MemberIdentInput;
 
 #[derive(Default)]
 pub struct MembershipMutation;

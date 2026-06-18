@@ -2,7 +2,6 @@
 members = [
     "crates/application",
     "crates/auth_core",
-    "crates/server_bootstrap",
     "crates/domain",
     "crates/graphql_server",
     "crates/http_server",

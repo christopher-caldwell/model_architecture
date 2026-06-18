@@ -141,7 +141,7 @@ fn struct_types() -> Vec<StructType> {
 
 fn books() -> Vec<Book> {
     vec![
-        Book { book_id: 1,  isbn: "9780135957059", title: "The Pragmatic Programmer",                         author_name: "David Thomas, Andrew Hunt"        },
+        Book { book_id: 1,  isbn: "9780135957059", title: "The Pragmatic Programmer",                          author_name: "David Thomas, Andrew Hunt"        },
         Book { book_id: 2,  isbn: "9780132350884", title: "Clean Code",                                        author_name: "Robert C. Martin"                 },
         Book { book_id: 3,  isbn: "9780201633610", title: "Design Patterns",                                   author_name: "Erich Gamma et al."               },
         Book { book_id: 4,  isbn: "9780201835953", title: "The Mythical Man-Month",                            author_name: "Fred Brooks"                      },

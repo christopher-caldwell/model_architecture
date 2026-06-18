@@ -4,7 +4,7 @@ use crate::router::graphql::catalog::{
     AddInventoryCopyInput, CatalogTitle, CreateCatalogTitleInput, InventoryCopy,
 };
 use crate::router::graphql::{deps, gql_command_error};
-use server_bootstrap::AddBookCopyInput;
+use application::commands::AddBookCopyInput;
 
 #[derive(Default)]
 pub struct CatalogMutation;
