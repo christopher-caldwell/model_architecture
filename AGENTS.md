@@ -5,9 +5,11 @@ This repository is a clean/onion architecture + CQRS reference implementation. T
 Dependencies point inward:
 
 ```text
-transport -> server_bootstrap -> application -> domain
-                       persistence -> domain
+http_server / graphql_server -> application -> domain
+                            \-> persistence -> domain
 ```
+
+HTTP and GraphQL each own their server-specific bootstrap/config/deps code. Keep those dependencies separate unless a new shared abstraction is clearly needed.
 
 ## Understand Anything
 Before searching the repo manually, check the Understand Anything knowledge graph first. Use it to orient on files, modules, layers, and relationships, then fall back to `rg` or direct file reads when the graph does not answer the question.
