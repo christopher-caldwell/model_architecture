@@ -1,4 +1,4 @@
-use jsonwebtoken::{decode, Algorithm, DecodingKey, Validation};
+use jsonwebtoken::{decode, errors::ErrorKind, Algorithm, DecodingKey, Validation};
 
 use crate::{AuthError, AuthVerifierPort, Claims};
 
@@ -27,6 +27,9 @@ impl AuthVerifierPort for JwtAuthAdapter {
             &validation,
         )
         .map(|token_data| token_data.claims)
-        .map_err(AuthError::InvalidToken)
+        .map_err(|error| match error.kind() {
+            ErrorKind::ExpiredSignature => AuthError::ExpiredToken,
+            _ => AuthError::InvalidToken,
+        })
     }
 }
