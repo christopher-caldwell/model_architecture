@@ -1,0 +1,36 @@
+audit_target: "Architecture decision: whether to merge server/crates/application and server/crates/domain into one crate in this Rust clean/onion architecture + CQRS reference implementation."
+audit_type: "architecture_audit"
+reviewer_count: 5
+reviewer_mode: "identical_reviewers"
+quorum_threshold: 0.60
+include_minority_findings: true
+minority_severity_floor: "high"
+output_directory: "./audits"
+individual_report_pattern: "reviewer-{number}.md"
+final_report_filename: "final-consensus-audit.md"
+allowed_materials:
+  - "AGENTS.md instructions provided in the conversation"
+  - ".understand-anything/knowledge-graph.json"
+  - ".agents/skills/onion-cqrs-project-map/SKILL.md"
+  - ".agents/skills/domain-business-encapsulation/SKILL.md"
+  - ".agents/skills/domain-rules-and-errors/SKILL.md"
+  - ".agents/skills/application-cqrs-use-cases/SKILL.md"
+  - ".agents/skills/persistence-write-results/SKILL.md"
+  - ".agents/skills/transport-adapters/SKILL.md"
+  - "server/crates/application/**"
+  - "server/crates/domain/**"
+  - "server/crates/persistence/**"
+  - "server/crates/server_bootstrap/**"
+  - "server/crates/http_server/**"
+  - "server/crates/graphql_server/**"
+  - "Cargo.toml files in the workspace"
+disallowed_materials:
+  - "./audits/reviewer-*.md"
+  - "./audits/final-consensus-audit.md"
+  - "Any other reviewer output or root synthesis notes"
+review_focuses:
+  reviewer_01: "same architecture audit criteria"
+  reviewer_02: "same architecture audit criteria"
+  reviewer_03: "same architecture audit criteria"
+  reviewer_04: "same architecture audit criteria"
+  reviewer_05: "same architecture audit criteria"
