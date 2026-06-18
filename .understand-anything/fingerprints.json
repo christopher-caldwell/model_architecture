@@ -1,7 +1,7 @@
 {
   "version": "1.0.0",
-  "gitCommitHash": "72cbdd2e08dc4f11cd597163e672570d2323e01c",
-  "generatedAt": "2026-06-03T01:58:04.551Z",
+  "gitCommitHash": "9b1865c7866e1166800dda7d322e5da02d418a4a",
+  "generatedAt": "2026-06-18T19:11:41.337Z",
   "files": {
     ".agents/skills/application-cqrs-use-cases/SKILL.md": {
       "filePath": ".agents/skills/application-cqrs-use-cases/SKILL.md",
@@ -63,9 +63,29 @@
       "totalLines": 66,
       "hasStructuralAnalysis": true
     },
-    ".gitignore": {
-      "filePath": ".gitignore",
-      "contentHash": "cf237c7aff44efbe6e502e645c3e06da03a69d7bdeb43392108ef3348143417e",
+    ".understand-anything/.understandignore": {
+      "filePath": ".understand-anything/.understandignore",
+      "contentHash": "289514b09142cf1e2179f39f767052cd077ab7723455b2dc551903554ff5105d",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 24,
+      "hasStructuralAnalysis": false
+    },
+    ".understand-anything/config.json": {
+      "filePath": ".understand-anything/config.json",
+      "contentHash": "4cdd9239c41524f81eafba921237cb4ec8ae5d4d51387df01b9e8f28850979e3",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 4,
+      "hasStructuralAnalysis": true
+    },
+    ".understand-anything/dashboard.pid": {
+      "filePath": ".understand-anything/dashboard.pid",
+      "contentHash": "0786940a03a54e0989f3cc07bba7e7fce0f4157b838aef204dd72e4f7233e8d0",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -73,24 +93,44 @@
       "totalLines": 2,
       "hasStructuralAnalysis": false
     },
-    "AGENTS.md": {
-      "filePath": "AGENTS.md",
-      "contentHash": "34a60ea473c836327d4e45e96d464b89138b6d03348c6da7a0242b898ea6e1e9",
+    ".understand-anything/fingerprints.json": {
+      "filePath": ".understand-anything/fingerprints.json",
+      "contentHash": "04baba234dbe1b4e10fddbca88205605da568b04f9bf832b07d692cbb343bb1f",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 31,
+      "totalLines": 7817,
       "hasStructuralAnalysis": true
     },
-    "README.md": {
-      "filePath": "README.md",
-      "contentHash": "0956508b02afa126caae528a6c598d81b620301c0349a0406bd835d3171fb70a",
+    ".understand-anything/knowledge-graph.json": {
+      "filePath": ".understand-anything/knowledge-graph.json",
+      "contentHash": "f8f3f663efc54aa9bfe5d628382b3a21125504ee00a854c8dc875b7ed076a590",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 65,
+      "totalLines": 14900,
+      "hasStructuralAnalysis": true
+    },
+    ".understand-anything/meta.json": {
+      "filePath": ".understand-anything/meta.json",
+      "contentHash": "796d4a08d163161d7366f82e86de7f7a98564bbd8247e240cb314a0d1d9ea7c6",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    "AGENTS.md": {
+      "filePath": "AGENTS.md",
+      "contentHash": "b9072355d3b60e7ee1e853ff6abc37461de154a3816a2b73c8db927846c547c5",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 37,
       "hasStructuralAnalysis": true
     },
     "database/sql/library/library/ddl.sql": {
@@ -122,16 +162,6 @@
       "exports": [],
       "totalLines": 2,
       "hasStructuralAnalysis": true
-    },
-    "database/sql/library/library/seed/.gitignore": {
-      "filePath": "database/sql/library/library/seed/.gitignore",
-      "contentHash": "7b4bb39fc191fecf3fb1528e377211fdd25dde24deb906955ec0c20e3537cb73",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 4,
-      "hasStructuralAnalysis": false
     },
     "database/sql/library/library/seed/Cargo.toml": {
       "filePath": "database/sql/library/library/seed/Cargo.toml",
@@ -170,59 +200,9 @@
       "totalLines": 40,
       "hasStructuralAnalysis": true
     },
-    "database/sql/library/library/seed/output/book.tsv": {
-      "filePath": "database/sql/library/library/seed/output/book.tsv",
-      "contentHash": "fdf3f4bd0c5db54bd7652e06dc6f0c86e8535f565501c89935f3592f02f0ab40",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 31,
-      "hasStructuralAnalysis": false
-    },
-    "database/sql/library/library/seed/output/book_copy.tsv": {
-      "filePath": "database/sql/library/library/seed/output/book_copy.tsv",
-      "contentHash": "b30988c1e345135240a6306b4033b55be1734c52184139da5e22e85084d240e3",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 151,
-      "hasStructuralAnalysis": false
-    },
-    "database/sql/library/library/seed/output/loan.tsv": {
-      "filePath": "database/sql/library/library/seed/output/loan.tsv",
-      "contentHash": "0c947342a6f63e607a57f849db7af70afb19fcf35f72ce149b8a691ae16bb079",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 23,
-      "hasStructuralAnalysis": false
-    },
-    "database/sql/library/library/seed/output/member.tsv": {
-      "filePath": "database/sql/library/library/seed/output/member.tsv",
-      "contentHash": "d60e3dd4aec8546bce5c4324fd66d785c76f3829fdd7987b1caf19d12fe4799e",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 19,
-      "hasStructuralAnalysis": false
-    },
-    "database/sql/library/library/seed/output/struct_type.tsv": {
-      "filePath": "database/sql/library/library/seed/output/struct_type.tsv",
-      "contentHash": "93b9254206369fe7893a1b6a5c115c764ddaf3c926889f1f99b35ee1219816e4",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 7,
-      "hasStructuralAnalysis": false
-    },
     "database/sql/library/library/seed/src/main.rs": {
       "filePath": "database/sql/library/library/seed/src/main.rs",
-      "contentHash": "f9dd73a8cfa4c48143bf0a653552f3f1aa8d5d9742ba0e841e0dab50f8b3ece0",
+      "contentHash": "58fee3a13815cb23a15c183d097a865fe6942776bcab6af2a900c2dcfec6e330",
       "functions": [
         {
           "name": "to_tsv",
@@ -469,19 +449,19 @@
       "totalLines": 1,
       "hasStructuralAnalysis": false
     },
-    "server/.cargo/config.toml": {
-      "filePath": "server/.cargo/config.toml",
-      "contentHash": "4d3ceb9617bcf268f886a33a01c8d446f6263b19bc9fe71c75b9cd32c3418c88",
+    "README.md": {
+      "filePath": "README.md",
+      "contentHash": "0956508b02afa126caae528a6c598d81b620301c0349a0406bd835d3171fb70a",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 3,
+      "totalLines": 65,
       "hasStructuralAnalysis": true
     },
     "server/.env.example": {
       "filePath": "server/.env.example",
-      "contentHash": "ba5d2f0826ddb14b94f8fec60e8244df8d4498ea4c778980fcc5b4fa5cca99dc",
+      "contentHash": "d1a300f93400be7639953b3d25146515bd0a39b6fb5685434316bf66987d9205",
       "functions": [],
       "classes": [],
       "imports": [],
@@ -489,24 +469,14 @@
       "totalLines": 7,
       "hasStructuralAnalysis": true
     },
-    "server/.gitignore": {
-      "filePath": "server/.gitignore",
-      "contentHash": "59acd4d5ad979224f99a3b9bd0e73e273a803fbca261b4638220ab0df03088dd",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 4,
-      "hasStructuralAnalysis": false
-    },
     "server/Cargo.toml": {
       "filePath": "server/Cargo.toml",
-      "contentHash": "d828903b253ff44bbc013c01e06018e256415691ceb707d1477c3e2e47373171",
+      "contentHash": "ec7bbc9f534e10391aa5247b26f62dc508464cf7f648081cceed4454da00c8dc",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 12,
+      "totalLines": 11,
       "hasStructuralAnalysis": true
     },
     "server/crates/application/Cargo.toml": {
@@ -519,19 +489,9 @@
       "totalLines": 14,
       "hasStructuralAnalysis": true
     },
-    "server/crates/application/src/TODO.md": {
-      "filePath": "server/crates/application/src/TODO.md",
-      "contentHash": "3e76eae431641fc52dacb1fabdf6bcac6ed4db308d4290f42817d63e7f87bcff",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 323,
-      "hasStructuralAnalysis": true
-    },
     "server/crates/application/src/commands/catalog.rs": {
       "filePath": "server/crates/application/src/commands/catalog.rs",
-      "contentHash": "bdf252088ba21826b60d3d927fba7a995e626ce45bd3dbf628ed9315230125af",
+      "contentHash": "286af0d716c4c530c51296a6448df57a141e2ea11dcd5fe35692d544970f110d",
       "functions": [
         {
           "name": "new",
@@ -713,7 +673,7 @@
     },
     "server/crates/application/src/commands/lending.rs": {
       "filePath": "server/crates/application/src/commands/lending.rs",
-      "contentHash": "45e8ff1a97d29e0b5061618bb3b51044eca7093f8bc6d60aee56fc9ad7763bb0",
+      "contentHash": "7622fb04b257700bd6b708ac76eeaa23686f2ff9487114c9b314b5406dddc475",
       "functions": [
         {
           "name": "new",
@@ -761,7 +721,7 @@
           ],
           "returnType": "Result<Loan, super::CommandError>",
           "exported": true,
-          "lineCount": 42
+          "lineCount": 46
         },
         {
           "name": "return_book_copy",
@@ -832,12 +792,12 @@
         "return_book_copy",
         "report_lost_loaned_book_copy"
       ],
-      "totalLines": 161,
+      "totalLines": 165,
       "hasStructuralAnalysis": true
     },
     "server/crates/application/src/commands/membership.rs": {
       "filePath": "server/crates/application/src/commands/membership.rs",
-      "contentHash": "3248c9d1ce3475d486c9d55e402b5d03dd08099cb8e5c3810305b0a0801ee3a8",
+      "contentHash": "c20cd21897f0543539c485cffc4abde89168b0717a8c301fa63788ee340cb71c",
       "functions": [
         {
           "name": "new",
@@ -875,7 +835,7 @@
           ],
           "returnType": "Result<Member, super::CommandError>",
           "exported": true,
-          "lineCount": 23
+          "lineCount": 25
         },
         {
           "name": "reactivate_member",
@@ -884,7 +844,7 @@
           ],
           "returnType": "Result<Member, super::CommandError>",
           "exported": true,
-          "lineCount": 23
+          "lineCount": 25
         }
       ],
       "classes": [
@@ -942,7 +902,7 @@
         "suspend_member",
         "reactivate_member"
       ],
-      "totalLines": 110,
+      "totalLines": 114,
       "hasStructuralAnalysis": true
     },
     "server/crates/application/src/commands/mod.rs": {
@@ -1291,6 +1251,16 @@
       "totalLines": 6,
       "hasStructuralAnalysis": true
     },
+    "server/crates/application/src/TODO.md": {
+      "filePath": "server/crates/application/src/TODO.md",
+      "contentHash": "3e76eae431641fc52dacb1fabdf6bcac6ed4db308d4290f42817d63e7f87bcff",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 323,
+      "hasStructuralAnalysis": true
+    },
     "server/crates/auth_core/Cargo.toml": {
       "filePath": "server/crates/auth_core/Cargo.toml",
       "contentHash": "5b190ce8e34256d91b21d0103f7928918cb3939847e43dbbda47189a79d7322a",
@@ -1544,197 +1514,6 @@
       "imports": [],
       "exports": [],
       "totalLines": 11,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/domain/src/book/entity.rs": {
-      "filePath": "server/crates/domain/src/book/entity.rs",
-      "contentHash": "f0f174c10419618df1669566231a94fed58da69fd61ecfb251020332e75bb076",
-      "functions": [],
-      "classes": [
-        {
-          "name": "BookId",
-          "methods": [],
-          "properties": [],
-          "exported": true,
-          "lineCount": 1
-        },
-        {
-          "name": "Book",
-          "methods": [],
-          "properties": [
-            "id",
-            "isbn",
-            "dt_created",
-            "dt_modified",
-            "title",
-            "author_name"
-          ],
-          "exported": true,
-          "lineCount": 8
-        },
-        {
-          "name": "BookCreationPayload",
-          "methods": [],
-          "properties": [
-            "isbn",
-            "title",
-            "author_name"
-          ],
-          "exported": true,
-          "lineCount": 5
-        },
-        {
-          "name": "BookPrepared",
-          "methods": [],
-          "properties": [
-            "isbn",
-            "title",
-            "author_name"
-          ],
-          "exported": true,
-          "lineCount": 5
-        }
-      ],
-      "imports": [
-        {
-          "source": "chrono",
-          "specifiers": [
-            "DateTime",
-            "Utc"
-          ]
-        }
-      ],
-      "exports": [
-        "BookId",
-        "Book",
-        "BookCreationPayload",
-        "BookPrepared"
-      ],
-      "totalLines": 30,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/domain/src/book/errors.rs": {
-      "filePath": "server/crates/domain/src/book/errors.rs",
-      "contentHash": "904670d8730b853ef8cf25fc6e7f3060eda3c120389d8962ef8e5deef9f8a8d4",
-      "functions": [],
-      "classes": [
-        {
-          "name": "BookError",
-          "methods": [],
-          "properties": [
-            "NotFound"
-          ],
-          "exported": true,
-          "lineCount": 4
-        }
-      ],
-      "imports": [],
-      "exports": [
-        "BookError"
-      ],
-      "totalLines": 6,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/domain/src/book/logic.rs": {
-      "filePath": "server/crates/domain/src/book/logic.rs",
-      "contentHash": "fef49c031d65caa849e13fc23c2074b0b24f48e965a15b01994252d83f2bc911",
-      "functions": [
-        {
-          "name": "prepare",
-          "params": [],
-          "returnType": "BookPrepared",
-          "exported": true,
-          "lineCount": 7
-        }
-      ],
-      "classes": [],
-      "imports": [
-        {
-          "source": "super::entity",
-          "specifiers": [
-            "BookCreationPayload",
-            "BookPrepared"
-          ]
-        }
-      ],
-      "exports": [
-        "prepare"
-      ],
-      "totalLines": 32,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/domain/src/book/mod.rs": {
-      "filePath": "server/crates/domain/src/book/mod.rs",
-      "contentHash": "3ef154eb97d14f4b06e3d61b85b27faf393748727235a2a1372aef741bb6fb09",
-      "functions": [],
-      "classes": [],
-      "imports": [
-        {
-          "source": "entity",
-          "specifiers": [
-            "Book",
-            "BookCreationPayload",
-            "BookId",
-            "BookPrepared"
-          ]
-        },
-        {
-          "source": "errors",
-          "specifiers": [
-            "BookError"
-          ]
-        }
-      ],
-      "exports": [],
-      "totalLines": 8,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/domain/src/book/port.rs": {
-      "filePath": "server/crates/domain/src/book/port.rs",
-      "contentHash": "1dc62cf73a07d820ec6530423e6c9b9a9820b84e13cd078e7f24df7c6b9a455d",
-      "functions": [],
-      "classes": [
-        {
-          "name": "BookWriteRepoPort",
-          "methods": [
-            "create",
-            "get_by_isbn"
-          ],
-          "properties": [],
-          "exported": true,
-          "lineCount": 4
-        },
-        {
-          "name": "BookReadRepoPort",
-          "methods": [
-            "get_catalog",
-            "get_by_isbn"
-          ],
-          "properties": [],
-          "exported": true,
-          "lineCount": 4
-        }
-      ],
-      "imports": [
-        {
-          "source": "async_trait",
-          "specifiers": [
-            "async_trait"
-          ]
-        },
-        {
-          "source": "super",
-          "specifiers": [
-            "Book",
-            "BookPrepared"
-          ]
-        }
-      ],
-      "exports": [
-        "BookWriteRepoPort",
-        "BookReadRepoPort"
-      ],
-      "totalLines": 16,
       "hasStructuralAnalysis": true
     },
     "server/crates/domain/src/book_copy/entity.rs": {
@@ -2021,7 +1800,7 @@
     },
     "server/crates/domain/src/book_copy/port.rs": {
       "filePath": "server/crates/domain/src/book_copy/port.rs",
-      "contentHash": "d8157efaba0255d18fd031c28315210b6486f0ad21dddf909881782012920f84",
+      "contentHash": "92b591375adf851b1a3e16268f1b8d145601eee43e6cbe5cfde05273a9e55aff",
       "functions": [],
       "classes": [
         {
@@ -2033,7 +1812,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 5
+          "lineCount": 9
         },
         {
           "name": "BookCopyReadRepoPort",
@@ -2067,7 +1846,198 @@
         "BookCopyWriteRepoPort",
         "BookCopyReadRepoPort"
       ],
-      "totalLines": 17,
+      "totalLines": 21,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/domain/src/book/entity.rs": {
+      "filePath": "server/crates/domain/src/book/entity.rs",
+      "contentHash": "f0f174c10419618df1669566231a94fed58da69fd61ecfb251020332e75bb076",
+      "functions": [],
+      "classes": [
+        {
+          "name": "BookId",
+          "methods": [],
+          "properties": [],
+          "exported": true,
+          "lineCount": 1
+        },
+        {
+          "name": "Book",
+          "methods": [],
+          "properties": [
+            "id",
+            "isbn",
+            "dt_created",
+            "dt_modified",
+            "title",
+            "author_name"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "BookCreationPayload",
+          "methods": [],
+          "properties": [
+            "isbn",
+            "title",
+            "author_name"
+          ],
+          "exported": true,
+          "lineCount": 5
+        },
+        {
+          "name": "BookPrepared",
+          "methods": [],
+          "properties": [
+            "isbn",
+            "title",
+            "author_name"
+          ],
+          "exported": true,
+          "lineCount": 5
+        }
+      ],
+      "imports": [
+        {
+          "source": "chrono",
+          "specifiers": [
+            "DateTime",
+            "Utc"
+          ]
+        }
+      ],
+      "exports": [
+        "BookId",
+        "Book",
+        "BookCreationPayload",
+        "BookPrepared"
+      ],
+      "totalLines": 30,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/domain/src/book/errors.rs": {
+      "filePath": "server/crates/domain/src/book/errors.rs",
+      "contentHash": "904670d8730b853ef8cf25fc6e7f3060eda3c120389d8962ef8e5deef9f8a8d4",
+      "functions": [],
+      "classes": [
+        {
+          "name": "BookError",
+          "methods": [],
+          "properties": [
+            "NotFound"
+          ],
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "imports": [],
+      "exports": [
+        "BookError"
+      ],
+      "totalLines": 6,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/domain/src/book/logic.rs": {
+      "filePath": "server/crates/domain/src/book/logic.rs",
+      "contentHash": "fef49c031d65caa849e13fc23c2074b0b24f48e965a15b01994252d83f2bc911",
+      "functions": [
+        {
+          "name": "prepare",
+          "params": [],
+          "returnType": "BookPrepared",
+          "exported": true,
+          "lineCount": 7
+        }
+      ],
+      "classes": [],
+      "imports": [
+        {
+          "source": "super::entity",
+          "specifiers": [
+            "BookCreationPayload",
+            "BookPrepared"
+          ]
+        }
+      ],
+      "exports": [
+        "prepare"
+      ],
+      "totalLines": 32,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/domain/src/book/mod.rs": {
+      "filePath": "server/crates/domain/src/book/mod.rs",
+      "contentHash": "3ef154eb97d14f4b06e3d61b85b27faf393748727235a2a1372aef741bb6fb09",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "entity",
+          "specifiers": [
+            "Book",
+            "BookCreationPayload",
+            "BookId",
+            "BookPrepared"
+          ]
+        },
+        {
+          "source": "errors",
+          "specifiers": [
+            "BookError"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 8,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/domain/src/book/port.rs": {
+      "filePath": "server/crates/domain/src/book/port.rs",
+      "contentHash": "8f8de885f515e5d28cafc76826a420e70ecd81c87034b3fea01bf89461f0504e",
+      "functions": [],
+      "classes": [
+        {
+          "name": "BookWriteRepoPort",
+          "methods": [
+            "create",
+            "get_by_isbn"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "BookReadRepoPort",
+          "methods": [
+            "get_catalog",
+            "get_by_isbn"
+          ],
+          "properties": [],
+          "exported": true,
+          "lineCount": 4
+        }
+      ],
+      "imports": [
+        {
+          "source": "async_trait",
+          "specifiers": [
+            "async_trait"
+          ]
+        },
+        {
+          "source": "super",
+          "specifiers": [
+            "Book",
+            "BookPrepared"
+          ]
+        }
+      ],
+      "exports": [
+        "BookWriteRepoPort",
+        "BookReadRepoPort"
+      ],
+      "totalLines": 16,
       "hasStructuralAnalysis": true
     },
     "server/crates/domain/src/lib.rs": {
@@ -2274,7 +2244,7 @@
     },
     "server/crates/domain/src/loan/port.rs": {
       "filePath": "server/crates/domain/src/loan/port.rs",
-      "contentHash": "ecfb8fd7a5a5949365b35156e45f90d79ceab244ed8fe15b741cf5ce02798493",
+      "contentHash": "a9eeb70af311431021d410fbf3345f01c0abcb585588e369aca35b7fb382faa5",
       "functions": [],
       "classes": [
         {
@@ -2506,7 +2476,7 @@
     },
     "server/crates/domain/src/member/logic.rs": {
       "filePath": "server/crates/domain/src/member/logic.rs",
-      "contentHash": "84497f0d43fa6a68d4f9529333bf639efaaaeeb480c34ed1f6e9d871b489fec9",
+      "contentHash": "e3477b95b43c11d51b8f5b710d9320571fcf8bd933f9764dac6196ee2bf9d495",
       "functions": [
         {
           "name": "suspend",
@@ -2633,7 +2603,7 @@
     },
     "server/crates/domain/src/member/port.rs": {
       "filePath": "server/crates/domain/src/member/port.rs",
-      "contentHash": "995c218b59a70e3949e7072fbcbde8ca11624d716b05a4ce8d90d6c40879fdbe",
+      "contentHash": "4bf9520b1993c8ae446786da7ba29a5b318f2811cc0cfb1e97f0a05992dcff73",
       "functions": [],
       "classes": [
         {
@@ -2645,7 +2615,7 @@
           ],
           "properties": [],
           "exported": true,
-          "lineCount": 5
+          "lineCount": 8
         },
         {
           "name": "MemberReadRepoPort",
@@ -2680,26 +2650,87 @@
         "MemberWriteRepoPort",
         "MemberReadRepoPort"
       ],
-      "totalLines": 17,
+      "totalLines": 20,
       "hasStructuralAnalysis": true
     },
     "server/crates/domain/src/uow.rs": {
       "filePath": "server/crates/domain/src/uow.rs",
-      "contentHash": "62d92da6dea8b31739091f6b465892f0118f503fdcb44afdbe2310c03b543b31",
-      "functions": [],
+      "contentHash": "71aab465897a82ab70f040d8e6cfc5a43743dfdb5db499c63fdd071fac97e76e",
+      "functions": [
+        {
+          "name": "new",
+          "params": [
+            "inner"
+          ],
+          "returnType": "Self",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "book",
+          "params": [],
+          "returnType": "&mut dyn BookWriteRepoPort",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "book_copy",
+          "params": [],
+          "returnType": "&mut dyn BookCopyWriteRepoPort",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "member",
+          "params": [],
+          "returnType": "&mut dyn MemberWriteRepoPort",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "loan",
+          "params": [],
+          "returnType": "&mut dyn LoanWriteRepoPort",
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "commit",
+          "params": [],
+          "returnType": "anyhow::Result<()>",
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
       "classes": [
         {
           "name": "UnitOfWorkPort",
           "methods": [
-            "book_write_repo",
-            "book_copy_write_repo",
-            "membership_write_repo",
-            "loan_write_repo",
+            "book",
+            "book_copy",
+            "member",
+            "loan",
             "commit"
           ],
           "properties": [],
           "exported": true,
           "lineCount": 7
+        },
+        {
+          "name": "WriteUnitOfWork",
+          "methods": [
+            "new",
+            "book",
+            "book_copy",
+            "member",
+            "loan",
+            "commit"
+          ],
+          "properties": [
+            "inner"
+          ],
+          "exported": true,
+          "lineCount": 3
         },
         {
           "name": "WriteUnitOfWorkFactory",
@@ -2730,34 +2761,270 @@
       ],
       "exports": [
         "UnitOfWorkPort",
+        "WriteUnitOfWork",
+        "new",
+        "book",
+        "book_copy",
+        "member",
+        "loan",
+        "commit",
         "WriteUnitOfWorkFactory"
       ],
-      "totalLines": 21,
+      "totalLines": 52,
       "hasStructuralAnalysis": true
     },
     "server/crates/graphql_server/Cargo.toml": {
       "filePath": "server/crates/graphql_server/Cargo.toml",
-      "contentHash": "db77b27c2a91ba9d1b8b8e14168d3fd415976f959d7c4dc961c16459aa99c0c7",
+      "contentHash": "f0fe76785b33054e842f4e8f190abeb09b43c47c74d62128978ded991ded165a",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 22,
+      "totalLines": 25,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/graphql_server/src/config.rs": {
+      "filePath": "server/crates/graphql_server/src/config.rs",
+      "contentHash": "e366d07a25a6645cf93e1260dbce3fc338964535eef65280666761bdf7c48c32",
+      "functions": [
+        {
+          "name": "required_env",
+          "params": [
+            "name"
+          ],
+          "returnType": "Result<String>",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "load_server_config",
+          "params": [],
+          "returnType": "Result<ServerConfig>",
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [
+        {
+          "name": "ServerConfig",
+          "methods": [],
+          "properties": [
+            "database_ro_url",
+            "database_rw_url",
+            "jwt_secret",
+            "server_port"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "anyhow",
+          "specifiers": [
+            "bail",
+            "Context",
+            "Result"
+          ]
+        },
+        {
+          "source": "std",
+          "specifiers": [
+            "env"
+          ]
+        }
+      ],
+      "exports": [
+        "ServerConfig",
+        "load_server_config"
+      ],
+      "totalLines": 38,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/graphql_server/src/deps.rs": {
+      "filePath": "server/crates/graphql_server/src/deps.rs",
+      "contentHash": "c7bbcb11c5b2410154924b2d96836f1379f3b7e5489cef7a21c28db9bab0a605",
+      "functions": [
+        {
+          "name": "gen",
+          "params": [],
+          "returnType": "String",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "connect_pool",
+          "params": [
+            "database_url",
+            "label"
+          ],
+          "returnType": "Result<PgPool>",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "create_server_deps",
+          "params": [
+            "config"
+          ],
+          "returnType": "Result<ServerDeps>",
+          "exported": true,
+          "lineCount": 44
+        }
+      ],
+      "classes": [
+        {
+          "name": "ServerDeps",
+          "methods": [],
+          "properties": [
+            "auth",
+            "catalog",
+            "lending",
+            "membership"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "AuthDeps",
+          "methods": [],
+          "properties": [
+            "verifier"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "CatalogDeps",
+          "methods": [],
+          "properties": [
+            "commands",
+            "queries"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "LendingDeps",
+          "methods": [],
+          "properties": [
+            "commands",
+            "queries"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "MembershipDeps",
+          "methods": [],
+          "properties": [
+            "commands",
+            "queries"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "MemberIdentGenerator",
+          "methods": [
+            "gen"
+          ],
+          "properties": [],
+          "exported": false,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "std::sync",
+          "specifiers": [
+            "Arc"
+          ]
+        },
+        {
+          "source": "anyhow",
+          "specifiers": [
+            "Context",
+            "Result"
+          ]
+        },
+        {
+          "source": "application::ports::gen_ident",
+          "specifiers": [
+            "IdentGeneratorPort"
+          ]
+        },
+        {
+          "source": "auth_core",
+          "specifiers": [
+            "AuthVerifierPort",
+            "JwtAuthAdapter"
+          ]
+        },
+        {
+          "source": "persistence",
+          "specifiers": [
+            "book::BookReadRepoSql",
+            "book_copy::BookCopyReadRepoSql",
+            "loan::LoanReadRepoSql",
+            "member::MemberReadRepoSql",
+            "uow::SqlWriteUnitOfWorkFactory"
+          ]
+        },
+        {
+          "source": "sqlx",
+          "specifiers": [
+            "postgres::PgPoolOptions",
+            "PgPool"
+          ]
+        },
+        {
+          "source": "crate::config",
+          "specifiers": [
+            "ServerConfig"
+          ]
+        },
+        {
+          "source": "application::commands",
+          "specifiers": [
+            "CatalogCommands",
+            "LendingCommands",
+            "MembershipCommands"
+          ]
+        },
+        {
+          "source": "application::queries",
+          "specifiers": [
+            "CatalogQueries",
+            "LendingQueries",
+            "MembershipQueries"
+          ]
+        }
+      ],
+      "exports": [
+        "ServerDeps",
+        "AuthDeps",
+        "CatalogDeps",
+        "LendingDeps",
+        "MembershipDeps",
+        "create_server_deps"
+      ],
+      "totalLines": 112,
       "hasStructuralAnalysis": true
     },
     "server/crates/graphql_server/src/lib.rs": {
       "filePath": "server/crates/graphql_server/src/lib.rs",
-      "contentHash": "c5ae606bf43b4de602f3df6b44601408505587a4257f67d659fe6095b23c8c8d",
+      "contentHash": "b16a7795a068d8a7892960e39aebdf7725306fcaeb3ddd9b69433d6b4d3e31d7",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 2,
+      "totalLines": 4,
       "hasStructuralAnalysis": true
     },
     "server/crates/graphql_server/src/main.rs": {
       "filePath": "server/crates/graphql_server/src/main.rs",
-      "contentHash": "51a8243d4950150d6dbd271cdb2528913ed6b92146f6261bbe5a138b64f3a827",
+      "contentHash": "e519aa1b152455fd291b696f3fbe967eb846bec20ad3e153347b8a55edb3c25e",
       "functions": [
         {
           "name": "main",
@@ -2814,7 +3081,7 @@
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "graphql_server",
           "specifiers": [
             "config",
             "deps"
@@ -2827,7 +3094,7 @@
     },
     "server/crates/graphql_server/src/router/auth.rs": {
       "filePath": "server/crates/graphql_server/src/router/auth.rs",
-      "contentHash": "3db0ceec74349daf45f89bad22ac349ed065211a8a8158429d08e1c4a838bdc7",
+      "contentHash": "12bec146cf12d784b8abd2329ead6ed7ef7b20bcd3115a9d8cc0bd4d4690c01c",
       "functions": [
         {
           "name": "map_auth_error",
@@ -2892,15 +3159,15 @@
           ]
         },
         {
-          "source": "auth_core",
+          "source": "crate::deps",
           "specifiers": [
-            "Claims"
+            "ServerDeps"
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "auth_core",
           "specifiers": [
-            "ServerDeps"
+            "Claims"
           ]
         }
       ],
@@ -3096,7 +3363,7 @@
     },
     "server/crates/graphql_server/src/router/graphql/catalog/mutations.rs": {
       "filePath": "server/crates/graphql_server/src/router/graphql/catalog/mutations.rs",
-      "contentHash": "4f912876f6a997e6e2b86bae6a7b960ebcfec5cac292e60c00b93b5968794d9a",
+      "contentHash": "53c4c9056f670a2428a4721d275f14d258175bc9585014cf402af3c4dafb5832",
       "functions": [
         {
           "name": "create_book",
@@ -3201,7 +3468,7 @@
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "application::commands",
           "specifiers": [
             "AddBookCopyInput"
           ]
@@ -3374,7 +3641,7 @@
     },
     "server/crates/graphql_server/src/router/graphql/lending/mutations.rs": {
       "filePath": "server/crates/graphql_server/src/router/graphql/lending/mutations.rs",
-      "contentHash": "8785d9254166475b3145db806c26138f99460f41a6a796ee8c9d541cb554038a",
+      "contentHash": "3495dcabb64002929b57755cf8b47d505c9f1f0962e160b8e6e126139f370116",
       "functions": [
         {
           "name": "check_out_book_copy",
@@ -3450,7 +3717,7 @@
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "application::commands",
           "specifiers": [
             "CheckOutBookCopyInput"
           ]
@@ -3645,7 +3912,7 @@
     },
     "server/crates/graphql_server/src/router/graphql/membership/mutations.rs": {
       "filePath": "server/crates/graphql_server/src/router/graphql/membership/mutations.rs",
-      "contentHash": "caae82d7dc51807ccbddce3a7eab37351fc7dca8b33ffd3b3ebfcf9b0b460785",
+      "contentHash": "ec75e570df2baf0ee1f1280cfc37f6e1418425f7982591242613f3c1d1b1a75d",
       "functions": [
         {
           "name": "register_member",
@@ -3715,7 +3982,7 @@
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "application::commands",
           "specifiers": [
             "MemberIdentInput"
           ]
@@ -3790,7 +4057,7 @@
     },
     "server/crates/graphql_server/src/router/graphql/mod.rs": {
       "filePath": "server/crates/graphql_server/src/router/graphql/mod.rs",
-      "contentHash": "eca65f6e4680b3e8d94e959d72df64a60730400c0e5622c425755f1a3b0f8f25",
+      "contentHash": "a140e7ee59b140df8ed1976696c7bbe84fdbb57f38e8c8b68b3faf6ffc665058",
       "functions": [
         {
           "name": "build_schema",
@@ -3949,9 +4216,14 @@
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "application::commands",
           "specifiers": [
-            "CommandError",
+            "CommandError"
+          ]
+        },
+        {
+          "source": "crate::deps",
+          "specifiers": [
             "ServerDeps"
           ]
         }
@@ -3966,7 +4238,7 @@
         "gql_service_error",
         "gql_command_error"
       ],
-      "totalLines": 132,
+      "totalLines": 134,
       "hasStructuralAnalysis": true
     },
     "server/crates/graphql_server/src/router/mod.rs": {
@@ -3988,7 +4260,7 @@
     },
     "server/crates/graphql_server/src/router/router.rs": {
       "filePath": "server/crates/graphql_server/src/router/router.rs",
-      "contentHash": "dd744690e1ef8d963ba0af4a498e3309c76567a2a89f684f9ee0c212a65a4dd6",
+      "contentHash": "b6cdbbfc9867cbd1ae51a97a23126b1814e4f94754efa579df757f7cdaf79ec6",
       "functions": [
         {
           "name": "new_router",
@@ -4002,6 +4274,12 @@
       ],
       "classes": [],
       "imports": [
+        {
+          "source": "crate::deps",
+          "specifiers": [
+            "ServerDeps"
+          ]
+        },
         {
           "source": "crate::router::auth",
           "specifiers": [
@@ -4041,12 +4319,6 @@
             "routing::get",
             "Router"
           ]
-        },
-        {
-          "source": "server_bootstrap",
-          "specifiers": [
-            "ServerDeps"
-          ]
         }
       ],
       "exports": [
@@ -4057,27 +4329,256 @@
     },
     "server/crates/http_server/Cargo.toml": {
       "filePath": "server/crates/http_server/Cargo.toml",
-      "contentHash": "cfbe2a1ec74faa2301c3b8756e286029f791eecad172bf05308d3de10d6d77c3",
+      "contentHash": "3b7ecd25a9240acd83cb4beb197005a00f35e4403946425059f654010a36d57c",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 25,
+      "totalLines": 27,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/http_server/src/config.rs": {
+      "filePath": "server/crates/http_server/src/config.rs",
+      "contentHash": "e366d07a25a6645cf93e1260dbce3fc338964535eef65280666761bdf7c48c32",
+      "functions": [
+        {
+          "name": "required_env",
+          "params": [
+            "name"
+          ],
+          "returnType": "Result<String>",
+          "exported": false,
+          "lineCount": 9
+        },
+        {
+          "name": "load_server_config",
+          "params": [],
+          "returnType": "Result<ServerConfig>",
+          "exported": true,
+          "lineCount": 13
+        }
+      ],
+      "classes": [
+        {
+          "name": "ServerConfig",
+          "methods": [],
+          "properties": [
+            "database_ro_url",
+            "database_rw_url",
+            "jwt_secret",
+            "server_port"
+          ],
+          "exported": true,
+          "lineCount": 6
+        }
+      ],
+      "imports": [
+        {
+          "source": "anyhow",
+          "specifiers": [
+            "bail",
+            "Context",
+            "Result"
+          ]
+        },
+        {
+          "source": "std",
+          "specifiers": [
+            "env"
+          ]
+        }
+      ],
+      "exports": [
+        "ServerConfig",
+        "load_server_config"
+      ],
+      "totalLines": 38,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/http_server/src/deps.rs": {
+      "filePath": "server/crates/http_server/src/deps.rs",
+      "contentHash": "c7bbcb11c5b2410154924b2d96836f1379f3b7e5489cef7a21c28db9bab0a605",
+      "functions": [
+        {
+          "name": "gen",
+          "params": [],
+          "returnType": "String",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "connect_pool",
+          "params": [
+            "database_url",
+            "label"
+          ],
+          "returnType": "Result<PgPool>",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "create_server_deps",
+          "params": [
+            "config"
+          ],
+          "returnType": "Result<ServerDeps>",
+          "exported": true,
+          "lineCount": 44
+        }
+      ],
+      "classes": [
+        {
+          "name": "ServerDeps",
+          "methods": [],
+          "properties": [
+            "auth",
+            "catalog",
+            "lending",
+            "membership"
+          ],
+          "exported": true,
+          "lineCount": 6
+        },
+        {
+          "name": "AuthDeps",
+          "methods": [],
+          "properties": [
+            "verifier"
+          ],
+          "exported": true,
+          "lineCount": 3
+        },
+        {
+          "name": "CatalogDeps",
+          "methods": [],
+          "properties": [
+            "commands",
+            "queries"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "LendingDeps",
+          "methods": [],
+          "properties": [
+            "commands",
+            "queries"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "MembershipDeps",
+          "methods": [],
+          "properties": [
+            "commands",
+            "queries"
+          ],
+          "exported": true,
+          "lineCount": 4
+        },
+        {
+          "name": "MemberIdentGenerator",
+          "methods": [
+            "gen"
+          ],
+          "properties": [],
+          "exported": false,
+          "lineCount": 1
+        }
+      ],
+      "imports": [
+        {
+          "source": "std::sync",
+          "specifiers": [
+            "Arc"
+          ]
+        },
+        {
+          "source": "anyhow",
+          "specifiers": [
+            "Context",
+            "Result"
+          ]
+        },
+        {
+          "source": "application::ports::gen_ident",
+          "specifiers": [
+            "IdentGeneratorPort"
+          ]
+        },
+        {
+          "source": "auth_core",
+          "specifiers": [
+            "AuthVerifierPort",
+            "JwtAuthAdapter"
+          ]
+        },
+        {
+          "source": "persistence",
+          "specifiers": [
+            "book::BookReadRepoSql",
+            "book_copy::BookCopyReadRepoSql",
+            "loan::LoanReadRepoSql",
+            "member::MemberReadRepoSql",
+            "uow::SqlWriteUnitOfWorkFactory"
+          ]
+        },
+        {
+          "source": "sqlx",
+          "specifiers": [
+            "postgres::PgPoolOptions",
+            "PgPool"
+          ]
+        },
+        {
+          "source": "crate::config",
+          "specifiers": [
+            "ServerConfig"
+          ]
+        },
+        {
+          "source": "application::commands",
+          "specifiers": [
+            "CatalogCommands",
+            "LendingCommands",
+            "MembershipCommands"
+          ]
+        },
+        {
+          "source": "application::queries",
+          "specifiers": [
+            "CatalogQueries",
+            "LendingQueries",
+            "MembershipQueries"
+          ]
+        }
+      ],
+      "exports": [
+        "ServerDeps",
+        "AuthDeps",
+        "CatalogDeps",
+        "LendingDeps",
+        "MembershipDeps",
+        "create_server_deps"
+      ],
+      "totalLines": 112,
       "hasStructuralAnalysis": true
     },
     "server/crates/http_server/src/lib.rs": {
       "filePath": "server/crates/http_server/src/lib.rs",
-      "contentHash": "c5ae606bf43b4de602f3df6b44601408505587a4257f67d659fe6095b23c8c8d",
+      "contentHash": "b16a7795a068d8a7892960e39aebdf7725306fcaeb3ddd9b69433d6b4d3e31d7",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 2,
+      "totalLines": 4,
       "hasStructuralAnalysis": true
     },
     "server/crates/http_server/src/main.rs": {
       "filePath": "server/crates/http_server/src/main.rs",
-      "contentHash": "6bfb78a7b2f61cb36497ec6bdecf91b6c965c08cb10c3f39993e7a8eaff31fa4",
+      "contentHash": "5f8ee12b6e3b498a2879716e8bb64a173151afeb0d123fbbc84b13d542cbe23d",
       "functions": [
         {
           "name": "main",
@@ -4128,26 +4629,21 @@
           ]
         },
         {
-          "source": "http_server::router",
-          "specifiers": [
-            "new_router"
-          ]
-        },
-        {
-          "source": "server_bootstrap",
+          "source": "http_server",
           "specifiers": [
             "config",
-            "deps"
+            "deps",
+            "router::new_router"
           ]
         }
       ],
       "exports": [],
-      "totalLines": 35,
+      "totalLines": 34,
       "hasStructuralAnalysis": true
     },
     "server/crates/http_server/src/router/auth.rs": {
       "filePath": "server/crates/http_server/src/router/auth.rs",
-      "contentHash": "3db0ceec74349daf45f89bad22ac349ed065211a8a8158429d08e1c4a838bdc7",
+      "contentHash": "12bec146cf12d784b8abd2329ead6ed7ef7b20bcd3115a9d8cc0bd4d4690c01c",
       "functions": [
         {
           "name": "map_auth_error",
@@ -4212,15 +4708,15 @@
           ]
         },
         {
-          "source": "auth_core",
+          "source": "crate::deps",
           "specifiers": [
-            "Claims"
+            "ServerDeps"
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "auth_core",
           "specifiers": [
-            "ServerDeps"
+            "Claims"
           ]
         }
       ],
@@ -4233,7 +4729,7 @@
     },
     "server/crates/http_server/src/router/book_copies/delete_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/book_copies/delete_handlers.rs",
-      "contentHash": "301dbd7870e5237c6d18fa710e6d662547e3b38aaa444e8c18dc3db0a7da023c",
+      "contentHash": "ed6cbbc84c7468f44e2a69f739e2464228e2d77bc65154bf8de5a870cec696ad",
       "functions": [
         {
           "name": "mark_book_copy_found",
@@ -4261,15 +4757,15 @@
       "classes": [],
       "imports": [
         {
-          "source": "axum",
+          "source": "crate::deps",
           "specifiers": [
-            "Json"
+            "ServerDeps"
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "axum",
           "specifiers": [
-            "ServerDeps"
+            "Json"
           ]
         },
         {
@@ -4288,7 +4784,7 @@
     },
     "server/crates/http_server/src/router/book_copies/get_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/book_copies/get_handlers.rs",
-      "contentHash": "def86d0ff80be7058abdf95dd6f292e8ceed5625993eb0f47f20ef8f3d3d23f9",
+      "contentHash": "6bb1db80b52210dcae3807aacea274b1ceb2470531cb2d5c4fbe36a7dd07231e",
       "functions": [
         {
           "name": "get_book_copy_details",
@@ -4305,15 +4801,15 @@
       "classes": [],
       "imports": [
         {
-          "source": "axum",
+          "source": "crate::deps",
           "specifiers": [
-            "Json"
+            "ServerDeps"
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "axum",
           "specifiers": [
-            "ServerDeps"
+            "Json"
           ]
         },
         {
@@ -4399,7 +4895,7 @@
     },
     "server/crates/http_server/src/router/book_copies/post_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/book_copies/post_handlers.rs",
-      "contentHash": "d40be7589efa213b6551492aa20088109b4350de5c67dae61c1d0fd110091126",
+      "contentHash": "61ce1aa8f3b5f37a0be44b318651b317eb845ec37178564ee83e5a2ec08fe99e",
       "functions": [
         {
           "name": "return_book_copy",
@@ -4427,15 +4923,15 @@
       "classes": [],
       "imports": [
         {
-          "source": "axum",
+          "source": "crate::deps",
           "specifiers": [
-            "Json"
+            "ServerDeps"
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "axum",
           "specifiers": [
-            "ServerDeps"
+            "Json"
           ]
         },
         {
@@ -4455,7 +4951,7 @@
     },
     "server/crates/http_server/src/router/book_copies/put_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/book_copies/put_handlers.rs",
-      "contentHash": "997c3be81a41f8719fed6f2b5448168fc887ae45714c5dbdfb3b80d0b10fd77a",
+      "contentHash": "2f0d82af7fca744d0793e94a42c1d55fd0270d842e010713752bc861aed440d3",
       "functions": [
         {
           "name": "mark_book_copy_lost",
@@ -4483,15 +4979,15 @@
       "classes": [],
       "imports": [
         {
-          "source": "axum",
+          "source": "crate::deps",
           "specifiers": [
-            "Json"
+            "ServerDeps"
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "axum",
           "specifiers": [
-            "ServerDeps"
+            "Json"
           ]
         },
         {
@@ -4584,7 +5080,7 @@
     },
     "server/crates/http_server/src/router/books/get_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/books/get_handlers.rs",
-      "contentHash": "e4219063ba313f296fa3b08686bb0361ee1b49deef82c66be25b82d246078e95",
+      "contentHash": "3dce81f16cf08d630cf035b3f20c73fd497d1cfcf22e4367ad77525d6af34f16",
       "functions": [
         {
           "name": "get_book_catalog",
@@ -4600,16 +5096,16 @@
       "classes": [],
       "imports": [
         {
+          "source": "crate::deps",
+          "specifiers": [
+            "ServerDeps"
+          ]
+        },
+        {
           "source": "axum",
           "specifiers": [
             "extract::State",
             "Json"
-          ]
-        },
-        {
-          "source": "server_bootstrap",
-          "specifiers": [
-            "ServerDeps"
           ]
         },
         {
@@ -4676,7 +5172,7 @@
     },
     "server/crates/http_server/src/router/books/post_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/books/post_handlers.rs",
-      "contentHash": "65e3d0372a3b66421f23a95fe2269e3af163d05612177c7e8cb746d515247d3e",
+      "contentHash": "bfeeae75582e3811f7078693ac4ed7770d68a802e80cc2616c61977fc41e3b3b",
       "functions": [
         {
           "name": "add_book",
@@ -4705,6 +5201,12 @@
       "classes": [],
       "imports": [
         {
+          "source": "application::commands",
+          "specifiers": [
+            "AddBookCopyInput"
+          ]
+        },
+        {
           "source": "axum",
           "specifiers": [
             "http::StatusCode",
@@ -4712,9 +5214,8 @@
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "crate::deps",
           "specifiers": [
-            "AddBookCopyInput",
             "ServerDeps"
           ]
         },
@@ -4729,7 +5230,7 @@
         "add_book",
         "add_book_copy"
       ],
-      "totalLines": 80,
+      "totalLines": 81,
       "hasStructuralAnalysis": true
     },
     "server/crates/http_server/src/router/books/schemas.rs": {
@@ -4855,7 +5356,7 @@
     },
     "server/crates/http_server/src/router/errors.rs": {
       "filePath": "server/crates/http_server/src/router/errors.rs",
-      "contentHash": "df170ab55ce9a646fd4ba04210a0c6aaec719d0785d5c7c199b10a47f7f6a0dd",
+      "contentHash": "b656f9a669e21f78583bff8779fb6fc1effb7a87ff28223da9135e8b68c92863",
       "functions": [
         {
           "name": "not_found",
@@ -4956,6 +5457,12 @@
           ]
         },
         {
+          "source": "application::commands",
+          "specifiers": [
+            "CommandError"
+          ]
+        },
+        {
           "source": "axum",
           "specifiers": [
             "http::StatusCode",
@@ -4978,12 +5485,6 @@
           ]
         },
         {
-          "source": "server_bootstrap",
-          "specifiers": [
-            "CommandError"
-          ]
-        },
-        {
           "source": "utoipa",
           "specifiers": [
             "ToSchema"
@@ -5001,7 +5502,7 @@
     },
     "server/crates/http_server/src/router/health/get_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/health/get_handlers.rs",
-      "contentHash": "50901ec021890849637de9db40341ec2b84bb72c5932ff6eae54afd42a3f17d7",
+      "contentHash": "cc227ad1610356f801e988305739031a28f91f3a8fbe3a29f02521e503fc3bc2",
       "functions": [
         {
           "name": "get_health_check",
@@ -5016,17 +5517,17 @@
       "classes": [],
       "imports": [
         {
+          "source": "crate::deps",
+          "specifiers": [
+            "ServerDeps"
+          ]
+        },
+        {
           "source": "axum",
           "specifiers": [
             "extract::State",
             "http::StatusCode",
             "Json"
-          ]
-        },
-        {
-          "source": "server_bootstrap",
-          "specifiers": [
-            "ServerDeps"
           ]
         },
         {
@@ -5120,7 +5621,7 @@
     },
     "server/crates/http_server/src/router/loan/get_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/loan/get_handlers.rs",
-      "contentHash": "91dc7203056ec5af763055035983ffa7480ffb223496d7640fc1a8cd33803ddf",
+      "contentHash": "6e18382099d6d0665a640c0e0a46af2c16cf3d0fdb6e3014dbdfe70deeac8ea0",
       "functions": [
         {
           "name": "get_overdue_loans",
@@ -5136,16 +5637,16 @@
       "classes": [],
       "imports": [
         {
+          "source": "crate::deps",
+          "specifiers": [
+            "ServerDeps"
+          ]
+        },
+        {
           "source": "axum",
           "specifiers": [
             "extract::State",
             "Json"
-          ]
-        },
-        {
-          "source": "server_bootstrap",
-          "specifiers": [
-            "ServerDeps"
           ]
         },
         {
@@ -5212,7 +5713,7 @@
     },
     "server/crates/http_server/src/router/loan/post_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/loan/post_handlers.rs",
-      "contentHash": "1ebd9970114a1e363f3ffb4ac331507cb7dc572404d1064cba47ca257d65d708",
+      "contentHash": "327332fc56d584adc69e7f7f350ed25cb583be9bcc422d7f24a7ed230b5741f6",
       "functions": [
         {
           "name": "check_out_book_copy",
@@ -5229,18 +5730,23 @@
       "classes": [],
       "imports": [
         {
+          "source": "crate::deps",
+          "specifiers": [
+            "ServerDeps"
+          ]
+        },
+        {
+          "source": "application::commands",
+          "specifiers": [
+            "CheckOutBookCopyInput"
+          ]
+        },
+        {
           "source": "axum",
           "specifiers": [
             "extract::State",
             "http::StatusCode",
             "Json"
-          ]
-        },
-        {
-          "source": "server_bootstrap",
-          "specifiers": [
-            "CheckOutBookCopyInput",
-            "ServerDeps"
           ]
         },
         {
@@ -5253,7 +5759,7 @@
       "exports": [
         "check_out_book_copy"
       ],
-      "totalLines": 42,
+      "totalLines": 43,
       "hasStructuralAnalysis": true
     },
     "server/crates/http_server/src/router/loan/schemas.rs": {
@@ -5334,7 +5840,7 @@
     },
     "server/crates/http_server/src/router/members/delete_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/members/delete_handlers.rs",
-      "contentHash": "557c1ff6c561737a925eb9a3c82026be9eec6ed5e0199aaa20f74b1d0579cf6c",
+      "contentHash": "db543cf44664ae402f139e9f011f5e50e275454fea4ce289ed8ba1a69a870c19",
       "functions": [
         {
           "name": "reactivate_member",
@@ -5351,16 +5857,21 @@
       "classes": [],
       "imports": [
         {
-          "source": "axum",
+          "source": "crate::deps",
           "specifiers": [
-            "Json"
+            "ServerDeps"
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "application::commands",
           "specifiers": [
-            "MemberIdentInput",
-            "ServerDeps"
+            "MemberIdentInput"
+          ]
+        },
+        {
+          "source": "axum",
+          "specifiers": [
+            "Json"
           ]
         },
         {
@@ -5373,12 +5884,12 @@
       "exports": [
         "reactivate_member"
       ],
-      "totalLines": 46,
+      "totalLines": 47,
       "hasStructuralAnalysis": true
     },
     "server/crates/http_server/src/router/members/get_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/members/get_handlers.rs",
-      "contentHash": "3c487ca58d802f0956f704f9674126962966e77ad2feab4262030bee9b586c2e",
+      "contentHash": "f31778b1b9819ef15951bcc386a466418406718d6091c269e5cf5f230d85f42e",
       "functions": [
         {
           "name": "get_member_details",
@@ -5406,6 +5917,12 @@
       "classes": [],
       "imports": [
         {
+          "source": "crate::deps",
+          "specifiers": [
+            "ServerDeps"
+          ]
+        },
+        {
           "source": "axum",
           "specifiers": [
             "Json"
@@ -5415,12 +5932,6 @@
           "source": "domain::member",
           "specifiers": [
             "MemberIdent"
-          ]
-        },
-        {
-          "source": "server_bootstrap",
-          "specifiers": [
-            "ServerDeps"
           ]
         },
         {
@@ -5504,7 +6015,7 @@
     },
     "server/crates/http_server/src/router/members/post_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/members/post_handlers.rs",
-      "contentHash": "14455ec94e56ffae40e5a757bd514600b7b978f64ed7eff29e810ea12e49bd41",
+      "contentHash": "b19ea32d1f764d4a03d95cdff1546a7044cd7ff81dea08ab8e2b196d6aa37661",
       "functions": [
         {
           "name": "register_member",
@@ -5521,17 +6032,17 @@
       "classes": [],
       "imports": [
         {
+          "source": "crate::deps",
+          "specifiers": [
+            "ServerDeps"
+          ]
+        },
+        {
           "source": "axum",
           "specifiers": [
             "extract::State",
             "http::StatusCode",
             "Json"
-          ]
-        },
-        {
-          "source": "server_bootstrap",
-          "specifiers": [
-            "ServerDeps"
           ]
         },
         {
@@ -5549,7 +6060,7 @@
     },
     "server/crates/http_server/src/router/members/put_handlers.rs": {
       "filePath": "server/crates/http_server/src/router/members/put_handlers.rs",
-      "contentHash": "6e725751d29010c27071588b27001ccae10d3bdc961bd34ccf8f9995543d83ff",
+      "contentHash": "e53694a19aad70adc890ab82fcdfb3f8fc195afed6c2e813a30d39309a824778",
       "functions": [
         {
           "name": "suspend_member",
@@ -5566,16 +6077,21 @@
       "classes": [],
       "imports": [
         {
-          "source": "axum",
+          "source": "crate::deps",
           "specifiers": [
-            "Json"
+            "ServerDeps"
           ]
         },
         {
-          "source": "server_bootstrap",
+          "source": "application::commands",
           "specifiers": [
-            "MemberIdentInput",
-            "ServerDeps"
+            "MemberIdentInput"
+          ]
+        },
+        {
+          "source": "axum",
+          "specifiers": [
+            "Json"
           ]
         },
         {
@@ -5588,7 +6104,7 @@
       "exports": [
         "suspend_member"
       ],
-      "totalLines": 46,
+      "totalLines": 47,
       "hasStructuralAnalysis": true
     },
     "server/crates/http_server/src/router/members/schemas.rs": {
@@ -5697,7 +6213,7 @@
     },
     "server/crates/http_server/src/router/router.rs": {
       "filePath": "server/crates/http_server/src/router/router.rs",
-      "contentHash": "9ef224857f913611d894a3c247f8a956e1adc4059d9ac7d0fa9d971835665401",
+      "contentHash": "88ccdef64c8232b4cc426b594f485a81a24d14a17a880e231e0948835c3485b7",
       "functions": [
         {
           "name": "new_router",
@@ -5719,6 +6235,12 @@
         }
       ],
       "imports": [
+        {
+          "source": "crate::deps",
+          "specifiers": [
+            "ServerDeps"
+          ]
+        },
         {
           "source": "crate::router::auth",
           "specifiers": [
@@ -5796,12 +6318,6 @@
           "source": "axum",
           "specifiers": [
             "Router"
-          ]
-        },
-        {
-          "source": "server_bootstrap",
-          "specifiers": [
-            "ServerDeps"
           ]
         },
         {
@@ -6026,12 +6542,12 @@
     },
     "server/crates/persistence/Cargo.toml": {
       "filePath": "server/crates/persistence/Cargo.toml",
-      "contentHash": "77233846ac91fd085929daae141bc74062c2083b57576f5e9850a131d8a3d8b9",
+      "contentHash": "b933cfa22b05dc13f0664971ea30bb1b808fb17ca9954239b1e17393587d772f",
       "functions": [],
       "classes": [],
       "imports": [],
       "exports": [],
-      "totalLines": 14,
+      "totalLines": 13,
       "hasStructuralAnalysis": true
     },
     "server/crates/persistence/docs/status_lookup.md": {
@@ -6042,46 +6558,6 @@
       "imports": [],
       "exports": [],
       "totalLines": 90,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/persistence/sql/book/commands/create.sql": {
-      "filePath": "server/crates/persistence/sql/book/commands/create.sql",
-      "contentHash": "f46e82ef2b026c0381ecd12da230539d442950165be2c8ea3045c0d7ff52beff",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 11,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/persistence/sql/book/commands/get_by_isbn.sql": {
-      "filePath": "server/crates/persistence/sql/book/commands/get_by_isbn.sql",
-      "contentHash": "7e4c556c0aa7588b9cf4a7487a68bdc9a0fa1c9d6b8d175a8a92d46366f6db0b",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 13,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/persistence/sql/book/queries/get_by_isbn.sql": {
-      "filePath": "server/crates/persistence/sql/book/queries/get_by_isbn.sql",
-      "contentHash": "7e4c556c0aa7588b9cf4a7487a68bdc9a0fa1c9d6b8d175a8a92d46366f6db0b",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 13,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/persistence/sql/book/queries/get_catalog.sql": {
-      "filePath": "server/crates/persistence/sql/book/queries/get_catalog.sql",
-      "contentHash": "2325b9e2ee27066910e9b9d23584f87ff811b39e6d1c4869f430832f22e807a8",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 14,
       "hasStructuralAnalysis": true
     },
     "server/crates/persistence/sql/book_copy/commands/create.sql": {
@@ -6132,6 +6608,46 @@
       "imports": [],
       "exports": [],
       "totalLines": 17,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/persistence/sql/book/commands/create.sql": {
+      "filePath": "server/crates/persistence/sql/book/commands/create.sql",
+      "contentHash": "f46e82ef2b026c0381ecd12da230539d442950165be2c8ea3045c0d7ff52beff",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 11,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/persistence/sql/book/commands/get_by_isbn.sql": {
+      "filePath": "server/crates/persistence/sql/book/commands/get_by_isbn.sql",
+      "contentHash": "7e4c556c0aa7588b9cf4a7487a68bdc9a0fa1c9d6b8d175a8a92d46366f6db0b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/persistence/sql/book/queries/get_by_isbn.sql": {
+      "filePath": "server/crates/persistence/sql/book/queries/get_by_isbn.sql",
+      "contentHash": "7e4c556c0aa7588b9cf4a7487a68bdc9a0fa1c9d6b8d175a8a92d46366f6db0b",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 13,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/persistence/sql/book/queries/get_catalog.sql": {
+      "filePath": "server/crates/persistence/sql/book/queries/get_catalog.sql",
+      "contentHash": "2325b9e2ee27066910e9b9d23584f87ff811b39e6d1c4869f430832f22e807a8",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 14,
       "hasStructuralAnalysis": true
     },
     "server/crates/persistence/sql/loan/commands/count_active_by_member_id.sql": {
@@ -6194,16 +6710,6 @@
       "totalLines": 20,
       "hasStructuralAnalysis": true
     },
-    "server/crates/persistence/sql/loan/queries/get_by_member.sql": {
-      "filePath": "server/crates/persistence/sql/loan/queries/get_by_member.sql",
-      "contentHash": "a0e18e4eba406f4dd7811d11307c66399dbd4040c9faa9df00b4b5261687b075",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 18,
-      "hasStructuralAnalysis": true
-    },
     "server/crates/persistence/sql/loan/queries/get_by_member_ident.sql": {
       "filePath": "server/crates/persistence/sql/loan/queries/get_by_member_ident.sql",
       "contentHash": "f6ad3a7d67dee2c8e5b7e55ae28ba684f9960528723c28530b0fdcdd81759bf4",
@@ -6212,6 +6718,16 @@
       "imports": [],
       "exports": [],
       "totalLines": 22,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/persistence/sql/loan/queries/get_by_member.sql": {
+      "filePath": "server/crates/persistence/sql/loan/queries/get_by_member.sql",
+      "contentHash": "a0e18e4eba406f4dd7811d11307c66399dbd4040c9faa9df00b4b5261687b075",
+      "functions": [],
+      "classes": [],
+      "imports": [],
+      "exports": [],
+      "totalLines": 18,
       "hasStructuralAnalysis": true
     },
     "server/crates/persistence/sql/loan/queries/get_overdue.sql": {
@@ -6272,232 +6788,6 @@
       "imports": [],
       "exports": [],
       "totalLines": 22,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/persistence/src/book/mod.rs": {
-      "filePath": "server/crates/persistence/src/book/mod.rs",
-      "contentHash": "b9b21ef53fc107b72cfb55968f6848b014bc63b5e7317335d306853c8610e74a",
-      "functions": [],
-      "classes": [],
-      "imports": [
-        {
-          "source": "read_repo",
-          "specifiers": [
-            "BookReadRepoSql"
-          ]
-        }
-      ],
-      "exports": [],
-      "totalLines": 5,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/persistence/src/book/read_repo.rs": {
-      "filePath": "server/crates/persistence/src/book/read_repo.rs",
-      "contentHash": "b807880466494d08d4dc035fb986ae87e8980d08e687dad419951ee0d402bbfc",
-      "functions": [
-        {
-          "name": "try_from",
-          "params": [
-            "value"
-          ],
-          "returnType": "Result<Self>",
-          "exported": false,
-          "lineCount": 15
-        },
-        {
-          "name": "get_catalog",
-          "params": [],
-          "returnType": "Result<Vec<Book>>",
-          "exported": false,
-          "lineCount": 8
-        },
-        {
-          "name": "get_by_isbn",
-          "params": [
-            "isbn"
-          ],
-          "returnType": "Result<Option<Book>>",
-          "exported": false,
-          "lineCount": 8
-        }
-      ],
-      "classes": [
-        {
-          "name": "BookDbRow",
-          "methods": [],
-          "properties": [
-            "book_id",
-            "isbn",
-            "dt_created",
-            "dt_modified",
-            "title",
-            "author_name"
-          ],
-          "exported": true,
-          "lineCount": 8
-        },
-        {
-          "name": "BookReadRepoSql",
-          "methods": [
-            "get_catalog",
-            "get_by_isbn"
-          ],
-          "properties": [
-            "pool"
-          ],
-          "exported": true,
-          "lineCount": 3
-        }
-      ],
-      "imports": [
-        {
-          "source": "anyhow",
-          "specifiers": [
-            "Context",
-            "Result"
-          ]
-        },
-        {
-          "source": "async_trait",
-          "specifiers": [
-            "async_trait"
-          ]
-        },
-        {
-          "source": "chrono",
-          "specifiers": [
-            "DateTime",
-            "Utc"
-          ]
-        },
-        {
-          "source": "domain::book",
-          "specifiers": [
-            "port::BookReadRepoPort",
-            "Book",
-            "BookId"
-          ]
-        },
-        {
-          "source": "sqlx",
-          "specifiers": [
-            "PgPool"
-          ]
-        }
-      ],
-      "exports": [
-        "BookDbRow",
-        "BookReadRepoSql"
-      ],
-      "totalLines": 61,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/persistence/src/book/write_repo.rs": {
-      "filePath": "server/crates/persistence/src/book/write_repo.rs",
-      "contentHash": "d2b26cc6395c06d3fab84bd85aa346adcac1b57f2ca5a42af8eac1927bbc6779",
-      "functions": [
-        {
-          "name": "create",
-          "params": [
-            "insert"
-          ],
-          "returnType": "Result<Book>",
-          "exported": false,
-          "lineCount": 25
-        },
-        {
-          "name": "get_by_isbn",
-          "params": [
-            "isbn"
-          ],
-          "returnType": "Result<Option<Book>>",
-          "exported": false,
-          "lineCount": 10
-        }
-      ],
-      "classes": [
-        {
-          "name": "BookCreateResult",
-          "methods": [],
-          "properties": [
-            "book_id"
-          ],
-          "exported": true,
-          "lineCount": 3
-        },
-        {
-          "name": "BookWriteRepoTx",
-          "methods": [
-            "create",
-            "get_by_isbn"
-          ],
-          "properties": [
-            "tx"
-          ],
-          "exported": true,
-          "lineCount": 3
-        }
-      ],
-      "imports": [
-        {
-          "source": "std::sync",
-          "specifiers": [
-            "Arc"
-          ]
-        },
-        {
-          "source": "anyhow",
-          "specifiers": [
-            "Context",
-            "Result"
-          ]
-        },
-        {
-          "source": "async_trait",
-          "specifiers": [
-            "async_trait"
-          ]
-        },
-        {
-          "source": "chrono",
-          "specifiers": [
-            "Utc"
-          ]
-        },
-        {
-          "source": "domain::book",
-          "specifiers": [
-            "port::BookWriteRepoPort",
-            "Book",
-            "BookId",
-            "BookPrepared"
-          ]
-        },
-        {
-          "source": "sqlx",
-          "specifiers": [
-            "Postgres",
-            "Transaction"
-          ]
-        },
-        {
-          "source": "tokio::sync",
-          "specifiers": [
-            "Mutex"
-          ]
-        },
-        {
-          "source": "crate::book::read_repo",
-          "specifiers": [
-            "BookDbRow"
-          ]
-        }
-      ],
-      "exports": [
-        "BookCreateResult",
-        "BookWriteRepoTx"
-      ],
-      "totalLines": 60,
       "hasStructuralAnalysis": true
     },
     "server/crates/persistence/src/book_copy/mod.rs": {
@@ -6626,35 +6916,38 @@
     },
     "server/crates/persistence/src/book_copy/write_repo.rs": {
       "filePath": "server/crates/persistence/src/book_copy/write_repo.rs",
-      "contentHash": "7e58a7d4ce91ee8fff9aeec22f6101c0ca27c3e6316a8a842d0072274541ce85",
+      "contentHash": "86a41ba0b9a23e1489baa57032b683bbd1bbb10083343ad6bf40c9681830df3d",
       "functions": [
         {
-          "name": "create",
+          "name": "create_book_copy_with",
           "params": [
+            "executor",
             "insert"
           ],
           "returnType": "Result<BookCopy>",
-          "exported": false,
-          "lineCount": 25
+          "exported": true,
+          "lineCount": 26
         },
         {
-          "name": "get_by_barcode_for_update",
+          "name": "get_book_copy_by_barcode_for_update_with",
           "params": [
+            "executor",
             "barcode"
           ],
           "returnType": "Result<Option<BookCopy>>",
-          "exported": false,
-          "lineCount": 14
+          "exported": true,
+          "lineCount": 15
         },
         {
-          "name": "update_status",
+          "name": "update_book_copy_status_with",
           "params": [
+            "executor",
             "book_copy_id",
             "status"
           ],
           "returnType": "Result<()>",
-          "exported": false,
-          "lineCount": 14
+          "exported": true,
+          "lineCount": 16
         }
       ],
       "classes": [
@@ -6666,28 +6959,129 @@
           ],
           "exported": true,
           "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "anyhow",
+          "specifiers": [
+            "Context",
+            "Result"
+          ]
         },
         {
-          "name": "BookCopyWriteRepoTx",
+          "source": "chrono",
+          "specifiers": [
+            "Utc"
+          ]
+        },
+        {
+          "source": "domain::book_copy",
+          "specifiers": [
+            "BookCopy",
+            "BookCopyId",
+            "BookCopyPrepared",
+            "BookCopyStatus"
+          ]
+        },
+        {
+          "source": "sqlx",
+          "specifiers": [
+            "PgExecutor"
+          ]
+        },
+        {
+          "source": "crate::book_copy::read_repo",
+          "specifiers": [
+            "BookCopyDbRow"
+          ]
+        }
+      ],
+      "exports": [
+        "BookCopyCreateResult",
+        "create_book_copy_with",
+        "get_book_copy_by_barcode_for_update_with",
+        "update_book_copy_status_with"
+      ],
+      "totalLines": 72,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/persistence/src/book/mod.rs": {
+      "filePath": "server/crates/persistence/src/book/mod.rs",
+      "contentHash": "b9b21ef53fc107b72cfb55968f6848b014bc63b5e7317335d306853c8610e74a",
+      "functions": [],
+      "classes": [],
+      "imports": [
+        {
+          "source": "read_repo",
+          "specifiers": [
+            "BookReadRepoSql"
+          ]
+        }
+      ],
+      "exports": [],
+      "totalLines": 5,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/persistence/src/book/read_repo.rs": {
+      "filePath": "server/crates/persistence/src/book/read_repo.rs",
+      "contentHash": "5b4d4d717ede05aaadd70ea95b00e1ce5ab2a82dfaaa094947aa8da25402676d",
+      "functions": [
+        {
+          "name": "try_from",
+          "params": [
+            "value"
+          ],
+          "returnType": "Result<Self>",
+          "exported": false,
+          "lineCount": 10
+        },
+        {
+          "name": "get_catalog",
+          "params": [],
+          "returnType": "Result<Vec<Book>>",
+          "exported": false,
+          "lineCount": 8
+        },
+        {
+          "name": "get_by_isbn",
+          "params": [
+            "isbn"
+          ],
+          "returnType": "Result<Option<Book>>",
+          "exported": false,
+          "lineCount": 8
+        }
+      ],
+      "classes": [
+        {
+          "name": "BookDbRow",
+          "methods": [],
+          "properties": [
+            "book_id",
+            "isbn",
+            "dt_created",
+            "dt_modified",
+            "title",
+            "author_name"
+          ],
+          "exported": true,
+          "lineCount": 8
+        },
+        {
+          "name": "BookReadRepoSql",
           "methods": [
-            "create",
-            "get_by_barcode_for_update",
-            "update_status"
+            "get_catalog",
+            "get_by_isbn"
           ],
           "properties": [
-            "tx"
+            "pool"
           ],
           "exported": true,
           "lineCount": 3
         }
       ],
       "imports": [
-        {
-          "source": "std::sync",
-          "specifiers": [
-            "Arc"
-          ]
-        },
         {
           "source": "anyhow",
           "specifiers": [
@@ -6704,44 +7098,109 @@
         {
           "source": "chrono",
           "specifiers": [
+            "DateTime",
             "Utc"
           ]
         },
         {
-          "source": "domain::book_copy",
+          "source": "domain::book",
           "specifiers": [
-            "port::BookCopyWriteRepoPort",
-            "BookCopy",
-            "BookCopyId",
-            "BookCopyPrepared",
-            "BookCopyStatus"
+            "port::BookReadRepoPort",
+            "Book",
+            "BookId"
           ]
         },
         {
           "source": "sqlx",
           "specifiers": [
-            "Postgres",
-            "Transaction"
-          ]
-        },
-        {
-          "source": "tokio::sync",
-          "specifiers": [
-            "Mutex"
-          ]
-        },
-        {
-          "source": "crate::book_copy::read_repo",
-          "specifiers": [
-            "BookCopyDbRow"
+            "PgPool"
           ]
         }
       ],
       "exports": [
-        "BookCopyCreateResult",
-        "BookCopyWriteRepoTx"
+        "BookDbRow",
+        "BookReadRepoSql"
       ],
-      "totalLines": 81,
+      "totalLines": 56,
+      "hasStructuralAnalysis": true
+    },
+    "server/crates/persistence/src/book/write_repo.rs": {
+      "filePath": "server/crates/persistence/src/book/write_repo.rs",
+      "contentHash": "6c672d9da8000cbcc5082283f9e615d1afe87d7d158c42ee8300ea4641e4df46",
+      "functions": [
+        {
+          "name": "create_book_with",
+          "params": [
+            "executor",
+            "insert"
+          ],
+          "returnType": "Result<Book>",
+          "exported": true,
+          "lineCount": 26
+        },
+        {
+          "name": "get_book_by_isbn_for_write_with",
+          "params": [
+            "executor",
+            "isbn"
+          ],
+          "returnType": "Result<Option<Book>>",
+          "exported": true,
+          "lineCount": 11
+        }
+      ],
+      "classes": [
+        {
+          "name": "BookCreateResult",
+          "methods": [],
+          "properties": [
+            "book_id"
+          ],
+          "exported": true,
+          "lineCount": 3
+        }
+      ],
+      "imports": [
+        {
+          "source": "anyhow",
+          "specifiers": [
+            "Context",
+            "Result"
+          ]
+        },
+        {
+          "source": "chrono",
+          "specifiers": [
+            "Utc"
+          ]
+        },
+        {
+          "source": "domain::book",
+          "specifiers": [
+            "Book",
+            "BookId",
+            "BookPrepared"
+          ]
+        },
+        {
+          "source": "sqlx",
+          "specifiers": [
+            "PgExecutor"
+          ]
+        },
+        {
+          "source": "crate::book::read_repo",
+          "specifiers": [
+            "BookDbRow"
+          ]
+        }
+      ],
+      "exports": [
+        "BookCreateResult",
+        "create_book_with",
+        "get_book_by_isbn_for_write_with"
+      ],
+      "totalLines": 51,
       "hasStructuralAnalysis": true
     },
     "server/crates/persistence/src/lib.rs": {
@@ -6773,7 +7232,7 @@
     },
     "server/crates/persistence/src/loan/read_repo.rs": {
       "filePath": "server/crates/persistence/src/loan/read_repo.rs",
-      "contentHash": "64dd08be0d3b82c1cbd6355867e6c30c3e68a8ed8e1b23fa2e00346217119cee",
+      "contentHash": "7c2cac8622931e1d2375a66dd4e6945f2c23dbd460b3a29db8750c2c53cbe796",
       "functions": [
         {
           "name": "try_from",
@@ -6856,40 +7315,6 @@
           "returnType": "Result<i64>",
           "exported": false,
           "lineCount": 3
-        },
-        {
-          "name": "get_by_member_ident",
-          "params": [
-            "ident"
-          ],
-          "returnType": "Result<Vec<Loan>>",
-          "exported": false,
-          "lineCount": 5
-        },
-        {
-          "name": "get_overdue",
-          "params": [],
-          "returnType": "Result<Vec<Loan>>",
-          "exported": false,
-          "lineCount": 5
-        },
-        {
-          "name": "find_active_by_book_copy_id",
-          "params": [
-            "id"
-          ],
-          "returnType": "Result<Option<Loan>>",
-          "exported": false,
-          "lineCount": 5
-        },
-        {
-          "name": "count_active_by_member_id",
-          "params": [
-            "id"
-          ],
-          "returnType": "Result<i64>",
-          "exported": false,
-          "lineCount": 5
         }
       ],
       "classes": [
@@ -6931,29 +7356,9 @@
           ],
           "exported": true,
           "lineCount": 3
-        },
-        {
-          "name": "LoanReadRepoTx",
-          "methods": [
-            "get_by_member_ident",
-            "get_overdue",
-            "find_active_by_book_copy_id",
-            "count_active_by_member_id"
-          ],
-          "properties": [
-            "tx"
-          ],
-          "exported": true,
-          "lineCount": 3
         }
       ],
       "imports": [
-        {
-          "source": "std::sync",
-          "specifiers": [
-            "Arc"
-          ]
-        },
         {
           "source": "anyhow",
           "specifiers": [
@@ -6985,65 +7390,61 @@
           "specifiers": [
             "Executor",
             "PgPool",
-            "Postgres",
-            "Transaction"
-          ]
-        },
-        {
-          "source": "tokio::sync",
-          "specifiers": [
-            "Mutex"
+            "Postgres"
           ]
         }
       ],
       "exports": [
         "LoanDbRow",
         "CountDbRow",
-        "LoanReadRepoSql",
-        "LoanReadRepoTx"
+        "LoanReadRepoSql"
       ],
-      "totalLines": 169,
+      "totalLines": 131,
       "hasStructuralAnalysis": true
     },
     "server/crates/persistence/src/loan/write_repo.rs": {
       "filePath": "server/crates/persistence/src/loan/write_repo.rs",
-      "contentHash": "32046b1f6dfb8571147dcd3998e457d1bfb47b598cd3e0ac0b96b2c1374920c9",
+      "contentHash": "11d6441fae10e1fa34aa5aaa416d4c525f09f1cb6a834263ec718e5dba4aa2b8",
       "functions": [
         {
-          "name": "create",
+          "name": "create_loan_with",
           "params": [
+            "executor",
             "insert"
           ],
           "returnType": "Result<Loan>",
-          "exported": false,
-          "lineCount": 29
+          "exported": true,
+          "lineCount": 27
         },
         {
-          "name": "end",
+          "name": "end_loan_with",
           "params": [
+            "executor",
             "id"
           ],
           "returnType": "Result<()>",
-          "exported": false,
-          "lineCount": 11
+          "exported": true,
+          "lineCount": 8
         },
         {
-          "name": "find_active_by_book_copy_id_for_update",
+          "name": "find_active_loan_by_book_copy_id_for_update_with",
           "params": [
+            "executor",
             "id"
           ],
           "returnType": "Result<Option<Loan>>",
-          "exported": false,
+          "exported": true,
           "lineCount": 15
         },
         {
-          "name": "count_active_by_member_id",
+          "name": "count_active_loans_by_member_id_with",
           "params": [
+            "executor",
             "id"
           ],
           "returnType": "Result<i64>",
-          "exported": false,
-          "lineCount": 14
+          "exported": true,
+          "lineCount": 15
         }
       ],
       "classes": [
@@ -7056,40 +7457,14 @@
           ],
           "exported": true,
           "lineCount": 4
-        },
-        {
-          "name": "LoanWriteRepoTx",
-          "methods": [
-            "create",
-            "end",
-            "find_active_by_book_copy_id_for_update",
-            "count_active_by_member_id"
-          ],
-          "properties": [
-            "tx"
-          ],
-          "exported": true,
-          "lineCount": 3
         }
       ],
       "imports": [
-        {
-          "source": "std::sync",
-          "specifiers": [
-            "Arc"
-          ]
-        },
         {
           "source": "anyhow",
           "specifiers": [
             "Context",
             "Result"
-          ]
-        },
-        {
-          "source": "async_trait",
-          "specifiers": [
-            "async_trait"
           ]
         },
         {
@@ -7108,14 +7483,7 @@
         {
           "source": "sqlx",
           "specifiers": [
-            "Postgres",
-            "Transaction"
-          ]
-        },
-        {
-          "source": "tokio::sync",
-          "specifiers": [
-            "Mutex"
+            "PgExecutor"
           ]
         },
         {
@@ -7128,9 +7496,12 @@
       ],
       "exports": [
         "LoanPreparedResult",
-        "LoanWriteRepoTx"
+        "create_loan_with",
+        "end_loan_with",
+        "find_active_loan_by_book_copy_id_for_update_with",
+        "count_active_loans_by_member_id_with"
       ],
-      "totalLines": 101,
+      "totalLines": 86,
       "hasStructuralAnalysis": true
     },
     "server/crates/persistence/src/member/mod.rs": {
@@ -7264,35 +7635,38 @@
     },
     "server/crates/persistence/src/member/write_repo.rs": {
       "filePath": "server/crates/persistence/src/member/write_repo.rs",
-      "contentHash": "7712c4ba99810857d2915a6debbe718a61dc6fee49003bf4d9cd6697e4a1e404",
+      "contentHash": "971904912f157252c3e81f33927ac31b0f09fb67deb3b746d996db83bb71fb20",
       "functions": [
         {
-          "name": "create",
+          "name": "create_member_with",
           "params": [
+            "executor",
             "insert"
           ],
           "returnType": "Result<Member>",
-          "exported": false,
-          "lineCount": 27
+          "exported": true,
+          "lineCount": 28
         },
         {
-          "name": "get_by_ident_for_update",
+          "name": "get_member_by_ident_for_update_with",
           "params": [
+            "executor",
             "ident"
           ],
           "returnType": "Result<Option<Member>>",
-          "exported": false,
+          "exported": true,
           "lineCount": 15
         },
         {
-          "name": "update_status",
+          "name": "update_member_status_with",
           "params": [
+            "executor",
             "id",
             "status"
           ],
           "returnType": "Result<()>",
-          "exported": false,
-          "lineCount": 14
+          "exported": true,
+          "lineCount": 16
         }
       ],
       "classes": [
@@ -7304,39 +7678,14 @@
           ],
           "exported": true,
           "lineCount": 3
-        },
-        {
-          "name": "MemberWriteRepoTx",
-          "methods": [
-            "create",
-            "get_by_ident_for_update",
-            "update_status"
-          ],
-          "properties": [
-            "tx"
-          ],
-          "exported": true,
-          "lineCount": 3
         }
       ],
       "imports": [
-        {
-          "source": "std::sync",
-          "specifiers": [
-            "Arc"
-          ]
-        },
         {
           "source": "anyhow",
           "specifiers": [
             "Context",
             "Result"
-          ]
-        },
-        {
-          "source": "async_trait",
-          "specifiers": [
-            "async_trait"
           ]
         },
         {
@@ -7348,7 +7697,6 @@
         {
           "source": "domain::member",
           "specifiers": [
-            "port::MemberWriteRepoPort",
             "Member",
             "MemberId",
             "MemberIdent",
@@ -7359,14 +7707,7 @@
         {
           "source": "sqlx",
           "specifiers": [
-            "Postgres",
-            "Transaction"
-          ]
-        },
-        {
-          "source": "tokio::sync",
-          "specifiers": [
-            "Mutex"
+            "PgExecutor"
           ]
         },
         {
@@ -7378,40 +7719,42 @@
       ],
       "exports": [
         "MemberPreparedResult",
-        "MemberWriteRepoTx"
+        "create_member_with",
+        "get_member_by_ident_for_update_with",
+        "update_member_status_with"
       ],
-      "totalLines": 84,
+      "totalLines": 74,
       "hasStructuralAnalysis": true
     },
     "server/crates/persistence/src/uow.rs": {
       "filePath": "server/crates/persistence/src/uow.rs",
-      "contentHash": "ad2384c3ca43a8ed36fe85db057044ba1c931e6313a275722881d41b148b1620",
+      "contentHash": "75f65acca723a2f4389800513c60916fc29207990cd90cadcc8f24d2a44efd98",
       "functions": [
         {
-          "name": "book_write_repo",
+          "name": "book",
           "params": [],
-          "returnType": "&dyn domain::book::port::BookWriteRepoPort",
+          "returnType": "&mut dyn BookWriteRepoPort",
           "exported": false,
           "lineCount": 3
         },
         {
-          "name": "book_copy_write_repo",
+          "name": "book_copy",
           "params": [],
-          "returnType": "&dyn domain::book_copy::port::BookCopyWriteRepoPort",
+          "returnType": "&mut dyn BookCopyWriteRepoPort",
           "exported": false,
           "lineCount": 3
         },
         {
-          "name": "membership_write_repo",
+          "name": "member",
           "params": [],
-          "returnType": "&dyn domain::member::port::MemberWriteRepoPort",
+          "returnType": "&mut dyn MemberWriteRepoPort",
           "exported": false,
           "lineCount": 3
         },
         {
-          "name": "loan_write_repo",
+          "name": "loan",
           "params": [],
-          "returnType": "&dyn domain::loan::port::LoanWriteRepoPort",
+          "returnType": "&mut dyn LoanWriteRepoPort",
           "exported": false,
           "lineCount": 3
         },
@@ -7422,35 +7765,153 @@
           ],
           "returnType": "anyhow::Result<()>",
           "exported": false,
-          "lineCount": 5
+          "lineCount": 6
+        },
+        {
+          "name": "create",
+          "params": [
+            "insert"
+          ],
+          "returnType": "anyhow::Result<Book>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "get_by_isbn",
+          "params": [
+            "isbn"
+          ],
+          "returnType": "anyhow::Result<Option<Book>>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "create",
+          "params": [
+            "insert"
+          ],
+          "returnType": "anyhow::Result<BookCopy>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "get_by_barcode_for_update",
+          "params": [
+            "barcode"
+          ],
+          "returnType": "anyhow::Result<Option<BookCopy>>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "update_status",
+          "params": [
+            "id",
+            "status"
+          ],
+          "returnType": "anyhow::Result<()>",
+          "exported": false,
+          "lineCount": 7
+        },
+        {
+          "name": "create",
+          "params": [
+            "insert"
+          ],
+          "returnType": "anyhow::Result<Member>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "get_by_ident_for_update",
+          "params": [
+            "ident"
+          ],
+          "returnType": "anyhow::Result<Option<Member>>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "update_status",
+          "params": [
+            "id",
+            "status"
+          ],
+          "returnType": "anyhow::Result<()>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "create",
+          "params": [
+            "insert"
+          ],
+          "returnType": "anyhow::Result<Loan>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "end",
+          "params": [
+            "id"
+          ],
+          "returnType": "anyhow::Result<()>",
+          "exported": false,
+          "lineCount": 3
+        },
+        {
+          "name": "find_active_by_book_copy_id_for_update",
+          "params": [
+            "id"
+          ],
+          "returnType": "anyhow::Result<Option<Loan>>",
+          "exported": false,
+          "lineCount": 6
+        },
+        {
+          "name": "count_active_by_member_id",
+          "params": [
+            "id"
+          ],
+          "returnType": "anyhow::Result<i64>",
+          "exported": false,
+          "lineCount": 3
         },
         {
           "name": "build",
           "params": [],
-          "returnType": "anyhow::Result<Box<dyn UnitOfWorkPort>>",
+          "returnType": "anyhow::Result<WriteUnitOfWork>",
           "exported": false,
-          "lineCount": 15
+          "lineCount": 8
         }
       ],
       "classes": [
         {
           "name": "SqlUnitOfWork",
           "methods": [
-            "book_write_repo",
-            "book_copy_write_repo",
-            "membership_write_repo",
-            "loan_write_repo",
-            "commit"
+            "book",
+            "book_copy",
+            "member",
+            "loan",
+            "commit",
+            "create",
+            "get_by_isbn",
+            "create",
+            "get_by_barcode_for_update",
+            "update_status",
+            "create",
+            "get_by_ident_for_update",
+            "update_status",
+            "create",
+            "end",
+            "find_active_by_book_copy_id_for_update",
+            "count_active_by_member_id"
           ],
           "properties": [
-            "tx",
-            "book_write_repo",
-            "book_copy_write_repo",
-            "membership_write_repo",
-            "loan_write_repo"
+            "tx"
           ],
           "exported": true,
-          "lineCount": 7
+          "lineCount": 3
         },
         {
           "name": "SqlWriteUnitOfWorkFactory",
@@ -7466,12 +7927,6 @@
       ],
       "imports": [
         {
-          "source": "std::sync",
-          "specifiers": [
-            "Arc"
-          ]
-        },
-        {
           "source": "anyhow",
           "specifiers": [
             "Context"
@@ -7484,11 +7939,8 @@
           ]
         },
         {
-          "source": "domain::uow",
-          "specifiers": [
-            "UnitOfWorkPort",
-            "WriteUnitOfWorkFactory"
-          ]
+          "source": "domain",
+          "specifiers": []
         },
         {
           "source": "sqlx",
@@ -7499,308 +7951,15 @@
           ]
         },
         {
-          "source": "tokio::sync",
-          "specifiers": [
-            "Mutex"
-          ]
-        },
-        {
           "source": "crate",
-          "specifiers": [
-            "book::write_repo::BookWriteRepoTx",
-            "book_copy::write_repo::BookCopyWriteRepoTx",
-            "loan::write_repo::LoanWriteRepoTx",
-            "member::write_repo::MemberWriteRepoTx"
-          ]
+          "specifiers": []
         }
       ],
       "exports": [
         "SqlUnitOfWork",
         "SqlWriteUnitOfWorkFactory"
       ],
-      "totalLines": 69,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/server_bootstrap/Cargo.toml": {
-      "filePath": "server/crates/server_bootstrap/Cargo.toml",
-      "contentHash": "6f648e9fd233914d164dc306244aacf73e83d6747b5863efd71abebcbd9ff79f",
-      "functions": [],
-      "classes": [],
-      "imports": [],
-      "exports": [],
-      "totalLines": 13,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/server_bootstrap/src/config.rs": {
-      "filePath": "server/crates/server_bootstrap/src/config.rs",
-      "contentHash": "e366d07a25a6645cf93e1260dbce3fc338964535eef65280666761bdf7c48c32",
-      "functions": [
-        {
-          "name": "required_env",
-          "params": [
-            "name"
-          ],
-          "returnType": "Result<String>",
-          "exported": false,
-          "lineCount": 9
-        },
-        {
-          "name": "load_server_config",
-          "params": [],
-          "returnType": "Result<ServerConfig>",
-          "exported": true,
-          "lineCount": 13
-        }
-      ],
-      "classes": [
-        {
-          "name": "ServerConfig",
-          "methods": [],
-          "properties": [
-            "database_ro_url",
-            "database_rw_url",
-            "jwt_secret",
-            "server_port"
-          ],
-          "exported": true,
-          "lineCount": 6
-        }
-      ],
-      "imports": [
-        {
-          "source": "anyhow",
-          "specifiers": [
-            "bail",
-            "Context",
-            "Result"
-          ]
-        },
-        {
-          "source": "std",
-          "specifiers": [
-            "env"
-          ]
-        }
-      ],
-      "exports": [
-        "ServerConfig",
-        "load_server_config"
-      ],
-      "totalLines": 38,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/server_bootstrap/src/deps.rs": {
-      "filePath": "server/crates/server_bootstrap/src/deps.rs",
-      "contentHash": "0d5f78cf5262c0c9fca28cd3b4462c2286688413002290362e87380280fd1d53",
-      "functions": [
-        {
-          "name": "gen",
-          "params": [],
-          "returnType": "String",
-          "exported": false,
-          "lineCount": 3
-        },
-        {
-          "name": "connect_pool",
-          "params": [
-            "database_url",
-            "label"
-          ],
-          "returnType": "Result<PgPool>",
-          "exported": false,
-          "lineCount": 7
-        },
-        {
-          "name": "create_server_deps",
-          "params": [
-            "config"
-          ],
-          "returnType": "Result<ServerDeps>",
-          "exported": true,
-          "lineCount": 44
-        }
-      ],
-      "classes": [
-        {
-          "name": "ServerDeps",
-          "methods": [],
-          "properties": [
-            "auth",
-            "catalog",
-            "lending",
-            "membership"
-          ],
-          "exported": true,
-          "lineCount": 6
-        },
-        {
-          "name": "AuthDeps",
-          "methods": [],
-          "properties": [
-            "verifier"
-          ],
-          "exported": true,
-          "lineCount": 3
-        },
-        {
-          "name": "CatalogDeps",
-          "methods": [],
-          "properties": [
-            "commands",
-            "queries"
-          ],
-          "exported": true,
-          "lineCount": 4
-        },
-        {
-          "name": "LendingDeps",
-          "methods": [],
-          "properties": [
-            "commands",
-            "queries"
-          ],
-          "exported": true,
-          "lineCount": 4
-        },
-        {
-          "name": "MembershipDeps",
-          "methods": [],
-          "properties": [
-            "commands",
-            "queries"
-          ],
-          "exported": true,
-          "lineCount": 4
-        },
-        {
-          "name": "MemberIdentGenerator",
-          "methods": [
-            "gen"
-          ],
-          "properties": [],
-          "exported": false,
-          "lineCount": 1
-        }
-      ],
-      "imports": [
-        {
-          "source": "std::sync",
-          "specifiers": [
-            "Arc"
-          ]
-        },
-        {
-          "source": "anyhow",
-          "specifiers": [
-            "Context",
-            "Result"
-          ]
-        },
-        {
-          "source": "application::ports::gen_ident",
-          "specifiers": [
-            "IdentGeneratorPort"
-          ]
-        },
-        {
-          "source": "auth_core",
-          "specifiers": [
-            "AuthVerifierPort",
-            "JwtAuthAdapter"
-          ]
-        },
-        {
-          "source": "persistence",
-          "specifiers": [
-            "book::BookReadRepoSql",
-            "book_copy::BookCopyReadRepoSql",
-            "loan::LoanReadRepoSql",
-            "member::MemberReadRepoSql",
-            "uow::SqlWriteUnitOfWorkFactory"
-          ]
-        },
-        {
-          "source": "sqlx",
-          "specifiers": [
-            "postgres::PgPoolOptions",
-            "PgPool"
-          ]
-        },
-        {
-          "source": "crate::config",
-          "specifiers": [
-            "ServerConfig"
-          ]
-        },
-        {
-          "source": "application::commands",
-          "specifiers": [
-            "CatalogCommands",
-            "LendingCommands",
-            "MembershipCommands"
-          ]
-        },
-        {
-          "source": "application::queries",
-          "specifiers": [
-            "CatalogQueries",
-            "LendingQueries",
-            "MembershipQueries"
-          ]
-        }
-      ],
-      "exports": [
-        "ServerDeps",
-        "AuthDeps",
-        "CatalogDeps",
-        "LendingDeps",
-        "MembershipDeps",
-        "create_server_deps"
-      ],
-      "totalLines": 112,
-      "hasStructuralAnalysis": true
-    },
-    "server/crates/server_bootstrap/src/lib.rs": {
-      "filePath": "server/crates/server_bootstrap/src/lib.rs",
-      "contentHash": "668bbab26fa43d793c9ee96f9860a3bd9684b5dae2403621e4315585c65fa521",
-      "functions": [],
-      "classes": [],
-      "imports": [
-        {
-          "source": "application::commands",
-          "specifiers": [
-            "AddBookCopyInput",
-            "CheckOutBookCopyInput",
-            "CommandError",
-            "MemberIdentInput"
-          ]
-        },
-        {
-          "source": "config",
-          "specifiers": [
-            "ServerConfig"
-          ]
-        },
-        {
-          "source": "deps",
-          "specifiers": [
-            "create_server_deps",
-            "AuthDeps",
-            "CatalogCommands",
-            "CatalogDeps",
-            "CatalogQueries",
-            "LendingCommands",
-            "LendingDeps",
-            "LendingQueries",
-            "MembershipCommands",
-            "MembershipDeps",
-            "MembershipQueries",
-            "ServerDeps"
-          ]
-        }
-      ],
-      "exports": [],
-      "totalLines": 12,
+      "totalLines": 149,
       "hasStructuralAnalysis": true
     },
     "server/justfile": {
