@@ -1,3 +1,4 @@
+use crate::deps::ServerDeps;
 use crate::router::auth::auth_middleware;
 use crate::router::book_copies::{
     complete_book_copy_maintenance, get_book_copy_details, mark_book_copy_found,
@@ -18,7 +19,6 @@ use axum::{
     routing::{get, post, put},
     Router,
 };
-use server_bootstrap::ServerDeps;
 use utoipa::OpenApi;
 use utoipa_swagger_ui::SwaggerUi;
 

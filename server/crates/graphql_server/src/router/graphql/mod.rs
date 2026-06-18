@@ -6,7 +6,9 @@ use async_graphql::{
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
 use axum::{extract::State, response::Html};
 
-use server_bootstrap::{CommandError, ServerDeps};
+use application::commands::CommandError;
+
+use crate::deps::ServerDeps;
 
 pub mod catalog;
 pub mod lending;

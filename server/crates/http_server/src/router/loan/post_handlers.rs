@@ -1,5 +1,6 @@
+use crate::deps::ServerDeps;
+use application::commands::CheckOutBookCopyInput;
 use axum::{extract::State, http::StatusCode, Json};
-use server_bootstrap::{CheckOutBookCopyInput, ServerDeps};
 
 use crate::router::{
     auth::AuthUser,

@@ -6,7 +6,7 @@ use tracing::info;
 use tracing_subscriber::EnvFilter;
 
 use graphql_server::router::new_router;
-use server_bootstrap::{config, deps};
+use graphql_server::{config, deps};
 
 #[tokio::main]
 async fn main() -> Result<()> {

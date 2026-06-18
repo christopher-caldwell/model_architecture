@@ -5,8 +5,7 @@ use tokio::net::TcpListener;
 use tracing::info;
 use tracing_subscriber::EnvFilter;
 
-use http_server::router::new_router;
-use server_bootstrap::{config, deps};
+use http_server::{config, deps, router::new_router};
 
 #[tokio::main]
 async fn main() -> Result<()> {

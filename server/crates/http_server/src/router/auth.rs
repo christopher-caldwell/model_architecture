@@ -6,8 +6,8 @@ use axum::{
     response::Response,
 };
 
+use crate::deps::ServerDeps;
 use auth_core::Claims;
-use server_bootstrap::ServerDeps;
 
 fn map_auth_error(error: auth_core::AuthError) -> StatusCode {
     tracing::warn!("JWT error: {error:?}");

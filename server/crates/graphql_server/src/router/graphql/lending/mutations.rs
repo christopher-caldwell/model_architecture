@@ -3,7 +3,7 @@ use async_graphql::{Context, Object, Result};
 use crate::router::graphql::catalog::InventoryCopy;
 use crate::router::graphql::lending::{LoanRecord, StartLoanInput};
 use crate::router::graphql::{deps, gql_command_error};
-use server_bootstrap::CheckOutBookCopyInput;
+use application::commands::CheckOutBookCopyInput;
 
 #[derive(Default)]
 pub struct LendingMutation;
