@@ -1,4 +1,3 @@
-use anyhow::Error as AnyhowError;
 use async_graphql::{
     http::{playground_source, GraphQLPlaygroundConfig},
     Context, EmptySubscription, Error, ErrorExtensions, MergedObject, Schema,
@@ -6,7 +5,7 @@ use async_graphql::{
 use async_graphql_axum::{GraphQLRequest, GraphQLResponse};
 use axum::{extract::State, response::Html};
 
-use application::commands::CommandError;
+use application::{commands::CommandError, queries::QueryError};
 
 use crate::deps::ServerDeps;
 
@@ -59,11 +58,15 @@ pub(crate) fn deps<'a>(ctx: &'a Context<'a>) -> &'a ServerDeps {
     ctx.data_unchecked::<ServerDeps>()
 }
 
-pub(crate) fn gql_service_error(error: AnyhowError) -> Error {
-    tracing::error!("Unhandled GraphQL error: {error:?}");
-    Error::new("Something went wrong").extend_with(|_, e| {
-        e.set("code", "INTERNAL_SERVER_ERROR");
-    })
+pub(crate) fn gql_query_error(error: QueryError) -> Error {
+    match error {
+        QueryError::Infrastructure(e) => {
+            tracing::error!("Unhandled GraphQL query error: {e:?}");
+            Error::new("Something went wrong").extend_with(|_, e| {
+                e.set("code", "INTERNAL_SERVER_ERROR");
+            })
+        }
+    }
 }
 
 pub(crate) fn gql_command_error(error: CommandError) -> Error {
@@ -72,7 +75,7 @@ pub(crate) fn gql_command_error(error: CommandError) -> Error {
         CommandError::BookCopy(e) => gql_book_copy_error(e),
         CommandError::Book(e) => gql_book_error(e),
         CommandError::Loan(e) => gql_loan_error(e),
-        CommandError::Unexpected(e) => {
+        CommandError::Infrastructure(e) => {
             tracing::error!("Unhandled GraphQL error: {e:?}");
             Error::new("Something went wrong").extend_with(|_, e| {
                 e.set("code", "INTERNAL_SERVER_ERROR");

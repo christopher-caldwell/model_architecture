@@ -7,7 +7,7 @@ use axum::{
 use crate::router::{
     auth::AuthUser,
     book_copies::schemas::{BookCopyResponseBody, BOOK_COPIES_TAG},
-    errors::{not_found, service_error, ApiError},
+    errors::{not_found, query_error, ApiError},
 };
 
 #[utoipa::path(
@@ -36,7 +36,7 @@ pub async fn get_book_copy_details(
     let book_copy_response = match book_copy_result {
         Ok(Some(book_copy)) => BookCopyResponseBody::from(book_copy),
         Ok(None) => return Err(not_found("Book copy not found")),
-        Err(error) => return Err(service_error(error)),
+        Err(error) => return Err(query_error(error)),
     };
 
     Ok(Json(book_copy_response))

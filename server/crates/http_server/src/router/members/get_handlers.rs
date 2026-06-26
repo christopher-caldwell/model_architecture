@@ -7,7 +7,7 @@ use domain::member::MemberIdent;
 
 use crate::router::{
     auth::AuthUser,
-    errors::{not_found, service_error, ApiError},
+    errors::{not_found, query_error, ApiError},
     loan::schemas::LoanResponseBody,
     members::schemas::{MemberResponseBody, MEMBERS_TAG},
 };
@@ -42,7 +42,7 @@ pub async fn get_member_details(
     let member = match member_result {
         Ok(Some(member)) => member,
         Ok(None) => return Err(not_found("Member not found")),
-        Err(error) => return Err(service_error(error)),
+        Err(error) => return Err(query_error(error)),
     };
 
     Ok(Json(MemberResponseBody::from(member)))
@@ -73,7 +73,7 @@ pub async fn get_member_loans(
         .queries
         .get_member_loans(&MemberIdent(ident))
         .await
-        .map_err(service_error)?;
+        .map_err(query_error)?;
     Ok(Json(
         loans.into_iter().map(LoanResponseBody::from).collect(),
     ))

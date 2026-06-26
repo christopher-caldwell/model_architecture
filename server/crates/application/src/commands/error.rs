@@ -1,4 +1,6 @@
-use domain::{book::BookError, book_copy::BookCopyError, loan::LoanError, member::MemberError};
+use domain::{
+    book::BookError, book_copy::BookCopyError, loan::LoanError, member::MemberError, PortError,
+};
 
 #[derive(Debug, thiserror::Error)]
 pub enum CommandError {
@@ -15,5 +17,5 @@ pub enum CommandError {
     Loan(#[from] LoanError),
 
     #[error(transparent)]
-    Unexpected(#[from] anyhow::Error),
+    Infrastructure(#[from] PortError),
 }

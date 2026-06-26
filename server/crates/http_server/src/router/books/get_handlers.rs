@@ -4,7 +4,7 @@ use axum::{extract::State, Json};
 use crate::router::{
     auth::AuthUser,
     books::schemas::{BookResponseBody, BOOKS_TAG},
-    errors::{service_error, ApiError},
+    errors::{query_error, ApiError},
 };
 
 #[utoipa::path(
@@ -28,7 +28,7 @@ pub async fn get_book_catalog(
         .queries
         .get_book_catalog()
         .await
-        .map_err(service_error)?;
+        .map_err(query_error)?;
     Ok(Json(
         books.into_iter().map(BookResponseBody::from).collect(),
     ))

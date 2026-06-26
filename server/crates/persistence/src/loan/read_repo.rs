@@ -5,6 +5,7 @@ use domain::{
     book_copy::BookCopyId,
     loan::{port::LoanReadRepoPort, Loan, LoanId, LoanIdent},
     member::{MemberId, MemberIdent},
+    PortError, PortResult,
 };
 use sqlx::{Executor, PgPool, Postgres};
 
@@ -112,19 +113,27 @@ pub struct LoanReadRepoSql {
 
 #[async_trait]
 impl LoanReadRepoPort for LoanReadRepoSql {
-    async fn get_by_member_ident(&self, ident: &MemberIdent) -> Result<Vec<Loan>> {
-        get_by_member_ident_with(&self.pool, ident).await
+    async fn get_by_member_ident(&self, ident: &MemberIdent) -> PortResult<Vec<Loan>> {
+        get_by_member_ident_with(&self.pool, ident)
+            .await
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))
     }
 
-    async fn get_overdue(&self) -> Result<Vec<Loan>> {
-        get_overdue_with(&self.pool).await
+    async fn get_overdue(&self) -> PortResult<Vec<Loan>> {
+        get_overdue_with(&self.pool)
+            .await
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))
     }
 
-    async fn find_active_by_book_copy_id(&self, id: BookCopyId) -> Result<Option<Loan>> {
-        find_active_by_book_copy_id_with(&self.pool, id).await
+    async fn find_active_by_book_copy_id(&self, id: BookCopyId) -> PortResult<Option<Loan>> {
+        find_active_by_book_copy_id_with(&self.pool, id)
+            .await
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))
     }
 
-    async fn count_active_by_member_id(&self, id: MemberId) -> Result<i64> {
-        count_active_by_member_id_with(&self.pool, id).await
+    async fn count_active_by_member_id(&self, id: MemberId) -> PortResult<i64> {
+        count_active_by_member_id_with(&self.pool, id)
+            .await
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))
     }
 }

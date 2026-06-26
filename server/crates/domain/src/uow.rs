@@ -2,7 +2,7 @@ use async_trait::async_trait;
 
 use crate::{
     book::port::BookWriteRepoPort, book_copy::port::BookCopyWriteRepoPort,
-    loan::port::LoanWriteRepoPort, member::port::MemberWriteRepoPort,
+    loan::port::LoanWriteRepoPort, member::port::MemberWriteRepoPort, PortResult,
 };
 
 #[async_trait]
@@ -11,7 +11,7 @@ pub trait UnitOfWorkPort: Send {
     fn book_copy(&mut self) -> &mut dyn BookCopyWriteRepoPort;
     fn member(&mut self) -> &mut dyn MemberWriteRepoPort;
     fn loan(&mut self) -> &mut dyn LoanWriteRepoPort;
-    async fn commit(self: Box<Self>) -> anyhow::Result<()>;
+    async fn commit(self: Box<Self>) -> PortResult<()>;
 }
 
 pub struct WriteUnitOfWork {
@@ -40,12 +40,12 @@ impl WriteUnitOfWork {
         self.inner.loan()
     }
 
-    pub async fn commit(self) -> anyhow::Result<()> {
+    pub async fn commit(self) -> PortResult<()> {
         self.inner.commit().await
     }
 }
 
 #[async_trait]
 pub trait WriteUnitOfWorkFactory: Send + Sync {
-    async fn build(&self) -> anyhow::Result<WriteUnitOfWork>;
+    async fn build(&self) -> PortResult<WriteUnitOfWork>;
 }

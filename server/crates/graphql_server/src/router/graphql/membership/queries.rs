@@ -2,7 +2,7 @@ use async_graphql::{Context, Object, Result};
 use domain::member::MemberIdent;
 
 use crate::router::graphql::membership::LibraryMember;
-use crate::router::graphql::{deps, gql_service_error};
+use crate::router::graphql::{deps, gql_query_error};
 
 #[derive(Default)]
 pub struct MembershipQuery;
@@ -20,7 +20,7 @@ impl MembershipQuery {
             .queries
             .get_member_details(&MemberIdent(member_number))
             .await
-            .map_err(gql_service_error)?;
+            .map_err(gql_query_error)?;
 
         Ok(member.map(LibraryMember::from))
     }

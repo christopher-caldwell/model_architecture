@@ -1,4 +1,3 @@
-use anyhow::Context;
 use chrono::Utc;
 use domain::{
     book::{Book, BookCreationPayload, BookError},
@@ -25,8 +24,7 @@ impl CatalogCommands {
     ) -> Result<Book, super::CommandError> {
         uow.book()
             .get_by_isbn(isbn)
-            .await
-            .context("Failed to load book for write")?
+            .await?
             .ok_or(BookError::NotFound.into())
     }
 
@@ -37,8 +35,7 @@ impl CatalogCommands {
     ) -> Result<BookCopy, super::CommandError> {
         uow.book_copy()
             .get_by_barcode_for_update(barcode)
-            .await
-            .context("Failed to load book copy for write")?
+            .await?
             .ok_or(BookCopyError::NotFound.into())
     }
 
@@ -47,17 +44,9 @@ impl CatalogCommands {
         payload: BookCreationPayload,
     ) -> Result<Book, super::CommandError> {
         let prepared = payload.prepare();
-        let mut uow = self
-            .uow_factory
-            .build()
-            .await
-            .context("Failed to build unit of work")?;
-        let result = uow
-            .book()
-            .create(&prepared)
-            .await
-            .context("Failed to add book")?;
-        uow.commit().await.context("Failed to commit transaction")?;
+        let mut uow = self.uow_factory.build().await?;
+        let result = uow.book().create(&prepared).await?;
+        uow.commit().await?;
         Ok(result)
     }
 
@@ -65,23 +54,15 @@ impl CatalogCommands {
         &self,
         input: super::AddBookCopyInput,
     ) -> Result<BookCopy, super::CommandError> {
-        let mut uow = self
-            .uow_factory
-            .build()
-            .await
-            .context("Failed to build unit of work")?;
+        let mut uow = self.uow_factory.build().await?;
         let book = self.get_book_by_isbn(&mut uow, &input.isbn).await?;
         let prepared = BookCopyCreationPayload {
             barcode: input.barcode,
             book_id: book.id,
         }
         .prepare();
-        let result = uow
-            .book_copy()
-            .create(&prepared)
-            .await
-            .context("Failed to add book copy")?;
-        uow.commit().await.context("Failed to commit transaction")?;
+        let result = uow.book_copy().create(&prepared).await?;
+        uow.commit().await?;
         Ok(result)
     }
 
@@ -89,18 +70,13 @@ impl CatalogCommands {
         &self,
         barcode: String,
     ) -> Result<BookCopy, super::CommandError> {
-        let mut uow = self
-            .uow_factory
-            .build()
-            .await
-            .context("Failed to build unit of work")?;
+        let mut uow = self.uow_factory.build().await?;
         let book_copy = self.get_book_copy_by_barcode(&mut uow, &barcode).await?;
         let lost_status = book_copy.mark_lost()?;
         uow.book_copy()
             .update_status(book_copy.id, lost_status.clone())
-            .await
-            .context("Failed to mark book copy lost")?;
-        uow.commit().await.context("Failed to commit transaction")?;
+            .await?;
+        uow.commit().await?;
         let updated_copy = BookCopy {
             status: lost_status,
             dt_modified: Utc::now(),
@@ -113,18 +89,13 @@ impl CatalogCommands {
         &self,
         barcode: String,
     ) -> Result<BookCopy, super::CommandError> {
-        let mut uow = self
-            .uow_factory
-            .build()
-            .await
-            .context("Failed to build unit of work")?;
+        let mut uow = self.uow_factory.build().await?;
         let book_copy = self.get_book_copy_by_barcode(&mut uow, &barcode).await?;
         let found_status = book_copy.mark_found()?;
         uow.book_copy()
             .update_status(book_copy.id, found_status.clone())
-            .await
-            .context("Failed to mark book copy found")?;
-        uow.commit().await.context("Failed to commit transaction")?;
+            .await?;
+        uow.commit().await?;
         let updated_copy = BookCopy {
             status: found_status,
             dt_modified: Utc::now(),
@@ -137,18 +108,13 @@ impl CatalogCommands {
         &self,
         barcode: String,
     ) -> Result<BookCopy, super::CommandError> {
-        let mut uow = self
-            .uow_factory
-            .build()
-            .await
-            .context("Failed to build unit of work")?;
+        let mut uow = self.uow_factory.build().await?;
         let book_copy = self.get_book_copy_by_barcode(&mut uow, &barcode).await?;
         let maintenance_status = book_copy.send_to_maintenance()?;
         uow.book_copy()
             .update_status(book_copy.id, maintenance_status.clone())
-            .await
-            .context("Failed to send book copy to maintenance")?;
-        uow.commit().await.context("Failed to commit transaction")?;
+            .await?;
+        uow.commit().await?;
         let updated_copy = BookCopy {
             status: maintenance_status,
             dt_modified: Utc::now(),
@@ -161,18 +127,13 @@ impl CatalogCommands {
         &self,
         barcode: String,
     ) -> Result<BookCopy, super::CommandError> {
-        let mut uow = self
-            .uow_factory
-            .build()
-            .await
-            .context("Failed to build unit of work")?;
+        let mut uow = self.uow_factory.build().await?;
         let book_copy = self.get_book_copy_by_barcode(&mut uow, &barcode).await?;
         let active_status = book_copy.complete_maintenance()?;
         uow.book_copy()
             .update_status(book_copy.id, active_status.clone())
-            .await
-            .context("Failed to complete book copy maintenance")?;
-        uow.commit().await.context("Failed to commit transaction")?;
+            .await?;
+        uow.commit().await?;
         let updated_copy = BookCopy {
             status: active_status,
             dt_modified: Utc::now(),

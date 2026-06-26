@@ -1,7 +1,7 @@
 use async_graphql::{Context, Object, Result};
 
 use crate::router::graphql::lending::LoanRecord;
-use crate::router::graphql::{deps, gql_service_error};
+use crate::router::graphql::{deps, gql_query_error};
 
 #[derive(Default)]
 pub struct LendingQuery;
@@ -19,7 +19,7 @@ impl LendingQuery {
             .queries
             .get_member_loans(&domain::member::MemberIdent(member_number))
             .await
-            .map_err(gql_service_error)?;
+            .map_err(gql_query_error)?;
 
         Ok(loans.into_iter().map(LoanRecord::from).collect())
     }
@@ -31,7 +31,7 @@ impl LendingQuery {
             .queries
             .get_overdue_loans()
             .await
-            .map_err(gql_service_error)?;
+            .map_err(gql_query_error)?;
 
         Ok(loans.into_iter().map(LoanRecord::from).collect())
     }

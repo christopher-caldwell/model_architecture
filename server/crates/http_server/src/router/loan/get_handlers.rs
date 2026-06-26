@@ -3,7 +3,7 @@ use axum::{extract::State, Json};
 
 use crate::router::{
     auth::AuthUser,
-    errors::{service_error, ApiError},
+    errors::{query_error, ApiError},
     loan::schemas::{LoanResponseBody, LOANS_TAG},
 };
 
@@ -28,7 +28,7 @@ pub async fn get_overdue_loans(
         .queries
         .get_overdue_loans()
         .await
-        .map_err(service_error)?;
+        .map_err(query_error)?;
     Ok(Json(
         loans.into_iter().map(LoanResponseBody::from).collect(),
     ))

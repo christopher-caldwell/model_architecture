@@ -4,6 +4,7 @@ use chrono::{DateTime, Utc};
 use domain::{
     book::BookId,
     book_copy::{port::BookCopyReadRepoPort, BookCopy, BookCopyId, BookCopyStatus},
+    PortError, PortResult,
 };
 use sqlx::PgPool;
 
@@ -41,7 +42,7 @@ pub struct BookCopyReadRepoSql {
 
 #[async_trait]
 impl BookCopyReadRepoPort for BookCopyReadRepoSql {
-    async fn get_by_id(&self, book_copy_id: BookCopyId) -> Result<Option<BookCopy>> {
+    async fn get_by_id(&self, book_copy_id: BookCopyId) -> PortResult<Option<BookCopy>> {
         let row = sqlx::query_file_as!(
             BookCopyDbRow,
             "sql/book_copy/queries/get_by_id.sql",
@@ -49,12 +50,15 @@ impl BookCopyReadRepoPort for BookCopyReadRepoSql {
         )
         .fetch_optional(&self.pool)
         .await
-        .context("Failed to fetch book copy by id")?;
+        .context("Failed to fetch book copy by id")
+        .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))?;
 
-        row.map(BookCopy::try_from).transpose()
+        row.map(BookCopy::try_from)
+            .transpose()
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))
     }
 
-    async fn get_by_barcode(&self, barcode: &str) -> Result<Option<BookCopy>> {
+    async fn get_by_barcode(&self, barcode: &str) -> PortResult<Option<BookCopy>> {
         let row = sqlx::query_file_as!(
             BookCopyDbRow,
             "sql/book_copy/queries/get_by_barcode.sql",
@@ -62,8 +66,11 @@ impl BookCopyReadRepoPort for BookCopyReadRepoSql {
         )
         .fetch_optional(&self.pool)
         .await
-        .context("Failed to fetch book copy by barcode")?;
+        .context("Failed to fetch book copy by barcode")
+        .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))?;
 
-        row.map(BookCopy::try_from).transpose()
+        row.map(BookCopy::try_from)
+            .transpose()
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))
     }
 }

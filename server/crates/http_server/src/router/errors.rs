@@ -1,5 +1,4 @@
-use anyhow::Error;
-use application::commands::CommandError;
+use application::{commands::CommandError, queries::QueryError};
 use axum::{http::StatusCode, Json};
 use domain::{book::BookError, book_copy::BookCopyError, loan::LoanError, member::MemberError};
 use serde::Serialize;
@@ -23,9 +22,13 @@ pub fn not_found(message: impl Into<String>) -> ApiError {
 }
 
 #[must_use]
-pub fn service_error(error: Error) -> ApiError {
-    tracing::error!("Unhandled request error: {error:?}");
-    internal_server_error()
+pub fn query_error(error: QueryError) -> ApiError {
+    match error {
+        QueryError::Infrastructure(e) => {
+            tracing::error!("Unhandled query error: {e:?}");
+            internal_server_error()
+        }
+    }
 }
 
 #[must_use]
@@ -55,7 +58,7 @@ pub fn command_error(error: CommandError) -> ApiError {
         CommandError::BookCopy(e) => book_copy_error(e),
         CommandError::Book(e) => book_error(e),
         CommandError::Loan(e) => loan_error(e),
-        CommandError::Unexpected(e) => {
+        CommandError::Infrastructure(e) => {
             tracing::error!("Unhandled request error: {e:?}");
             internal_server_error()
         }

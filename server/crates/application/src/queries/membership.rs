@@ -1,6 +1,7 @@
-use anyhow::Context;
 use domain::member::{port::MemberReadRepoPort, Member, MemberIdent};
 use std::sync::Arc;
+
+use super::QueryError;
 
 #[derive(Clone)]
 pub struct MembershipQueries {
@@ -13,10 +14,13 @@ impl MembershipQueries {
         Self { member_read_repo }
     }
 
-    pub async fn get_member_details(&self, ident: &MemberIdent) -> anyhow::Result<Option<Member>> {
+    pub async fn get_member_details(
+        &self,
+        ident: &MemberIdent,
+    ) -> Result<Option<Member>, QueryError> {
         self.member_read_repo
             .get_by_ident(ident)
             .await
-            .context("Failed to get member details")
+            .map_err(QueryError::from)
     }
 }

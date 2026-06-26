@@ -1,7 +1,7 @@
 use async_graphql::{Context, Object, Result};
 
 use crate::router::graphql::catalog::{CatalogTitle, InventoryCopy};
-use crate::router::graphql::{deps, gql_service_error};
+use crate::router::graphql::{deps, gql_query_error};
 
 #[derive(Default)]
 pub struct CatalogQuery;
@@ -15,7 +15,7 @@ impl CatalogQuery {
             .queries
             .get_book_catalog()
             .await
-            .map_err(gql_service_error)?;
+            .map_err(gql_query_error)?;
 
         Ok(books.into_iter().map(CatalogTitle::from).collect())
     }
@@ -27,7 +27,7 @@ impl CatalogQuery {
             .queries
             .get_book_by_isbn(&isbn)
             .await
-            .map_err(gql_service_error)?;
+            .map_err(gql_query_error)?;
 
         Ok(book.map(CatalogTitle::from))
     }
@@ -39,7 +39,7 @@ impl CatalogQuery {
             .queries
             .get_book_copy_details(&barcode)
             .await
-            .map_err(gql_service_error)?;
+            .map_err(gql_query_error)?;
 
         Ok(copy.map(InventoryCopy::from))
     }

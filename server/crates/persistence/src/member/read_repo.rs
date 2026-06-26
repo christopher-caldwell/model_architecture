@@ -1,7 +1,10 @@
 use anyhow::{Context, Result};
 use async_trait::async_trait;
 use chrono::{DateTime, Utc};
-use domain::member::{port::MemberReadRepoPort, Member, MemberId, MemberIdent, MemberStatus};
+use domain::{
+    member::{port::MemberReadRepoPort, Member, MemberId, MemberIdent, MemberStatus},
+    PortError, PortResult,
+};
 use sqlx::PgPool;
 
 use std::str::FromStr;
@@ -39,17 +42,20 @@ pub struct MemberReadRepoSql {
 
 #[async_trait]
 impl MemberReadRepoPort for MemberReadRepoSql {
-    async fn get_by_id(&self, member_id: MemberId) -> Result<Option<Member>> {
+    async fn get_by_id(&self, member_id: MemberId) -> PortResult<Option<Member>> {
         let row =
             sqlx::query_file_as!(MemberDbRow, "sql/member/queries/get_by_id.sql", member_id.0)
                 .fetch_optional(&self.pool)
                 .await
-                .context("Failed to fetch member by id")?;
+                .context("Failed to fetch member by id")
+                .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))?;
 
-        row.map(Member::try_from).transpose()
+        row.map(Member::try_from)
+            .transpose()
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))
     }
 
-    async fn get_by_ident(&self, ident: &MemberIdent) -> Result<Option<Member>> {
+    async fn get_by_ident(&self, ident: &MemberIdent) -> PortResult<Option<Member>> {
         let ident_str = ident.0.clone();
         let row = sqlx::query_file_as!(
             MemberDbRow,
@@ -58,8 +64,11 @@ impl MemberReadRepoPort for MemberReadRepoSql {
         )
         .fetch_optional(&self.pool)
         .await
-        .context("Failed to fetch member by ident")?;
+        .context("Failed to fetch member by ident")
+        .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))?;
 
-        row.map(Member::try_from).transpose()
+        row.map(Member::try_from)
+            .transpose()
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))
     }
 }

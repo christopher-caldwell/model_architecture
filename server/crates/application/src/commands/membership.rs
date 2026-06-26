@@ -1,4 +1,3 @@
-use anyhow::Context;
 use chrono::Utc;
 use domain::{
     member::{Member, MemberCreationPayload, MemberError, MemberIdent},
@@ -34,8 +33,7 @@ impl MembershipCommands {
         let ident = MemberIdent(member_ident.to_owned());
         uow.member()
             .get_by_ident_for_update(&ident)
-            .await
-            .context("Failed to load member for write")?
+            .await?
             .ok_or(MemberError::NotFound.into())
     }
 
@@ -45,17 +43,9 @@ impl MembershipCommands {
     ) -> Result<Member, super::CommandError> {
         let ident = MemberIdent(self.ident_generator.gen());
         let prepared = payload.prepare(ident);
-        let mut uow = self
-            .uow_factory
-            .build()
-            .await
-            .context("Failed to build unit of work")?;
-        let result = uow
-            .member()
-            .create(&prepared)
-            .await
-            .context("Failed to register member")?;
-        uow.commit().await.context("Failed to commit transaction")?;
+        let mut uow = self.uow_factory.build().await?;
+        let result = uow.member().create(&prepared).await?;
+        uow.commit().await?;
         Ok(result)
     }
 
@@ -63,20 +53,15 @@ impl MembershipCommands {
         &self,
         input: super::MemberIdentInput,
     ) -> Result<Member, super::CommandError> {
-        let mut uow = self
-            .uow_factory
-            .build()
-            .await
-            .context("Failed to build unit of work")?;
+        let mut uow = self.uow_factory.build().await?;
         let member = self
             .get_member_by_ident(&mut uow, &input.member_ident)
             .await?;
         let suspended_status = member.suspend()?;
         uow.member()
             .update_status(member.id, suspended_status.clone())
-            .await
-            .context("Failed to suspend member")?;
-        uow.commit().await.context("Failed to commit transaction")?;
+            .await?;
+        uow.commit().await?;
         let updated_member = Member {
             status: suspended_status,
             dt_modified: Utc::now(),
@@ -89,20 +74,15 @@ impl MembershipCommands {
         &self,
         input: super::MemberIdentInput,
     ) -> Result<Member, super::CommandError> {
-        let mut uow = self
-            .uow_factory
-            .build()
-            .await
-            .context("Failed to build unit of work")?;
+        let mut uow = self.uow_factory.build().await?;
         let member = self
             .get_member_by_ident(&mut uow, &input.member_ident)
             .await?;
         let active_status = member.reactivate()?;
         uow.member()
             .update_status(member.id, active_status.clone())
-            .await
-            .context("Failed to reactivate member")?;
-        uow.commit().await.context("Failed to commit transaction")?;
+            .await?;
+        uow.commit().await?;
         let updated_member = Member {
             status: active_status,
             dt_modified: Utc::now(),

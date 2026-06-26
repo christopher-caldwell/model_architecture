@@ -1,7 +1,10 @@
 use anyhow::{Context, Result};
 use async_trait::async_trait;
 use chrono::{DateTime, Utc};
-use domain::book::{port::BookReadRepoPort, Book, BookId};
+use domain::{
+    book::{port::BookReadRepoPort, Book, BookId},
+    PortError, PortResult,
+};
 use sqlx::PgPool;
 
 #[derive(sqlx::FromRow)]
@@ -35,21 +38,28 @@ pub struct BookReadRepoSql {
 
 #[async_trait]
 impl BookReadRepoPort for BookReadRepoSql {
-    async fn get_catalog(&self) -> Result<Vec<Book>> {
+    async fn get_catalog(&self) -> PortResult<Vec<Book>> {
         let rows = sqlx::query_file_as!(BookDbRow, "sql/book/queries/get_catalog.sql")
             .fetch_all(&self.pool)
             .await
-            .context("Failed to fetch book catalog")?;
+            .context("Failed to fetch book catalog")
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))?;
 
-        rows.into_iter().map(Book::try_from).collect()
+        rows.into_iter()
+            .map(Book::try_from)
+            .collect::<Result<Vec<_>>>()
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))
     }
 
-    async fn get_by_isbn(&self, isbn: &str) -> Result<Option<Book>> {
+    async fn get_by_isbn(&self, isbn: &str) -> PortResult<Option<Book>> {
         let row = sqlx::query_file_as!(BookDbRow, "sql/book/queries/get_by_isbn.sql", isbn)
             .fetch_optional(&self.pool)
             .await
-            .context("Failed to fetch book by isbn")?;
+            .context("Failed to fetch book by isbn")
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))?;
 
-        row.map(Book::try_from).transpose()
+        row.map(Book::try_from)
+            .transpose()
+            .map_err(|error| PortError::repository(error.into_boxed_dyn_error()))
     }
 }
