@@ -1,6 +1,11 @@
+---
+name: application-cqrs-use-cases
+description: Use when adding or changing application-layer commands, queries, use-case input structs, command/query orchestration, command/query composition, or application error flow in this onion/CQRS Rust project. For transaction and unit-of-work details, also use unit-of-work-cqrs-pattern.
+---
+
 # Application CQRS Use Cases
 
-Use this skill when adding or changing commands, queries, use-case inputs, unit-of-work orchestration, transaction boundaries, or command/query composition.
+Use this skill when adding or changing commands, queries, use-case inputs, use-case orchestration, or command/query composition. For unit-of-work and transaction-boundary details, also read `.agents/skills/unit-of-work-cqrs-pattern/SKILL.md`.
 
 ## Purpose
 
@@ -12,9 +17,9 @@ Business workflow logic belongs here instead of in HTTP or GraphQL. Reusable bus
 
 Commands live in `server/crates/application/src/commands`.
 
-A command should:
+A command should follow the UoW pattern in `.agents/skills/unit-of-work-cqrs-pattern/SKILL.md` and:
 
-1. Build a write unit of work.
+1. Build one write unit of work from the injected factory.
 2. Load all records needed for write decisions through write repositories.
 3. Use command-side locking reads such as `get_by_*_for_update` when the row participates in a write decision.
 4. Ask domain objects to decide through guards and transitions.
@@ -22,7 +27,7 @@ A command should:
 6. Commit once at the end.
 7. Return a domain value without post-write hydration.
 
-Commands may read during a write workflow, but those reads belong inside the same unit of work when they affect the write.
+Commands may read during a write workflow, but reads that affect the write belong inside the same unit of work.
 
 ## Query Rules
 
@@ -71,7 +76,7 @@ Examples:
 ## Error Handling
 
 - Domain errors flow into `CommandError`.
-- Infrastructure failures get context and become unexpected command errors.
+- Infrastructure failures from ports flow into typed command/query infrastructure errors.
 - Do not map command errors to HTTP status codes or GraphQL extensions in application code.
 
 ## Smells

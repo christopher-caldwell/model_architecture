@@ -147,6 +147,14 @@ Examples:
 
 Do not use `anyhow`, strings, HTTP status codes, GraphQL errors, or SQL errors to represent expected business rejections. Those mappings happen outside the domain.
 
+## Timestamp Rule
+
+Domain entities may contain timestamps, but business decisions should not depend on database-generated timestamps.
+
+- Created return entities use one code-side `Utc::now()` for both `dt_created` and `dt_modified`.
+- Updated return entities use code-side `Utc::now()` for `dt_modified` while preserving previously loaded entity fields.
+- Do not select database timestamps after a write only to hydrate a response.
+
 ## Domain Enum Handling
 
 Domain enums are the source of truth for business states. Keep them as Rust enums in the domain, not strings.
@@ -204,11 +212,14 @@ Persistence adapters may convert database rows into domain enums, then fail with
 
 ## Application Interaction
 
-Commands should compose domain methods like this:
+Commands should compose domain methods inside the write UoW like this:
 
 ```rust
-let member = self.get_member_by_ident(&*uow, &input.member_ident).await?;
-let book_copy = self.get_book_copy_by_barcode(&*uow, &input.book_copy_barcode).await?;
+let mut uow = self.uow_factory.build().await?;
+let member = self.get_member_by_ident(&mut uow, &input.member_ident).await?;
+let book_copy = self
+    .get_book_copy_by_barcode(&mut uow, &input.book_copy_barcode)
+    .await?;
 
 member.ensure_can_borrow()?;
 book_copy.ensure_can_be_borrowed()?;
@@ -221,6 +232,8 @@ let prepared = LoanCreationPayload {
 ```
 
 The command loads state, calls domain decisions, persists approved changes, commits, and shapes the result. It should not reimplement the domain condition.
+
+For transaction and UoW details, read `.agents/skills/unit-of-work-cqrs-pattern/SKILL.md`.
 
 ## Tests
 

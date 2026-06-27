@@ -1,6 +1,11 @@
+---
+name: persistence-write-results
+description: Use when touching SQL command files, write repositories, generated IDs, code-side timestamps, SQLx row structs, read/write repository split, status lookup mapping, command-side SQL, or no-read-after-write behavior in this onion/CQRS Rust project.
+---
+
 # Persistence Write Results
 
-Use this skill when touching SQL command files, write repositories, generated IDs, timestamps, SQLx row structs, transactional repositories, or no-read-after-write behavior.
+Use this skill when touching SQL command files, write repositories, generated IDs, timestamps, SQLx row structs, or no-read-after-write behavior. For the transaction-backed UoW adapter shape, also read `.agents/skills/unit-of-work-cqrs-pattern/SKILL.md`.
 
 ## Purpose
 
@@ -11,6 +16,7 @@ Persistence is an adapter. It executes SQL and maps between database rows and do
 - Read repositories use pools and SQL under `sql/<concept>/queries`.
 - Write repositories use transactions and SQL under `sql/<concept>/commands`.
 - Command-side read SQL may exist under `commands` when it is part of a write decision, especially if it uses `FOR UPDATE`.
+- Shared SQL helpers may accept a generic SQLx executor when the same SQL semantics work with either a pool or a transaction.
 
 ## Write SQL Return Rule
 

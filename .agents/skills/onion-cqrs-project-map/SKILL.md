@@ -1,3 +1,8 @@
+---
+name: onion-cqrs-project-map
+description: Use when orienting to this Rust clean/onion architecture and CQRS project, adding a new feature, moving behavior between layers, reviewing dependency direction, or deciding which crate should own domain, application, persistence, HTTP, GraphQL, auth, or composition code.
+---
+
 # Onion CQRS Project Map
 
 Use this skill when orienting to the project, adding a new feature, moving behavior between layers, or adapting this structure to a new application.
@@ -9,8 +14,8 @@ This project demonstrates that the inner application model is independent of its
 Dependency direction:
 
 ```text
-transport -> bootstrap -> application -> domain
-                 persistence -> domain
+http_server / graphql_server -> application -> domain
+                            \-> persistence -> domain
 ```
 
 Nothing in `domain` depends on transport, persistence, framework, database, runtime, or DI concerns.
@@ -20,9 +25,8 @@ Nothing in `domain` depends on transport, persistence, framework, database, runt
 - `domain`: business concepts, invariants, state transitions, typed business errors, repository ports, unit-of-work traits.
 - `application`: CQRS use cases. Commands orchestrate writes and transactions. Queries orchestrate reads. This is where multi-step workflows live.
 - `persistence`: adapter that implements repository ports with SQLx, SQL files, read pools, and transactional write repositories.
-- `server_bootstrap`: composition root. It wires pools, adapters, command/query structs, auth, and shared dependencies.
-- `http_server`: Axum transport only.
-- `graphql_server`: async-graphql transport only.
+- `http_server`: Axum transport plus its server-specific config, dependency wiring, and router state.
+- `graphql_server`: async-graphql transport plus its server-specific config, dependency wiring, and schema state.
 - `auth_core`: auth boundary and JWT adapter.
 - `database/sql`: demo schema and seed data.
 
@@ -32,7 +36,7 @@ Nothing in `domain` depends on transport, persistence, framework, database, runt
 - Use-case choreography belongs in `application`.
 - IO implementation belongs in adapters.
 - Request parsing and response mapping belong in transports.
-- Dependency wiring belongs in bootstrap.
+- Dependency wiring belongs in each transport's composition root, such as `http_server/src/deps.rs` or `graphql_server/src/deps.rs`.
 
 ## Common File Pattern
 
@@ -64,7 +68,7 @@ Persistence mirrors domain concepts and separates SQL:
 3. Add or adjust ports.
 4. Implement a command or query in `application`.
 5. Implement persistence adapters and SQL.
-6. Wire dependencies in `server_bootstrap`.
+6. Wire dependencies in the relevant transport `deps.rs` composition root.
 7. Add transport endpoints that call the application layer.
 8. Add tests at the lowest useful layer. Domain logic tests should cover state transitions, guards, and preparation defaults.
 
@@ -76,7 +80,7 @@ This structure is intended to be adapted to other applications:
 - Replace `persistence` with any adapter that satisfies the same ports.
 - Keep business rules in `domain`.
 - Keep use-case workflow in `application`.
-- Keep dependency wiring in `server_bootstrap` or the equivalent composition root.
+- Keep dependency wiring in the equivalent composition root. In this repo, HTTP and GraphQL intentionally keep separate `deps.rs` modules unless a shared abstraction is clearly needed.
 
 ## Review Checklist
 

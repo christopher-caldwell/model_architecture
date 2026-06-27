@@ -30,7 +30,7 @@ Before searching the repo manually, check the Understand Anything knowledge grap
 
 - `.agents/skills/onion-cqrs-project-map/SKILL.md`: layer map, crate roles, feature flow, and review checklist.
 - `.agents/skills/domain-business-encapsulation/SKILL.md`: exact domain encapsulation style, guard/transition shape, and enum handling.
-- `.agents/skills/domain-rules-and-errors/SKILL.md`: business decisions, guards, transitions, defaults, and domain errors.
-- `.agents/skills/application-cqrs-use-cases/SKILL.md`: commands, queries, orchestration, transactions, and unit-of-work behavior.
+- `.agents/skills/unit-of-work-cqrs-pattern/SKILL.md`: current UoW trait shape, command transaction boundaries, DI, SQLx adapter pattern, and write-side reads.
+- `.agents/skills/application-cqrs-use-cases/SKILL.md`: commands, queries, use-case orchestration, and command/query composition.
 - `.agents/skills/persistence-write-results/SKILL.md`: repositories, SQL command files, generated IDs, timestamps, and no-read-after-write rules.
 - `.agents/skills/transport-adapters/SKILL.md`: HTTP, GraphQL, schemas, request parsing, response DTOs, and error mapping.

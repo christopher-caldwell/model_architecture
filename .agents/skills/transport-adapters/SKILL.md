@@ -1,6 +1,13 @@
+---
+name: transport-adapters
+description: Use when changing HTTP handlers, GraphQL resolvers, schemas, request/response DTOs, auth extraction, router state, protocol-specific error mapping, or transport dependency wiring in this onion/CQRS Rust project.
+---
+
 # Transport Adapters
 
 Use this skill when changing HTTP handlers, GraphQL resolvers, schemas, DTOs, auth extraction, response mapping, or protocol-specific error mapping.
+
+For command transaction and UoW details, read `.agents/skills/unit-of-work-cqrs-pattern/SKILL.md`; transports should only receive already-wired commands and queries.
 
 ## Purpose
 
@@ -50,11 +57,12 @@ They should not invent business meaning. Preserve domain error intent.
 
 ## Adding A New Transport
 
-1. Depend on `server_bootstrap` and use `ServerDeps`.
-2. Define transport-specific schemas.
-3. Route each operation to an existing application command or query.
-4. Add protocol-specific error mapping.
-5. Avoid creating new business workflows in the transport.
+1. Define a transport-local `deps.rs` or equivalent composition root.
+2. Wire pools, persistence adapters, commands, queries, auth, and transport state there.
+3. Define transport-specific schemas.
+4. Route each operation to an existing application command or query.
+5. Add protocol-specific error mapping.
+6. Avoid creating new business workflows in the transport.
 
 ## Smells
 
